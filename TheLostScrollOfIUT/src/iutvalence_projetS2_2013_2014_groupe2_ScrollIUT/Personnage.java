@@ -4,52 +4,88 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 /**
  * The Class Personnage.
  */
-public class Personnage {
-	
-	/** le nom du personnage. */
-	public  String nomPersonnage;
-	
-	/** leur nombre de point de vie associé. */
-	public   int PointDeVie;
-	
-	/** Représente la puissance d'attaque. */
-	public  int Attaque;
-	
-	/** Représente l'armure du personnage. */
-	public  int Armure;
-	
-	
-	/**
-	 * Obtenir point de vie permet d'avoir accès au nombre de point de vie du personnage.
-	 *
-	 * @return renvoie son nombre de point de vie
-	 */
-	public int obtenirPointDeVie() {
-		return PointDeVie;
-	}
-	
-	/**
-	 * Obtenir attaque permet d'avoir accès a la puissance d'attaque du personnage
-	 *
-	 * @return renvoie sa puissance d'attaque
-	 */
-	public int obtenirAttaque() {
-		return Attaque;
-	}
-	
-	/**
-	 * Obtenir armure permet d'avoir accès a la caracteristique d'armure que possede le personnage
-	 *
-	 * @return renvoie l'armure du personnage
-	 */
-	public int obtenirArmure() {
-		return Armure;
-	}
-	
-	
-	
-	
-	
-	
-	
+public abstract class Personnage
+{
+
+    /** le nom du personnage. */
+    public String nomPersonnage;
+
+    /** leur nombre de point de vie associï¿½. */
+    public int pointDeVie;
+
+    /** Reprï¿½sente la puissance d'attaque. */
+    public int attaque;
+
+    /** Reprï¿½sente l'armure du personnage. */
+    public int armure;
+
+    /** ReprÃ©sente le multiplicateur de dÃ©gat du personnage. */
+    public double multiplicateur;
+
+    /** ReprÃ©sente le taux d'esquive du personnage. */
+    public int esquive;
+
+    public Personnage(String nom)
+    {
+        this.nomPersonnage = nom;
+        this.pointDeVie = 50;
+        this.attaque = 1;
+        this.armure = 0;
+        this.multiplicateur = 1;
+        this.esquive = 10;
+    }
+
+    /**
+     * Obtenir point de vie permet d'avoir accï¿½s au nombre de point de vie du
+     * personnage.
+     * 
+     * @return renvoie son nombre de point de vie
+     */
+    public int obtenirPointDeVie()
+    {
+        return pointDeVie;
+    }
+
+    /**
+     * Obtenir attaque permet d'avoir accï¿½s a la puissance d'attaque du
+     * personnage
+     * 
+     * @return renvoie sa puissance d'attaque
+     */
+    public int obtenirAttaque()
+    {
+        return attaque;
+    }
+
+    /**
+     * Obtenir armure permet d'avoir accï¿½s a la caracteristique d'armure que
+     * possede le personnage
+     * 
+     * @return renvoie l'armure du personnage
+     */
+    public int obtenirArmure()
+    {
+        return armure;
+    }
+
+    /**
+     * Obtenir le multiplicateur permet le calcule des dÃ©gats du personnage
+     * 
+     * @return renvoie le multiplicateur du personnage
+     */
+    public double obtenirMultiplicateur()
+    {
+        return multiplicateur;
+    }
+
+    public void attaqueSpecial()
+    {
+
+    }
+
+    public int obtenirEsquive()
+    {
+        return esquive;
+    }
+
 }

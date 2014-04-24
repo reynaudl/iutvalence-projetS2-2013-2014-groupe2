@@ -5,9 +5,10 @@ public class Sorcier extends Personnage {
 	 public Sorcier(String nom) {
 	        
 	    	this.nomPersonnage=nom;
-	    	this.PointDeVie=8;
-	    	this.Attaque=8;
-	    	this.Armure=2;
+	    	this.pointDeVie=50;
+	    	this.attaque=0;
+	    	this.armure=0;
+	    	this.multiplicateur=2;
 	    	
 	    }
 

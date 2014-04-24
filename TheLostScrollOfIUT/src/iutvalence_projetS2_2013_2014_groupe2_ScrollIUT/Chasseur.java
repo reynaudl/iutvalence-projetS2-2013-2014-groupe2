@@ -4,10 +4,10 @@ public class Chasseur extends Personnage {
 	 public Chasseur(String nom) {
 	        
 	    	this.nomPersonnage=nom;
-	    	this.PointDeVie=6;
-	    	this.Attaque=10;
-	    	this.Armure=4;
-	    	
+	    	this.pointDeVie=50;
+	    	this.attaque=0;
+	    	this.armure=0;
+	    	this.multiplicateur=1.75;
 	    }
 
 }
