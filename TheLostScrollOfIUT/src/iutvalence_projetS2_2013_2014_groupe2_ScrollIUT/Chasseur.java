@@ -10,4 +10,9 @@ public class Chasseur extends Personnage {
 	    {
 	        esquive=50;
 	    }
+	 
+	 public void passif()
+	    {
+	        esquive = 20;	        
+	    }
 }
