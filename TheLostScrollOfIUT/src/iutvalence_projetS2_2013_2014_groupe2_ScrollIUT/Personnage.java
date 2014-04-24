@@ -6,6 +6,7 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
  */
 public abstract class Personnage
 {
+    public final static int PV = 50;
 
     /** le nom du personnage. */
     public String nomPersonnage;
@@ -28,7 +29,7 @@ public abstract class Personnage
     public Personnage(String nom)
     {
         this.nomPersonnage = nom;
-        this.pointDeVie = 50;
+        this.pointDeVie = PV;
         this.attaque = 1;
         this.armure = 0;
         this.multiplicateur = 1;
@@ -78,14 +79,22 @@ public abstract class Personnage
         return multiplicateur;
     }
 
+    
+    public int obtenirEsquive()
+    {
+        return esquive;
+    }
+    
     public void attaqueSpecial()
     {
 
     }
 
-    public int obtenirEsquive()
+    public void passif()
     {
-        return esquive;
+
     }
+    
+
 
 }
