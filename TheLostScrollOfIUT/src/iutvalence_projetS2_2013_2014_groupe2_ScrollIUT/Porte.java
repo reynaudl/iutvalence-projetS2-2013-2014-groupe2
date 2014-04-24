@@ -16,6 +16,7 @@ public class Porte extends Decors {
 		if (this.etat==true)
 				return true;
 		return false;
+		
 	}
 	
 	public Couleur obtenirCouleurPorte() 
