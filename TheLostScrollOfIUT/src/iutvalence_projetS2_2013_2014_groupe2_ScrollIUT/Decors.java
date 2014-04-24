@@ -19,7 +19,8 @@ public class Decors {
 	 * 
 	 * @return Renvoie si une énigme est présente ou non sur le décor.
 	 */
-	public boolean presanceEnigme() {
+	public boolean presenceEnigme() {
+		return true;
 
 	}
 }
