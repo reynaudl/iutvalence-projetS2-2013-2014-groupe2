@@ -1,4 +1,4 @@
-package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
+	package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
 // TODO: Auto-generated Javadoc
 /**
