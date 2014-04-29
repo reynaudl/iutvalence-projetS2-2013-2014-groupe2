@@ -34,7 +34,32 @@ public class Partie {
 	 * Cette méthode met a jour l'equipement en fonction de l'idem donné en entrée
 	 * @param  prend en entrée un objet de type item
 	 */
-	public void miseAJourDeLEquipement( Item item){
+	public void miseAJourDeLEquipement( Item item, Personnage p){
+		
+		for(int i=0;i<p.itemCourant.length;i++)
+			if(item.obtenirType()==p.itemCourant[i].obtenirType()){
+				
+				switch (item.obtenirType())
+				{
+				  case "Bottes":
+				    if(item..obtenirArmure())>itemCourant.obtenirType().obtenirArmure()){
+				        	
+				    break;
+				  case "Arme":
+				    System.out.println(" ");
+				    break;
+				  case "Torse":
+				    System.out.println(" ");
+				    break;
+				  default:
+				    System.out.println(" ");
+				}
+				
+			}
+			
+		}
+		
+		
 			
 	}
 	

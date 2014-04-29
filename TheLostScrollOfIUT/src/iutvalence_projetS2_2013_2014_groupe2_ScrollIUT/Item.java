@@ -11,6 +11,8 @@ public class Item {
 	/** Le type de l'item. */
 	private String type;
 	
+
+	
 	/**
 	 * Constructeur de l'item
 	 *

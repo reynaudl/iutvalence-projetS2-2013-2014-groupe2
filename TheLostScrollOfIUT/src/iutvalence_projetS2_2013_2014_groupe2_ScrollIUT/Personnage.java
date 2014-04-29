@@ -25,6 +25,9 @@ public abstract class Personnage
 
     /** Représente le taux d'esquive du personnage. */
     public int esquive;
+    
+    /** Représente la liste des items que  porte le  personnage. */
+    public Item[] itemCourant;
 
     public Personnage(String nom)
     {
@@ -34,6 +37,7 @@ public abstract class Personnage
         this.armure = 0;
         this.multiplicateur = 1;
         this.esquive = 10;
+        itemCourant=null;
     }
 
     /**
