@@ -7,8 +7,7 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 public class Bottes extends Item 
 {
 
-	/** La valeur de l'armure des bottes. */
-	private int armure;
+	
 	
 	/**
 	 * Constructeur des bottes
@@ -17,10 +16,10 @@ public class Bottes extends Item
 	 * @param type le type de l'item
 	 * @param armure la valeur de l'armure des bottes
 	 */
-	public Bottes(String nomItem, String type, int armure) 
+	public Bottes(String nomItem, int armure) 
 	{
 		
-		super(nomItem, type,armure,0);
+		super(nomItem,"Bottes",armure,0);
 		
 		
 		
@@ -32,9 +31,5 @@ public class Bottes extends Item
 	 *
 	 * @return armure la valeur de l'armure des bottes
 	 */
-	public int obtenirArmure() 
-	{
-		return armure;
-	}
-	
+
 }

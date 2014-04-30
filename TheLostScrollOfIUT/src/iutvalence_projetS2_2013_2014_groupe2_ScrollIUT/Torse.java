@@ -5,8 +5,7 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
  */
 public class Torse extends Item {
 	
-	/** la valeur de l'armure du torse */
-	private int armure;
+	
 
 	/**
 	 * Constructeur de Torse
@@ -15,10 +14,10 @@ public class Torse extends Item {
 	 * @param type le type de l'item
 	 * @param armure la valeur de l'armure
 	 */
-	public Torse(String nomItem, String type, int armure) 
+	public Torse(String nomItem, int armure) 
 	{
 		
-		super(nomItem, type,armure,0);
+		super(nomItem,"Torse",armure,0);
 		
 		
 		
@@ -29,11 +28,7 @@ public class Torse extends Item {
 	 *
 	 * @return armure la valeur de l'armure du torse
 	 */
-	public int obtenirArmure() 
-	{
-		return this.armure;
-	}
-  
+
 	
 	
 }

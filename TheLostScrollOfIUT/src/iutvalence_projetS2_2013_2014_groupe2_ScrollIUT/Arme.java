@@ -5,9 +5,6 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
  */
 public class Arme extends Item {
 	
-	/*
-	/** La valeur de l'attaque de l'arme */
-	private int attaque;
 	
 	/**
 	 * Constructeur de l'arme
@@ -18,25 +15,16 @@ public class Arme extends Item {
 	 */
 		
 	
-	public Arme(String nomItem, String type, int attaque) 
+	public Arme(String nomItem, int attaque) 
 	{
 		
-		super(nomItem, type,0,attaque);
+		super(nomItem,"Arme",0,attaque);
 		
 		
 		
 	}
 
-	/**
-	 * Permet d'obtenir l'attaque
-	 *
-	 * @return attaque la valeur de l'attaque
-	 */
-	public int obtenirAttaque() 
-	{
-		return this.attaque;
-	}
-	
+
 	
 
 }
