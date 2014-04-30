@@ -19,8 +19,11 @@ public class Bottes extends Item
 	 */
 	public Bottes(String nomItem, String type, int armure) 
 	{
-		super(nomItem, type);
-		this.armure = armure;
+		
+		super(nomItem, type,armure,0);
+		
+		
+		
 	}
 
 	
@@ -31,7 +34,7 @@ public class Bottes extends Item
 	 */
 	public int obtenirArmure() 
 	{
-		return this.armure;
+		return armure;
 	}
 	
 }

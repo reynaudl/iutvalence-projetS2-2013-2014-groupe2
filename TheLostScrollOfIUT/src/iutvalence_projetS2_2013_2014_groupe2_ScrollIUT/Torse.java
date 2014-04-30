@@ -17,8 +17,11 @@ public class Torse extends Item {
 	 */
 	public Torse(String nomItem, String type, int armure) 
 	{
-		super(nomItem, type);
-		this.armure = armure;
+		
+		super(nomItem, type,armure,0);
+		
+		
+		
 	}
 
 	/**

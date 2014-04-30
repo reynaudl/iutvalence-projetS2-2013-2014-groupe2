@@ -38,30 +38,15 @@ public class Partie {
 		
 		for(int i=0;i<p.itemCourant.length;i++)
 			if(item.obtenirType()==p.itemCourant[i].obtenirType()){
-				
-				switch (item.obtenirType())
-				{
-				  case "Bottes":
-				    if(item..obtenirArmure())>itemCourant.obtenirType().obtenirArmure()){
-				        	
-				    break;
-				  case "Arme":
-				    System.out.println(" ");
-				    break;
-				  case "Torse":
-				    System.out.println(" ");
-				    break;
-				  default:
-				    System.out.println(" ");
-				}
-				
-			}
-			
+				    if((item.obtenirArmure()>p.itemCourant[i].obtenirArmure())||(item.obtenirAttaque()>p.itemCourant[i].obtenirAttaque())){
+				    	p.itemCourant[i]=item;
+				}	
+			}	
 		}
 		
 		
 			
-	}
+	
 	
 	/**
 	 * Cette méthode dirigie l'ouverture de coffres et de portes.

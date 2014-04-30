@@ -5,6 +5,7 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
  */
 public class Arme extends Item {
 	
+	/*
 	/** La valeur de l'attaque de l'arme */
 	private int attaque;
 	
@@ -15,11 +16,15 @@ public class Arme extends Item {
 	 * @param type le type de l'item
 	 * @param attaque la valeur de l'attaque de l'arme
 	 */
+		
+	
 	public Arme(String nomItem, String type, int attaque) 
 	{
-		super(nomItem, type);
 		
-		this.attaque = attaque;
+		super(nomItem, type,0,attaque);
+		
+		
+		
 	}
 
 	/**

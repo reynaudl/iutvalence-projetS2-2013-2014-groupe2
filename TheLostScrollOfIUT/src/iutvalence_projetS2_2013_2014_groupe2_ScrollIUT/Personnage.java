@@ -37,8 +37,11 @@ public abstract class Personnage
         this.armure = 0;
         this.multiplicateur = 1;
         this.esquive = 10;
-        itemCourant=null;
-    }
+        //Item[] itemCourant={("Botte en laine","Bottes",1,0),("Armure en laine","Armure",1,0),("Botte en laine","Bottes",1,0)};
+       
+    
+        }
+    
 
     /**
      * Obtenir point de vie permet d'avoir acc�s au nombre de point de vie du
