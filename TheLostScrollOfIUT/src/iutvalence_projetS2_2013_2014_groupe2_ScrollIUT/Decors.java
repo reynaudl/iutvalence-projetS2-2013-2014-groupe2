@@ -9,11 +9,17 @@ public class Decors {
 	 * Le nom du décors.
 	 */
 	private String nom;
-
 	/**
 	 * La position du décors sur la carte, définit par une Case.
 	 */
 	private Case position;
+
+	public Decors(String nom,Case pos)
+	{
+		this.nom = nom;
+		this.position=pos;
+		
+	}
 
 	/**
 	 * 

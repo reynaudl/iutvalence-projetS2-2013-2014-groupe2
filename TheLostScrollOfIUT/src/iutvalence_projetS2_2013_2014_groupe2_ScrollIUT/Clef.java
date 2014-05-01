@@ -19,9 +19,9 @@ public class Clef extends Item {
 	 * @param couleurClef la couleur de la clef
 	 * @param compteurClef le compteur de clef
 	 */
-	public Clef(String nomItem, String type,Couleur couleurClef,int compteurClef) 
+	public Clef(String nomItem,Couleur couleurClef,int compteurClef) 
 	{
-		super(nomItem, type);
+		super(nomItem, "clé",0,0);
 		this.couleurClef = couleurClef;
 		this.compteurDeClef = compteurClef;
 	}

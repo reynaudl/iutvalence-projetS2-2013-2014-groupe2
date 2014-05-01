@@ -6,9 +6,6 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
  */
 public class Bottes extends Item 
 {
-
-	
-	
 	/**
 	 * Constructeur des bottes
 	 *
@@ -18,18 +15,8 @@ public class Bottes extends Item
 	 */
 	public Bottes(String nomItem, int armure) 
 	{
-		
 		super(nomItem,"Bottes",armure,0);
-		
-		
-		
-	}
-
 	
-	/**
-	 * Permet d'obtenir l'armure des bottes
-	 *
-	 * @return armure la valeur de l'armure des bottes
-	 */
+	}
 
 }
