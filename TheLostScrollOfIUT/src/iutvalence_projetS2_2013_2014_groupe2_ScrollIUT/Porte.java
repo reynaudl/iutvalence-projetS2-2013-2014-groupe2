@@ -11,6 +11,8 @@ public class Porte extends Decors {
 	 */
 	private boolean etat;
 	private Couleur couleurPorte;
+	public boolean besoinCle;
+	public int numeroporte;
 	
 	public boolean estOuverte(){
 		if (this.etat==true)
@@ -19,9 +21,22 @@ public class Porte extends Decors {
 		
 	}
 	
+	public Porte(Case pos,boolean besoinDeCle,int num){
+		super("Porte",pos);
+		this.etat=false;
+		this.besoinCle=besoinDeCle;
+		this.numeroporte=num;
+	}
+	
 	public Couleur obtenirCouleurPorte() 
 	{
 		return this.couleurPorte;
+	}
+	
+	
+	public int obtenirNumeroPorte() 
+	{
+		return this.numeroporte;
 	}
 	
 	public void changerDEtat(){
@@ -34,17 +49,21 @@ public class Porte extends Decors {
 
 
 	public void Ouvertureporte(Clef c,Porte p){
-		if (p.estOuverte()==false)
-			if (p.obtenirCouleurPorte()==c.obtenirCouleurClef())
-				if(this.presenceEnigme()==true)
+		if (p.estOuverte()==false){
+			if(p.besoinCle=true){
+				if (p.obtenirCouleurPorte()==c.obtenirCouleurClef()){
+					if(this.presenceEnigme()==true){
 					System.out.println("Vous devez répondre a l'enigme pour ouvrir cette porte");
+					}
 				else p.changerDEtat(); 
 				int nbcle =	c.obtenirCompteurDeClef();
 				nbcle--;
-					
+				}
+				System.out.println("Vous ne disposez pas de la bonne clé pour ouvrir la porte");
+			}
 							
-			System.out.println("Vous ne disposez pas de la bonne clé pour ouvrir la porte");
+			
 	}
-	 
+	} 
 	
 }

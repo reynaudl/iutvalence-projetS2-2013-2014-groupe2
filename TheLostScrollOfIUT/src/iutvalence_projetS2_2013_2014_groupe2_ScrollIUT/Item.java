@@ -59,5 +59,6 @@ public class Item {
 	{
 		return this.attaque;
 	}
+	
 
 }

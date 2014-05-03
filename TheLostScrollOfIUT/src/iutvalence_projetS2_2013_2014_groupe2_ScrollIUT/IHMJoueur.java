@@ -62,20 +62,56 @@ public class IHMJoueur {
 	/**
 	 * Permet d'afficher l'enigme a l'ecran
 	 */
-	public void afficherEnigme(){	
+	public void afficherEnigme(Porte p){
+		if (p.presenceEnigme()==true){
+				
+			switch (p.numeroporte)
+			{
+			  case 0:
+			    break;
+			  case 1:
+			    System.out.println("Combien fait 1+1 en informatique ?");
+			    break;
+			  case 2:
+			    System.out.println("Quel langage avons nous appris en algorithmie ?");
+			    break;
+			  default:
+			    
+			}
+			
+		}
+		else{
+			
+		}
 	}
 	
 	
 	/**
-	 * Verifie si la porte ou le coffre necessite une clé pour etre ouvert(e)
+	 * Verifie si la porte necessite une clé pour etre ouverte
 	 *
 	 * @return true, if successful
 	 */
-	public boolean demandeClefs(){
-		return true;
+	public boolean demandeClefsPorte(Porte p){
+		if (p.besoinCle==true){
+			return true;	
+		}
+		else{
+		return false;
+		}
 	}
 	
-	
-	
+	/**
+	 * Verifie si le coffre necessite une clé pour etre ouvert
+	 *
+	 * @return true, if successful
+	 */
+	public boolean demandeClefsCoffre(Coffre c){
+		if (c.besoinCle==true){
+			return true;	
+		}
+		else{
+			return false;
+	}
 
+}
 }
