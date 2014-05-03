@@ -70,6 +70,7 @@ public class IHMJoueur {
 			  case 0:
 			    break;
 			  case 1:
+				  //La question est bizarre ... c'est pas plutôt en binaire
 			    System.out.println("Combien fait 1+1 en informatique ?");
 			    break;
 			  case 2:
