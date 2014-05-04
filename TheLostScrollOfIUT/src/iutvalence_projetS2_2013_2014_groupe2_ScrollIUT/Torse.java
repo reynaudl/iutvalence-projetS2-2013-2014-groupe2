@@ -23,12 +23,6 @@ public class Torse extends Item {
 		
 	}
 
-	/**
-	 * Permet d'obtenir la valeur de l'armure du torse
-	 *
-	 * @return armure la valeur de l'armure du torse
-	 */
-
 	
 	
 }

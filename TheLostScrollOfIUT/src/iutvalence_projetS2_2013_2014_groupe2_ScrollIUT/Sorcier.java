@@ -11,12 +11,12 @@ public class Sorcier extends Personnage
 
     public void attaqueSpecial()
     {
-        multiplicateur=multiplicateur*2;
+        this.multiplicateur=this.multiplicateur*2;
     }
     
     public void passif()
     {
-        int nbBoubou;
+        int bouclier;
         /*20 % des degats infligés" */
         
         

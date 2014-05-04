@@ -30,6 +30,8 @@ public class Coffre extends Decors {
 	 * 
 	 * @return Renvoie un item que reçoit le joueur.
 	 */
+	
+	//base de donnée jdbc ? -TB
 	public Item obtenirItemDUnCoffre() {
 		
 	//if (le joueur clic sur le coffre) 

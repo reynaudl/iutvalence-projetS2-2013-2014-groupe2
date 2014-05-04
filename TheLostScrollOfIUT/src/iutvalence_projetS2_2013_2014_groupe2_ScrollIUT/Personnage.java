@@ -1,12 +1,20 @@
 	package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Personnage.
+ * La Classe Personnage.
  */
 public abstract class Personnage
 {
-    public final static int PV = 50;
+	/** Ensemble de constantes. */
+    private static final int ATTAQUE_DE_BASE = 1;
+
+	private static final int ARMURE_DE_BASE = 0;
+
+	private static final int MULTIPLICATEUR_DEGAT_DE_BASE = 1;
+
+	private static final int ESQUIVE_DE_BASE = 10;
+
+	private static final int PV = 50;
 
     /** le nom du personnage. */
     public String nomPersonnage;
@@ -33,10 +41,10 @@ public abstract class Personnage
     {
         this.nomPersonnage = nom;
         this.pointDeVie = PV;
-        this.attaque = 1;
-        this.armure = 0;
-        this.multiplicateur = 1;
-        this.esquive = 10;
+        this.attaque = ATTAQUE_DE_BASE;
+        this.armure = ARMURE_DE_BASE;
+        this.multiplicateur = MULTIPLICATEUR_DEGAT_DE_BASE;
+        this.esquive = ESQUIVE_DE_BASE;
         itemCourant = new Item [3];
         itemCourant [0]=new Item("Botte en laine","Bottes",1,0);
         itemCourant [1]=new Item("Armure en laine","Armure",1,0);
