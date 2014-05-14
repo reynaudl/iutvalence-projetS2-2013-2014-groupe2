@@ -4,6 +4,8 @@ public class Case {
 
 	private int x;
 	private int y;
+	private boolean estBloquante;
+	public int indexTexture;
 	
 	
 	public Case(int x, int y)
@@ -12,5 +14,8 @@ public class Case {
 		this.y = y;
 	}
 	
+	public boolean caseBloquante(){
+		return this.estBloquante;	
+	}
 	
 }

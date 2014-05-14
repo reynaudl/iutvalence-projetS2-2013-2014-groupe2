@@ -1,11 +1,41 @@
 package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class IHMJoueur.
  */
-public class IHMJoueur
+public class IHMJoueur implements Runnable
 {
+	public void  run(){
+		JFrame fenetre = new JFrame();
+		fenetre.setTitle("The Secret Scroll of IUT");
+		fenetre.setSize(1000, 1000);
+		//Carte carteDuJeux = new Carte(10, 10);
+		
+		 JButton button = new JButton("Jouer");
+		 JButton button2 = new JButton("Charger la partie");
+		 JButton button3 = new JButton("Quitter");
+		 JPanel pane = new JPanel();
+		 pane.setLayout(new BorderLayout());
+		 pane.add(button,BorderLayout.NORTH);
+		 pane.add(button2, BorderLayout.CENTER);
+		 pane.add(button3, BorderLayout.SOUTH);
+		 fenetre.getContentPane().add(pane, BorderLayout.CENTER);
+		 button.setPreferredSize(new Dimension(200,200));
+		 button2.setPreferredSize(new Dimension(200,200));	 
+		button3.setPreferredSize(new Dimension(200,200));
+		
+		fenetre.setVisible(true);
+		
+		
+	}
 
 	/**
 	 * Verifie si le mouvement est possible.
