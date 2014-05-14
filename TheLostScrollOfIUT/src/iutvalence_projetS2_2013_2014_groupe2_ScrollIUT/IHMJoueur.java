@@ -41,7 +41,7 @@ public class IHMJoueur implements Runnable
 		    label.setVerticalAlignment(JLabel.CENTER);
 		    
 		   // panel.add(label);
-		    
+		   //de 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		//panel.add(Box.createHorizontalStrut(largeur));
 		panel.add(label);
