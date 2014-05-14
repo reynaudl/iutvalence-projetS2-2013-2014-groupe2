@@ -1,8 +1,17 @@
 package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,25 +23,42 @@ import javax.swing.JPanel;
 public class IHMJoueur implements Runnable
 {
 	public void  run(){
+		int largeur = 400;
+		int hauteur= 40;
+		
 		JFrame fenetre = new JFrame();
 		fenetre.setTitle("The Secret Scroll of IUT");
-		fenetre.setSize(1000, 1000);
+		fenetre.setSize(800, 800);
 		//Carte carteDuJeux = new Carte(10, 10);
-		
-		 JButton button = new JButton("Jouer");
-		 JButton button2 = new JButton("Charger la partie");
-		 JButton button3 = new JButton("Quitter");
-		 JPanel pane = new JPanel();
-		 pane.setLayout(new BorderLayout());
-		 pane.add(button,BorderLayout.NORTH);
-		 pane.add(button2, BorderLayout.CENTER);
-		 pane.add(button3, BorderLayout.SOUTH);
-		 fenetre.getContentPane().add(pane, BorderLayout.CENTER);
-		 button.setPreferredSize(new Dimension(200,200));
-		 button2.setPreferredSize(new Dimension(200,200));	 
-		button3.setPreferredSize(new Dimension(200,200));
-		
+		BoxLayout boxLayout = new BoxLayout(fenetre.getContentPane(), BoxLayout.Y_AXIS); 
+		fenetre.setLayout(boxLayout);
+		fenetre.add(Box.createHorizontalStrut(largeur));
+		fenetre.add(new JButton("Jouer"));
+		fenetre.add(Box.createVerticalStrut(hauteur));
+		//fenetre.add(Box.createRigidArea(new Dimension(700,0)));
+		//fenetre.add(Box.createGlue());
+	//	fenetre.add(Box.createVerticalGlue());
+		fenetre.add(new JButton("Charger"));
+		fenetre.add(Box.createVerticalStrut(hauteur));
+		fenetre.add(new JButton("Quitter"));
+		fenetre.add(Box.createHorizontalStrut(largeur));
+		//fenetre.setBackground(Color.RED);
 		fenetre.setVisible(true);
+		
+	}
+		/*
+		public void paintComponent(Graphics g){
+		try {
+			Image img = ImageIO.read(new File("fondscroll.png"));
+			g.drawImage(img, 0, 0, (ImageObserver) this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+
 		
 		
 	}
