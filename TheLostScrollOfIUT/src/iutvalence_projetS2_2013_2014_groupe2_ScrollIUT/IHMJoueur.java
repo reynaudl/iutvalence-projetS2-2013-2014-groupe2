@@ -14,7 +14,9 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,26 +25,37 @@ import javax.swing.JPanel;
 public class IHMJoueur implements Runnable
 {
 	public void  run(){
-		int largeur = 400;
+		int largeur = 700;
 		int hauteur= 40;
 		
 		JFrame fenetre = new JFrame();
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(800, 800);
 		//Carte carteDuJeux = new Carte(10, 10);
-		BoxLayout boxLayout = new BoxLayout(fenetre.getContentPane(), BoxLayout.Y_AXIS); 
-		fenetre.setLayout(boxLayout);
-		fenetre.add(Box.createHorizontalStrut(largeur));
-		fenetre.add(new JButton("Jouer"));
-		fenetre.add(Box.createVerticalStrut(hauteur));
-		//fenetre.add(Box.createRigidArea(new Dimension(700,0)));
-		//fenetre.add(Box.createGlue());
-	//	fenetre.add(Box.createVerticalGlue());
-		fenetre.add(new JButton("Charger"));
-		fenetre.add(Box.createVerticalStrut(hauteur));
-		fenetre.add(new JButton("Quitter"));
-		fenetre.add(Box.createHorizontalStrut(largeur));
-		//fenetre.setBackground(Color.RED);
+		JPanel panel = new JPanel();
+		
+		 JLabel label= new JLabel("asdf");label.setPreferredSize(new Dimension(200, 200));
+		    
+		    label.setText("The secret Scroll of IUT");
+		    label.setHorizontalAlignment(JLabel.CENTER);
+		    label.setVerticalAlignment(JLabel.CENTER);
+		    
+		   // panel.add(label);
+		    
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		//panel.add(Box.createHorizontalStrut(largeur));
+		panel.add(label);
+		panel.add(new JButton("Jouer"));
+		panel.add(Box.createVerticalStrut(hauteur));
+		panel.add(new JButton("Charger"));
+		panel.add(Box.createVerticalStrut(hauteur));
+		panel.add(new JButton("Quitter"));
+		panel.add(Box.createHorizontalStrut(largeur));
+		fenetre.setContentPane(panel);
+		panel.setBackground(Color.RED);
+
+		    
+		    
 		fenetre.setVisible(true);
 		
 	}
