@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +15,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,41 +28,107 @@ import javax.swing.JTextArea;
  */
 public class IHMJoueur implements Runnable
 {
+	public JFrame fenetre = new JFrame();
+	public JPanel panel = new JPanel();
+	public JPanel panel2 = new JPanel();
+//	private JLabel label2 = new JLabel("Choisissez votre classe");
+	public JButton bouton4 = new JButton("Guerrier");
+	public JButton bouton5 = new JButton("Sorcier");
+	public JButton bouton6 = new JButton("Chausseur");
+	
 	public void  run(){
 		int largeur = 700;
 		int hauteur= 40;
+		int hauteur2=150;
 		
-		JFrame fenetre = new JFrame();
+		
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(800, 800);
 		//Carte carteDuJeux = new Carte(10, 10);
-		JPanel panel = new JPanel();
 		
-		 JLabel label= new JLabel("asdf");label.setPreferredSize(new Dimension(200, 200));
+		JLabel label= new JLabel("asdf");label.setPreferredSize(new Dimension(200, 200));
 		    
 		    label.setText("The secret Scroll of IUT");
 		    label.setHorizontalAlignment(JLabel.CENTER);
 		    label.setVerticalAlignment(JLabel.CENTER);
 		    
-		   // panel.add(label);
-		   //de 
+		JButton bouton1 = new JButton("Jouer");
+		JButton bouton2 = new JButton("Charger");
+		JButton bouton3 = new JButton("Quitter");
+		
+	//Menu de depart et ses éléments	   
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		//panel.add(Box.createHorizontalStrut(largeur));
 		panel.add(label);
-		panel.add(new JButton("Jouer"));
+		panel.add(bouton1);
 		panel.add(Box.createVerticalStrut(hauteur));
-		panel.add(new JButton("Charger"));
+		panel.add(bouton2);
 		panel.add(Box.createVerticalStrut(hauteur));
-		panel.add(new JButton("Quitter"));
+		panel.add(bouton3);
 		panel.add(Box.createHorizontalStrut(largeur));
 		fenetre.setContentPane(panel);
 		panel.setBackground(Color.RED);
+		
+		
+		
+	//Menu de selection de la classe
+		
+	//	JLabel descriptGuerrier = new JLabel("Le guerrier est un");
+		
+		panel2.setBackground(Color.YELLOW);
+		panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+		panel2.add(Box.createVerticalStrut(hauteur));
+		JLabel label2= new JLabel("asdf");
+		label.setPreferredSize(new Dimension(200, 200));
+	    
+	    label2.setText("Choisissez votre classe");
+	    label2.setHorizontalAlignment(JLabel.CENTER);
+	    label2.setVerticalAlignment(JLabel.CENTER);
+	    
+		panel2.add(label2);
+		panel2.add(Box.createVerticalStrut(80));
+		panel2.add(bouton4);
+	//	panel2.add(descriptGuerrier);
+		panel2.add(Box.createVerticalStrut(hauteur2));
+		
+		
+		
 
-		    
-		    
+		
+		//JLabel image = new JLabel( new ImageIcon( "guerrier.jpg"));
+		//panel2.add(image);
+		
+		panel2.add(bouton5);
+		panel2.add(Box.createVerticalStrut(hauteur2));
+		panel2.add(bouton6);
+		panel2.add(Box.createHorizontalStrut(largeur));
+		
+		
+		
+		
+		
+		
+    
 		fenetre.setVisible(true);
 		
+		bouton1.addActionListener(new BoutonListener());
+		
 	}
+	class BoutonListener implements ActionListener{
+	
+		public void actionPerformed(ActionEvent e) { 
+			fenetre.setContentPane(panel2);
+			fenetre.revalidate();
+			
+			/*panel.removeAll();
+			panel.repaint();
+			panel.add(bouton4);
+			panel.setBackground(Color.GREEN);
+			
+			panel.validate();
+			*/
+			
+		} 
+		}
 		/*
 		public void paintComponent(Graphics g){
 		try {

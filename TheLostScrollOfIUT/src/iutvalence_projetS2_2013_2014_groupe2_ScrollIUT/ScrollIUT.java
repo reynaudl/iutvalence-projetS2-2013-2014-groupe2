@@ -20,6 +20,7 @@ public class ScrollIUT
 	{
 		SwingUtilities.invokeLater(new IHMJoueur());
 		
+		
 	}
 
 	/**
