@@ -34,8 +34,5 @@ public enum Mouvement
 		return this.deltaY;
 	}
 
-	/*
-	 * Rajouter la methode comparer dans la classe Case: public boolean
-	 * comparer(Case position) { return x == position.x && y == position.y; }
-	 */
+
 }
