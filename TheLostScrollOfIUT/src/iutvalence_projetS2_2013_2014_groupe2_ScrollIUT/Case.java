@@ -22,6 +22,6 @@ public class Case {
 	
 	  public Case translater(Mouvement mouvement)
 	    {
-	return new Case(this.x+mouvement.getDeltaX(), this.y+mouvement.getDeltaY());
+		  return new Case(this.x+mouvement.getDeltaX(), this.y+mouvement.getDeltaY());
 	    }
 }
