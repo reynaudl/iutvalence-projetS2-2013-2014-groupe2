@@ -27,13 +27,14 @@ public class Carte
 
 	public int[][] plateauCase(){
 		return plateauCase;
+		
 	}
 	
 	
 
 	/* Méthode générant le plateau entier du jeu. A finir (suivre l'exemple).
 	 * public void generer() {
-	 * plateauCase[0][0]=plateauCase[0][1]=plateauCase[0][2]=1;
+	 * exemple : plateauCase[0][0]=plateauCase[0][1]=plateauCase[0][2]=1;
 	 * }
 	 */
 	 

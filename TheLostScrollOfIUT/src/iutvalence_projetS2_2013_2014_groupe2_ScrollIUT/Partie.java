@@ -28,6 +28,13 @@ public class Partie {
 	 */
 	public void demarrerPartie(){
 		
+		/*
+		 *  public Partie() {
+						this.mappingClavier = new MappingClavier();
+						Carte generateur = new Carte(NB_LIGNES, NB_COLONNES);
+						generateur.generer();
+		 */
+		
 	}
 	
 	/**
