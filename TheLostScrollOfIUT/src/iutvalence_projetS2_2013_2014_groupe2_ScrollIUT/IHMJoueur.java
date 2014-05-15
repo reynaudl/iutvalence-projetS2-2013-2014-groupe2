@@ -117,7 +117,7 @@ public class IHMJoueur implements Runnable
 	
 		public void actionPerformed(ActionEvent e) { 
 			fenetre.setContentPane(panel2);
-			fenetre.revalidate();
+			fenetre.validate();
 			
 			/*panel.removeAll();
 			panel.repaint();
