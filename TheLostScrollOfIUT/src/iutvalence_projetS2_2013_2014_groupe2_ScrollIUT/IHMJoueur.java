@@ -129,39 +129,54 @@ public class IHMJoueur implements Runnable
 		sorcier.add(bouton5);
 		//sorcier.add(descriptSorcier);
 		chasseur.add(bouton6);
-	
-
-		public void actionPerformed(ActionEvent e) { 
-			fenetre.setContentPane(panel2);
-			fenetre.validate();
-			
-			/*panel.removeAll();
-			panel.repaint();
-			panel.add(bouton4);
-			panel.setBackground(Color.GREEN);
-			
-			panel.validate();
-			*/
-			
-		} 
-		}
-		
-		public void paintComponent(Graphics g){
-		try {
-			Image img = ImageIO.read(new File("fondscroll.png"));
-			g.drawImage(img, 0, 0, (ImageObserver) this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		
 		//chasseur.add(descriptChasseur);
 		
 		panel2.add(bouton7);
-		panel2.add(Box.createHorizontalStrut(largeur));
+		//panel2.add(Box.createHorizontalStrut(largeur));
 
 		fenetre.setVisible(true);
+		
+		
+		class BoutonListener implements ActionListener
+		{
+
+			public void actionPerformed(ActionEvent e)
+			{
+				fenetre.setContentPane(panel2);
+				fenetre.validate();
+
+			/*
+			 * panel.removeAll(); panel.repaint(); panel.add(bouton4);
+			 * panel.setBackground(Color.GREEN);
+			 * 
+			 * panel.validate();
+			 */
+
+			}
+		}
+	
+	
+		class Quitter implements ActionListener
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				if (JOptionPane.showConfirmDialog(fenetre, "Fermer l'application ?", "Confirmation", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					fenetre.dispose();
+			}
+		}
+	
+		class Retour implements ActionListener
+		{
+
+			public void actionPerformed(ActionEvent e)
+			{
+				fenetre.setContentPane(panel);
+				fenetre.validate();
+			}
+		}
 
 		bouton1.addActionListener(new BoutonListener());
 		bouton3.addActionListener(new Quitter());
@@ -174,44 +189,21 @@ public class IHMJoueur implements Runnable
 		panel2.add(guerrier, BorderLayout.WEST);
 		panel2.add(sorcier, BorderLayout.CENTER);
 		panel2.add(chasseur, BorderLayout.EAST);
-	}
 
-	class BoutonListener implements ActionListener
-	{
 
-		public void actionPerformed(ActionEvent e)
-		{
-			fenetre.setContentPane(panel2);
-			fenetre.validate();
 
-			/*
-			 * panel.removeAll(); panel.repaint(); panel.add(bouton4);
-			 * panel.setBackground(Color.GREEN);
-			 * 
-			 * panel.validate();
-			 */
 
-		}
-	}
 	
-	class Quitter implements ActionListener
-	{
+	/*	public void paintComponent(Graphics g)
+	 *	{
+	**		try {
+		*		Image img = ImageIO.read(new File("fondscroll.png"));
+	*			g.drawImage(img, 0, 0, (ImageObserver) this);
+			} catch (IOException e) {
 
-		public void actionPerformed(ActionEvent e)
-		{
-			if (JOptionPane.showConfirmDialog(fenetre, "Fermer l'application ?", "Confirmation", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
-				fenetre.dispose();
-		}
-	}
-	
-	class Retour implements ActionListener
-	{
-
-		public void actionPerformed(ActionEvent e)
-		{
-			fenetre.setContentPane(panel);
-			fenetre.validate();
-		}
+				e.printStackTrace();
+			}
+	*/
 	}
 	
 	
@@ -349,3 +341,4 @@ public class IHMJoueur implements Runnable
 
 	}
 }
+
