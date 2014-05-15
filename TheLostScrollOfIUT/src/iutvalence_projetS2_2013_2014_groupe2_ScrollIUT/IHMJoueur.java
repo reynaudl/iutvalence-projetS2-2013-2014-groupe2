@@ -130,6 +130,31 @@ public class IHMJoueur implements Runnable
 		//sorcier.add(descriptSorcier);
 		chasseur.add(bouton6);
 	
+
+		public void actionPerformed(ActionEvent e) { 
+			fenetre.setContentPane(panel2);
+			fenetre.validate();
+			
+			/*panel.removeAll();
+			panel.repaint();
+			panel.add(bouton4);
+			panel.setBackground(Color.GREEN);
+			
+			panel.validate();
+			*/
+			
+		} 
+		}
+		
+		public void paintComponent(Graphics g){
+		try {
+			Image img = ImageIO.read(new File("fondscroll.png"));
+			g.drawImage(img, 0, 0, (ImageObserver) this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 		//chasseur.add(descriptChasseur);
 		
