@@ -2,8 +2,11 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +22,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -31,32 +37,46 @@ public class IHMJoueur implements Runnable
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
 	public JPanel panel2 = new JPanel();
-//	private JLabel label2 = new JLabel("Choisissez votre classe");
-	public JButton bouton4 = new JButton("Guerrier");
-	public JButton bouton5 = new JButton("Sorcier");
-	public JButton bouton6 = new JButton("Chausseur");
+	public JPanel guerrier = new JPanel();
+	public JPanel sorcier = new JPanel();
+	public JPanel chasseur = new JPanel();
+	public JPanel top = new JPanel();
+	// private JLabel label2 = new JLabel("Choisissez votre classe");
 	
-	public void  run(){
+	
+	public JButton bouton7 = new JButton("Annuler");
+
+	public void run()
+	{
 		int largeur = 700;
-		int hauteur= 40;
-		int hauteur2=150;
+		int hauteur = 40;
+		int hauteur2 = 150;
 		
-		
+		top.setPreferredSize(new Dimension(800, 75));
+
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(800, 800);
-		//Carte carteDuJeux = new Carte(10, 10);
 		
-		JLabel label= new JLabel("asdf");label.setPreferredSize(new Dimension(200, 200));
-		    
-		    label.setText("The secret Scroll of IUT");
-		    label.setHorizontalAlignment(JLabel.CENTER);
-		    label.setVerticalAlignment(JLabel.CENTER);
-		    
+		// Quand on clique sur la croix, l'appli est d√©truite
+		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		
+		// Carte carteDuJeux = new Carte(10, 10);
+
+		JLabel label = new JLabel("asdf");
+		label.setPreferredSize(new Dimension(200, 200));
+
+		label.setText("The secret Scroll of IUT");
+		label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		
 		JButton bouton1 = new JButton("Jouer");
 		JButton bouton2 = new JButton("Charger");
 		JButton bouton3 = new JButton("Quitter");
+
+		JButton bouton4 = new JButton(new ImageIcon( "images_classes/guerrier.jpg"));
+		JButton bouton5 = new JButton(new ImageIcon( "images_classes/sorcier.jpg"));
+		JButton bouton6 = new JButton(new ImageIcon( "images_classes/chasseur.jpg"));
 		
-	//Menu de depart et ses ÈlÈments	   
+		// Menu de depart et ses √©l√©ments
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(label);
 		panel.add(bouton1);
@@ -67,84 +87,110 @@ public class IHMJoueur implements Runnable
 		panel.add(Box.createHorizontalStrut(largeur));
 		fenetre.setContentPane(panel);
 		panel.setBackground(Color.RED);
+
+		// Menu de selection de la classe
 		
+		JLabel label2 = new JLabel("Choisissez votre classe");
+		label.setPreferredSize(new Dimension(200, 200));
+
+		JTextArea descriptGuerrier = new JTextArea("Le guerrier est un combattant qui n'a peur de rien, donc gr√¢ce √† sa force surhumaine, c'est la seule personne qui puisse se reg√®nerer ");
+		JTextArea descriptGuerrier2 = new JTextArea("constament gr√¢ce √† la vue du sang de l'ennemi...");
 		
+		JTextArea descriptSorcier = new JTextArea("Le sorcier est un personnage dot√© de grand pouvoir ma√Ætrisant les arcanes");
 		
-	//Menu de selection de la classe
+		JTextArea descriptChasseur = new JTextArea("Le chasseur sachant chasser sans son chien");
 		
-	//	JLabel descriptGuerrier = new JLabel("Le guerrier est un");
+		descriptGuerrier.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		descriptGuerrier2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		descriptSorcier.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		descriptChasseur.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		label2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
+
+		panel2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel2.setBackground(Color.YELLOW);
 		panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
 		panel2.add(Box.createVerticalStrut(hauteur));
-		JLabel label2= new JLabel("asdf");
-		label.setPreferredSize(new Dimension(200, 200));
-	    
-	    label2.setText("Choisissez votre classe");
-	    label2.setHorizontalAlignment(JLabel.CENTER);
-	    label2.setVerticalAlignment(JLabel.CENTER);
-	    
-		panel2.add(label2);
+		
+		top.setBackground(Color.YELLOW);
+		guerrier.setBackground(Color.RED);
+		sorcier.setBackground(new Color(102, 51, 153));
+		chasseur.setBackground(Color.GREEN);
+		
+
+		top.add(label2);
 		panel2.add(Box.createVerticalStrut(80));
-		panel2.add(bouton4);
-	//	panel2.add(descriptGuerrier);
-		panel2.add(Box.createVerticalStrut(hauteur2));
+		guerrier.add(bouton4);
 		
-		
-		
+		//guerrier.add(descriptGuerrier);
+		//guerrier.add(descriptGuerrier2);
 
-		
-		//JLabel image = new JLabel( new ImageIcon( "guerrier.jpg"));
-		//panel2.add(image);
-		
-		panel2.add(bouton5);
-		panel2.add(Box.createVerticalStrut(hauteur2));
-		panel2.add(bouton6);
-		panel2.add(Box.createHorizontalStrut(largeur));
-		
-		
-		
-		
-		
-		
-    
-		fenetre.setVisible(true);
-		
-		bouton1.addActionListener(new BoutonListener());
-		
-	}
-	class BoutonListener implements ActionListener{
+
+		sorcier.add(bouton5);
+		//sorcier.add(descriptSorcier);
+		chasseur.add(bouton6);
 	
-		public void actionPerformed(ActionEvent e) { 
-			fenetre.setContentPane(panel2);
-			fenetre.revalidate();
-			
-			/*panel.removeAll();
-			panel.repaint();
-			panel.add(bouton4);
-			panel.setBackground(Color.GREEN);
-			
-			panel.validate();
-			*/
-			
-		} 
-		}
-		/*
-		public void paintComponent(Graphics g){
-		try {
-			Image img = ImageIO.read(new File("fondscroll.png"));
-			g.drawImage(img, 0, 0, (ImageObserver) this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		//chasseur.add(descriptChasseur);
 		
-		
+		panel2.add(bouton7);
+		panel2.add(Box.createHorizontalStrut(largeur));
+
+		fenetre.setVisible(true);
+
+		bouton1.addActionListener(new BoutonListener());
+		bouton3.addActionListener(new Quitter());
+		bouton7.addActionListener(new Retour());
 
 		
 		
+		panel2.setLayout(new BorderLayout());
+		panel2.add(top, BorderLayout.NORTH);
+		panel2.add(guerrier, BorderLayout.WEST);
+		panel2.add(sorcier, BorderLayout.CENTER);
+		panel2.add(chasseur, BorderLayout.EAST);
 	}
+
+	class BoutonListener implements ActionListener
+	{
+
+		public void actionPerformed(ActionEvent e)
+		{
+			fenetre.setContentPane(panel2);
+			fenetre.validate();
+
+			/*
+			 * panel.removeAll(); panel.repaint(); panel.add(bouton4);
+			 * panel.setBackground(Color.GREEN);
+			 * 
+			 * panel.validate();
+			 */
+
+		}
+	}
+	
+	class Quitter implements ActionListener
+	{
+
+		public void actionPerformed(ActionEvent e)
+		{
+			if (JOptionPane.showConfirmDialog(fenetre, "Fermer l'application ?", "Confirmation", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+				fenetre.dispose();
+		}
+	}
+	
+	class Retour implements ActionListener
+	{
+
+		public void actionPerformed(ActionEvent e)
+		{
+			fenetre.setContentPane(panel);
+			fenetre.validate();
+		}
+	}
+	
+	
+	
 
 	/**
 	 * Verifie si le mouvement est possible.
@@ -165,12 +211,12 @@ public class IHMJoueur implements Runnable
 	 */
 	public boolean demandeAttaque(Case pos)
 	{
-		//if (pos.caseEnFace==null) || (pos.caseEnFace==decors)
-			return false;
+		// if (pos.caseEnFace==null) || (pos.caseEnFace==decors)
+		return false;
 	}
 
 	/**
-	 * Affiche les dÈgats infligÈs par le joueur.
+	 * Affiche les d√©gats inflig√©s par le joueur.
 	 * 
 	 * @return renvoi la valeur des degats faits
 	 */
@@ -183,14 +229,14 @@ public class IHMJoueur implements Runnable
 	 * Affiche les classes disponibles
 	 * 
 	 * @param prend
-	 *            en entrÈe un personnage
+	 *            en entr√©e un personnage
 	 */
 	public void choixDeClasse(Personnage p1)
 	{
 	}
 
 	/**
-	 * Affiche la classe sÈlÈctionnÈ
+	 * Affiche la classe s√©l√©ctionn√©
 	 */
 	public void afficherClasse()
 	{
@@ -204,7 +250,7 @@ public class IHMJoueur implements Runnable
 	}
 
 	/**
-	 * Selectionenr une rÈponse parmis N choix
+	 * Selectionenr une r√©ponse parmis N choix
 	 */
 	public void selection()
 	{
@@ -220,59 +266,58 @@ public class IHMJoueur implements Runnable
 
 			switch (p.numeroporte)
 			{
-				case 0:
-					break;
-				case 1:
-					// La question est bizarre ... c'est pas plutÙt en binaire
-					System.out.println("Combien fait 1+1 en informatique ?");
-					break;
-				case 2:
-					System.out.println("Quel langage avons nous appris en algorithmie ?");
-					break;
-				default:
+			case 0:
+				break;
+			case 1:
+				// La question est bizarre ... c'est pas plut√¥t en binaire
+				System.out.println("Combien fait 1+1 en informatique ?");
+				break;
+			case 2:
+				System.out
+						.println("Quel langage avons nous appris en algorithmie ?");
+				break;
+			default:
 
 			}
 
-		}
-		else
+		} else
 		{
 
 		}
 	}
 
 	/**
-	 * Verifie si la porte necessite une clÈ pour etre ouverte
+	 * Verifie si la porte necessite une cl√© pour etre ouverte
 	 * 
 	 * @return true, if successful
 	 */
-	
-	//Je me demande si il faut vraiment faire cette mÈthode, vu que besoinCle est deja un boolÈen. -TB
+
+	// Je me demande si il faut vraiment faire cette m√©thode, vu que besoinCle
+	// est deja un bool√©en. -TB
 	public boolean demandeClefsPorte(Porte p)
 	{
 		if (p.besoinCle == true)
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
 	}
 
 	/**
-	 * Verifie si le coffre necessite une clÈ pour etre ouvert
+	 * Verifie si le coffre necessite une cl√© pour etre ouvert
 	 * 
 	 * @return true, if successful
 	 */
-	
-	//Idem pour ici -TB
+
+	// Idem pour ici -TB
 	public boolean demandeClefsCoffre(Coffre c)
 	{
 		if (c.besoinCle == true)
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
