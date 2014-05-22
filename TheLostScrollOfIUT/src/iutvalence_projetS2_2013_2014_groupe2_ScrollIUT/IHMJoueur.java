@@ -35,7 +35,8 @@ import javax.swing.WindowConstants;
 /**
  * The Class IHMJoueur.
  */
-public class IHMJoueur implements Runnable {
+public class IHMJoueur implements Runnable
+{
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
 	public JPanel panel2 = new JPanel();
@@ -76,7 +77,8 @@ public class IHMJoueur implements Runnable {
 
 	public JButton bouton7 = new JButton("Annuler");
 
-	public void run() {
+	public void run()
+	{
 		int largeur = 700;
 		int hauteur = 40;
 		int hauteur2 = 150;
@@ -85,6 +87,9 @@ public class IHMJoueur implements Runnable {
 
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(800, 800);
+
+		// La taille de la fenêtre n'est plus modifiable
+		fenetre.setResizable(false);
 
 		// Quand on clique sur la croix, l'appli est détruite
 		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -126,9 +131,9 @@ public class IHMJoueur implements Runnable {
 		label.setPreferredSize(new Dimension(200, 200));
 
 		JTextArea descriptGuerrier = new JTextArea(
-				"Le guerrier est un combattant qui n'a peur de rien, donc grâce �  sa force surhumaine, c'est la seule personne qui puisse se regènerer ");
+				"Le guerrier est un combattant qui n'a peur de rien, donc grâce �  sa force surhumaine, c'est la seule personne qui puisse se regènerer ");
 		JTextArea descriptGuerrier2 = new JTextArea(
-				"constament grâce �  la vue du sang de l'ennemi...");
+				"constament grâce �  la vue du sang de l'ennemi...");
 
 		JTextArea descriptSorcier = new JTextArea(
 				"Le sorcier est un personnage doté de grand pouvoir maîtrisant les arcanes");
@@ -210,9 +215,9 @@ public class IHMJoueur implements Runnable {
 		panel5chass.add(Box.createVerticalStrut(80));
 		panel5chass.add(pseudoChass);
 
-		// IHM avec map + info du joueur + cl�
+		// IHM avec map + info du joueur + cl�
 
-		panelmap.setBackground(Color.BLACK);
+		// panelmap.setBackground(Color.BLACK);
 		panelinfo.setBackground(Color.GREEN);
 		panelgauche.setBackground(Color.PINK);
 		paneldroit.setBackground(Color.RED);
@@ -260,6 +265,14 @@ public class IHMJoueur implements Runnable {
 
 		// panelmap.setSize(new Dimension(400, 800));
 		// panelinfo.setSize(new Dimension(400, 800));
+		
+		//panelmap.setLayout(new GridLayout(10,10));
+	
+		JLabel test1 = new JLabel(new ImageIcon("mur.png"));
+		
+		test1.setBorder(null);
+		test1.setBackground(Color.red);
+		panelmap.add(test1);	
 		separation.setEnabled(false);
 		separation.setBorder(null);
 		separation.setDividerSize(0);
@@ -268,9 +281,11 @@ public class IHMJoueur implements Runnable {
 
 		fenetre.setVisible(true);
 
-		class BoutonListener implements ActionListener {
+		class BoutonListener implements ActionListener
+		{
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				fenetre.setContentPane(panel2);
 				fenetre.validate();
 
@@ -284,9 +299,11 @@ public class IHMJoueur implements Runnable {
 			}
 		}
 
-		class Quitter implements ActionListener {
+		class Quitter implements ActionListener
+		{
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				if (JOptionPane.showConfirmDialog(fenetre,
 						"Fermer l'application ?", "Confirmation",
 						JOptionPane.OK_CANCEL_OPTION,
@@ -295,65 +312,79 @@ public class IHMJoueur implements Runnable {
 			}
 		}
 
-		class Retour implements ActionListener {
+		class Retour implements ActionListener
+		{
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				fenetre.setContentPane(panel);
 				fenetre.validate();
 			}
 		}
 
-		class PanelSorc implements ActionListener {
+		class PanelSorc implements ActionListener
+		{
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 
 				fenetre.setContentPane(panel3sorc);
 				fenetre.validate();
 			}
 		}
 
-		class PanelGuer implements ActionListener {
+		class PanelGuer implements ActionListener
+		{
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 
 				fenetre.setContentPane(panel4guer);
 				fenetre.validate();
 			}
 		}
 
-		class PanelChass implements ActionListener {
+		class PanelChass implements ActionListener
+		{
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 
 				fenetre.setContentPane(panel5chass);
 				fenetre.validate();
 			}
 		}
 
-		class SavePseudo implements ActionListener {
+		class SavePseudo implements ActionListener
+		{
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				Object source = e.getSource();
-				if (source == pseudoSorc) { // verifie que c'etais sur le bouton
-											// sorcier
+				if (source == pseudoSorc)
+				{ // verifie que c'etais sur le bouton
+					// sorcier
 					pseudojoueur = pseudoSorc.getText(); // recupere la valeur
 															// du champ
 					Sorcier s1 = new Sorcier(pseudojoueur); // creer un sorcier
 															// avec cette valeur
 					info.setText(s1.nomPersonnage); // met dans info le nom du
-													// perso cr�e
+													// perso cr�e
 					int armure = s1.armure;
 					fenetre.setContentPane(separation);
 					fenetre.validate();
-				} else {
-					if (source == pseudoGuer) {
+				} else
+				{
+					if (source == pseudoGuer)
+					{
 						pseudojoueur = pseudoGuer.getText();
 						Guerrier g1 = new Guerrier(pseudojoueur);
 						info.setText(g1.nomPersonnage);
 						int armure = g1.armure;
 						fenetre.setContentPane(separation);
 						fenetre.validate();
-					} else {
+					} else
+					{
 						pseudojoueur = pseudoChass.getText();
 						Chasseur c1 = new Chasseur(pseudojoueur);
 						info.setText(c1.nomPersonnage);
@@ -378,11 +409,11 @@ public class IHMJoueur implements Runnable {
 		pseudoGuer.addActionListener(new SavePseudo());
 		pseudoChass.addActionListener(new SavePseudo());
 
-		panel3sorc.add(info); // affiche le nom du perso cr�e pour le pannel
+		panel3sorc.add(info); // affiche le nom du perso cr�e pour le pannel
 								// sorcier
-		panel4guer.add(info); // affiche le nom du perso cr�e pour le pannel
+		panel4guer.add(info); // affiche le nom du perso cr�e pour le pannel
 								// guerrier
-		panel5chass.add(info); // affiche le nom du perso cr�e pour le pannel
+		panel5chass.add(info); // affiche le nom du perso cr�e pour le pannel
 								// chasseur
 
 		panel2.setLayout(new BorderLayout());
@@ -413,19 +444,22 @@ public class IHMJoueur implements Runnable {
 	/**
 	 * Verifie si le mouvement est possible.
 	 */
-	public void demandeMouvement() {
+	public void demandeMouvement()
+	{
 	}
 
 	/**
 	 * actualise l'image a l'ecran.
 	 */
-	public void actualiserImage() {
+	public void actualiserImage()
+	{
 	}
 
 	/**
 	 * Verifie si l'attaque est possible.
 	 */
-	public boolean demandeAttaque(Case pos) {
+	public boolean demandeAttaque(Case pos)
+	{
 		// if (pos.caseEnFace==null) || (pos.caseEnFace==decors)
 		return false;
 	}
@@ -435,7 +469,8 @@ public class IHMJoueur implements Runnable {
 	 * 
 	 * @return renvoi la valeur des degats faits
 	 */
-	public int afficheDegats() {
+	public int afficheDegats()
+	{
 		return 0;
 	}
 
@@ -445,34 +480,41 @@ public class IHMJoueur implements Runnable {
 	 * @param prend
 	 *            en entrée un personnage
 	 */
-	public void choixDeClasse(Personnage p1) {
+	public void choixDeClasse(Personnage p1)
+	{
 	}
 
 	/**
 	 * Affiche la classe séléctionné
 	 */
-	public void afficherClasse() {
+	public void afficherClasse()
+	{
 	}
 
 	/**
 	 * Demande la selection d'un objet
 	 */
-	public void selectionnerUnObjet() {
+	public void selectionnerUnObjet()
+	{
 	}
 
 	/**
 	 * Selectionenr une réponse parmis N choix
 	 */
-	public void selection() {
+	public void selection()
+	{
 	}
 
 	/**
 	 * Permet d'afficher l'enigme a l'ecran
 	 */
-	public void afficherEnigme(Porte p) {
-		if (p.presenceEnigme() == true) {
+	public void afficherEnigme(Porte p)
+	{
+		if (p.presenceEnigme() == true)
+		{
 
-			switch (p.numeroporte) {
+			switch (p.numeroporte)
+			{
 			case 0:
 				break;
 			case 1:
@@ -487,7 +529,8 @@ public class IHMJoueur implements Runnable {
 
 			}
 
-		} else {
+		} else
+		{
 
 		}
 	}
@@ -500,10 +543,13 @@ public class IHMJoueur implements Runnable {
 
 	// Je me demande si il faut vraiment faire cette méthode, vu que besoinCle
 	// est deja un booléen. -TB
-	public boolean demandeClefsPorte(Porte p) {
-		if (p.besoinCle == true) {
+	public boolean demandeClefsPorte(Porte p)
+	{
+		if (p.besoinCle == true)
+		{
 			return true;
-		} else {
+		} else
+		{
 			return false;
 		}
 	}
@@ -515,10 +561,13 @@ public class IHMJoueur implements Runnable {
 	 */
 
 	// Idem pour ici -TB
-	public boolean demandeClefsCoffre(Coffre c) {
-		if (c.besoinCle == true) {
+	public boolean demandeClefsCoffre(Coffre c)
+	{
+		if (c.besoinCle == true)
+		{
 			return true;
-		} else {
+		} else
+		{
 			return false;
 		}
 
