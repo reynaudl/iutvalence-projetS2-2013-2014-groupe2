@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,41 +26,69 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class IHMJoueur.
  */
-public class IHMJoueur implements Runnable
-{
+public class IHMJoueur implements Runnable {
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
 	public JPanel panel2 = new JPanel();
+	public JPanel panel3sorc = new JPanel();
+	public JPanel panel4guer = new JPanel();
+	public JPanel panel5chass = new JPanel();
+
+	public JPanel panelmap = new JPanel();
+	public JPanel panelinfo = new JPanel();
+
 	public JPanel guerrier = new JPanel();
 	public JPanel sorcier = new JPanel();
 	public JPanel chasseur = new JPanel();
 	public JPanel top = new JPanel();
+
+	JSplitPane separation = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+	JSplitPane separationbas = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+	JSplitPane separation2bas = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+	JSplitPane separation4bas = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+
+	public JPanel panelgauche = new JPanel();
+	public JPanel paneldroit = new JPanel();
+
+	public JPanel panelgauche1 = new JPanel();
+	public JPanel paneldroit1 = new JPanel();
+
+	public JTextField pseudoSorc = new JTextField(20);
+	public JTextField pseudoGuer = new JTextField(20);
+	public JTextField pseudoChass = new JTextField(20);
+	public String pseudojoueur;
+
+	public JLabel info = new JLabel(); // sert a afficher le pseudo d'un sorcier
+	public JLabel info2 = new JLabel(); // sert a afficher le pseudo d'un
+										// guerrier
+	public JLabel info3 = new JLabel(); // sert a afficher le pseudo d'un
+										// chasseur
 	// private JLabel label2 = new JLabel("Choisissez votre classe");
-	
-	
+
 	public JButton bouton7 = new JButton("Annuler");
 
-	public void run()
-	{
+	public void run() {
 		int largeur = 700;
 		int hauteur = 40;
 		int hauteur2 = 150;
-		
+
 		top.setPreferredSize(new Dimension(800, 75));
 
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(800, 800);
-		
+
 		// Quand on clique sur la croix, l'appli est détruite
 		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		
+
 		// Carte carteDuJeux = new Carte(10, 10);
 
 		JLabel label = new JLabel("asdf");
@@ -67,15 +96,18 @@ public class IHMJoueur implements Runnable
 
 		label.setText("The secret Scroll of IUT");
 		label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		
+
 		JButton bouton1 = new JButton("Jouer");
 		JButton bouton2 = new JButton("Charger");
 		JButton bouton3 = new JButton("Quitter");
 
-		JButton bouton4 = new JButton(new ImageIcon( "images_classes/guerrier.jpg"));
-		JButton bouton5 = new JButton(new ImageIcon( "images_classes/sorcier.jpg"));
-		JButton bouton6 = new JButton(new ImageIcon( "images_classes/chasseur.jpg"));
-		
+		JButton bouton4 = new JButton(new ImageIcon(
+				"images_classes/guerrier.jpg"));
+		JButton bouton5 = new JButton(new ImageIcon(
+				"images_classes/sorcier.jpg"));
+		JButton bouton6 = new JButton(new ImageIcon(
+				"images_classes/chasseur.jpg"));
+
 		// Menu de depart et ses éléments
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(label);
@@ -89,145 +121,311 @@ public class IHMJoueur implements Runnable
 		panel.setBackground(Color.RED);
 
 		// Menu de selection de la classe
-		
+
 		JLabel label2 = new JLabel("Choisissez votre classe");
 		label.setPreferredSize(new Dimension(200, 200));
 
-		JTextArea descriptGuerrier = new JTextArea("Le guerrier est un combattant qui n'a peur de rien, donc grâce à sa force surhumaine, c'est la seule personne qui puisse se regènerer ");
-		JTextArea descriptGuerrier2 = new JTextArea("constament grâce à la vue du sang de l'ennemi...");
-		
-		JTextArea descriptSorcier = new JTextArea("Le sorcier est un personnage doté de grand pouvoir maîtrisant les arcanes");
-		
-		JTextArea descriptChasseur = new JTextArea("Le chasseur sachant chasser sans son chien");
-		
+		JTextArea descriptGuerrier = new JTextArea(
+				"Le guerrier est un combattant qui n'a peur de rien, donc grâce �  sa force surhumaine, c'est la seule personne qui puisse se regènerer ");
+		JTextArea descriptGuerrier2 = new JTextArea(
+				"constament grâce �  la vue du sang de l'ennemi...");
+
+		JTextArea descriptSorcier = new JTextArea(
+				"Le sorcier est un personnage doté de grand pouvoir maîtrisant les arcanes");
+
+		JTextArea descriptChasseur = new JTextArea(
+				"Le chasseur sachant chasser sans son chien");
+
 		descriptGuerrier.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		descriptGuerrier2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		descriptSorcier.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		descriptChasseur.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		label2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		
 
 		panel2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel2.setBackground(Color.YELLOW);
 		panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
 		panel2.add(Box.createVerticalStrut(hauteur));
-		
+
 		top.setBackground(Color.YELLOW);
 		guerrier.setBackground(Color.RED);
 		sorcier.setBackground(new Color(102, 51, 153));
 		chasseur.setBackground(Color.GREEN);
-		
 
 		top.add(label2);
 		panel2.add(Box.createVerticalStrut(80));
 		guerrier.add(bouton4);
-		
-		//guerrier.add(descriptGuerrier);
-		//guerrier.add(descriptGuerrier2);
 
+		// guerrier.add(descriptGuerrier);
+		// guerrier.add(descriptGuerrier2);
 
 		sorcier.add(bouton5);
-		//sorcier.add(descriptSorcier);
+		// sorcier.add(descriptSorcier);
 		chasseur.add(bouton6);
 
-		
-		//chasseur.add(descriptChasseur);
-		
+		// chasseur.add(descriptChasseur);
+
 		panel2.add(bouton7);
-		//panel2.add(Box.createHorizontalStrut(largeur));
+		// panel2.add(Box.createHorizontalStrut(largeur));
+
+		// Menu de saisie de pseudo et de confirmation de classe Sorcier
+		panel3sorc.setLayout(new BoxLayout(panel3sorc, BoxLayout.Y_AXIS));
+		JLabel label3 = new JLabel(
+				"Vous avez choisi la classe Sorcier, rentrez votre pseudo");
+		label3.setPreferredSize(new Dimension(200, 200));
+		label3.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		panel3sorc.setBackground(Color.MAGENTA);
+		pseudoSorc.setMaximumSize(new Dimension(150, 30)); // dimensionne la
+															// fenetre de saisie
+		panel3sorc.add(Box.createVerticalStrut(180));
+		panel3sorc.add(label3);
+		panel3sorc.add(Box.createVerticalStrut(80));
+		panel3sorc.add(pseudoSorc);
+
+		// Menu de saisie de pseudo et de confirmation de classe Guerrier
+		panel4guer.setLayout(new BoxLayout(panel4guer, BoxLayout.Y_AXIS));
+		JLabel label4 = new JLabel(
+				"Vous avez choisi la classe Guerrier, rentrez votre pseudo");
+		label4.setPreferredSize(new Dimension(200, 200));
+		label4.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		panel4guer.setBackground(Color.RED);
+		pseudoGuer.setMaximumSize(new Dimension(150, 30)); // dimensionne la
+															// fenetre de saisie
+		panel4guer.add(Box.createVerticalStrut(180));
+		panel4guer.add(label4);
+		panel4guer.add(Box.createVerticalStrut(80));
+		panel4guer.add(pseudoGuer);
+
+		// Menu de saisie de pseudo et de confirmation de classe Guerrier
+		panel5chass.setLayout(new BoxLayout(panel5chass, BoxLayout.Y_AXIS));
+		JLabel label5 = new JLabel(
+				"Vous avez choisi la classe Chasseur, rentrez votre pseudo");
+		label5.setPreferredSize(new Dimension(200, 200));
+		label5.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		panel5chass.setBackground(Color.GREEN);
+		pseudoChass.setMaximumSize(new Dimension(150, 30)); // dimensionne la
+															// fenetre de saisie
+		panel5chass.add(Box.createVerticalStrut(180));
+		panel5chass.add(label5);
+		panel5chass.add(Box.createVerticalStrut(80));
+		panel5chass.add(pseudoChass);
+
+		// IHM avec map + info du joueur + cl�
+
+		panelmap.setBackground(Color.BLACK);
+		panelinfo.setBackground(Color.GREEN);
+		panelgauche.setBackground(Color.PINK);
+		paneldroit.setBackground(Color.RED);
+		panelgauche1.setBackground(Color.PINK);
+		paneldroit1.setBackground(Color.RED);
+
+		// remplissage panneau tout a gauche
+		panelgauche1.add(Box.createVerticalStrut(60));
+		panelgauche1.setLayout(new BoxLayout(panelgauche1, BoxLayout.Y_AXIS));
+		JLabel lab = new JLabel(new ImageIcon("cleor.png"));
+		lab.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		panelgauche1.add(lab);
+
+		// remplissage panneau de droite
+		paneldroit1.add(Box.createVerticalStrut(60));
+		paneldroit1.setLayout(new BoxLayout(paneldroit1, BoxLayout.Y_AXIS));
+		JLabel lab2 = new JLabel(new ImageIcon("clegrise.png"));
+		lab2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		paneldroit1.add(lab2);
+
+		separation2bas.setResizeWeight(0.5);
+		separation2bas.setEnabled(false);
+		separation2bas.setBorder(null);
+		separation2bas.setDividerSize(0);
+
+		separation2bas.setLeftComponent(panelgauche1);
+		separation2bas.setRightComponent(paneldroit1);
+
+		separation4bas.setResizeWeight(0.5);
+		separation4bas.setEnabled(false);
+		separation4bas.setBorder(null);
+		separation4bas.setDividerSize(0);
+
+		separation4bas.setLeftComponent(panelgauche);
+		separation4bas.setRightComponent(paneldroit);
+
+		separationbas.setResizeWeight(0.25);
+		separationbas.setEnabled(false);
+		separationbas.setBorder(null);
+		separationbas.setDividerSize(0);
+		separationbas.setLeftComponent(separation2bas);
+		separationbas.setRightComponent(separation4bas);
+
+		separation.setResizeWeight(0.95);
+
+		// panelmap.setSize(new Dimension(400, 800));
+		// panelinfo.setSize(new Dimension(400, 800));
+		separation.setEnabled(false);
+		separation.setBorder(null);
+		separation.setDividerSize(0);
+		separation.setTopComponent(panelmap);
+		separation.setBottomComponent(separationbas);
 
 		fenetre.setVisible(true);
-		
-		
-		class BoutonListener implements ActionListener
-		{
 
-			public void actionPerformed(ActionEvent e)
-			{
+		class BoutonListener implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
 				fenetre.setContentPane(panel2);
 				fenetre.validate();
 
-			/*
-			 * panel.removeAll(); panel.repaint(); panel.add(bouton4);
-			 * panel.setBackground(Color.GREEN);
-			 * 
-			 * panel.validate();
-			 */
+				/*
+				 * panel.removeAll(); panel.repaint(); panel.add(bouton4);
+				 * panel.setBackground(Color.GREEN);
+				 * 
+				 * panel.validate();
+				 */
 
 			}
 		}
-	
-	
-		class Quitter implements ActionListener
-		{
-			
-			public void actionPerformed(ActionEvent e)
-			{
-				if (JOptionPane.showConfirmDialog(fenetre, "Fermer l'application ?", "Confirmation", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+
+		class Quitter implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(fenetre,
+						"Fermer l'application ?", "Confirmation",
+						JOptionPane.OK_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					fenetre.dispose();
 			}
 		}
-	
-		class Retour implements ActionListener
-		{
 
-			public void actionPerformed(ActionEvent e)
-			{
+		class Retour implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
 				fenetre.setContentPane(panel);
 				fenetre.validate();
 			}
 		}
 
+		class PanelSorc implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
+
+				fenetre.setContentPane(panel3sorc);
+				fenetre.validate();
+			}
+		}
+
+		class PanelGuer implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
+
+				fenetre.setContentPane(panel4guer);
+				fenetre.validate();
+			}
+		}
+
+		class PanelChass implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
+
+				fenetre.setContentPane(panel5chass);
+				fenetre.validate();
+			}
+		}
+
+		class SavePseudo implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == pseudoSorc) { // verifie que c'etais sur le bouton
+											// sorcier
+					pseudojoueur = pseudoSorc.getText(); // recupere la valeur
+															// du champ
+					Sorcier s1 = new Sorcier(pseudojoueur); // creer un sorcier
+															// avec cette valeur
+					info.setText(s1.nomPersonnage); // met dans info le nom du
+													// perso cr�e
+					int armure = s1.armure;
+					fenetre.setContentPane(separation);
+					fenetre.validate();
+				} else {
+					if (source == pseudoGuer) {
+						pseudojoueur = pseudoGuer.getText();
+						Guerrier g1 = new Guerrier(pseudojoueur);
+						info.setText(g1.nomPersonnage);
+						int armure = g1.armure;
+						fenetre.setContentPane(separation);
+						fenetre.validate();
+					} else {
+						pseudojoueur = pseudoChass.getText();
+						Chasseur c1 = new Chasseur(pseudojoueur);
+						info.setText(c1.nomPersonnage);
+						int armure = c1.armure;
+						fenetre.setContentPane(separation);
+						fenetre.validate();
+
+					}
+				}
+				// fenetre.setContentPane(panel3sorc);
+				// fenetre.validate();
+			}
+		}
+
 		bouton1.addActionListener(new BoutonListener());
 		bouton3.addActionListener(new Quitter());
+		bouton5.addActionListener(new PanelSorc());
+		bouton4.addActionListener(new PanelGuer());
+		bouton6.addActionListener(new PanelChass());
 		bouton7.addActionListener(new Retour());
+		pseudoSorc.addActionListener(new SavePseudo());
+		pseudoGuer.addActionListener(new SavePseudo());
+		pseudoChass.addActionListener(new SavePseudo());
 
-		
-		
+		panel3sorc.add(info); // affiche le nom du perso cr�e pour le pannel
+								// sorcier
+		panel4guer.add(info); // affiche le nom du perso cr�e pour le pannel
+								// guerrier
+		panel5chass.add(info); // affiche le nom du perso cr�e pour le pannel
+								// chasseur
+
 		panel2.setLayout(new BorderLayout());
 		panel2.add(top, BorderLayout.NORTH);
 		panel2.add(guerrier, BorderLayout.WEST);
 		panel2.add(sorcier, BorderLayout.CENTER);
 		panel2.add(chasseur, BorderLayout.EAST);
 
+		JLabel label6 = new JLabel("Pseudo : ");
+		// label6.setPreferredSize(new Dimension(200, 200));
+		// label6.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		// panelgauche.add(label6);
+		panelgauche.add(label6);
+		panelgauche.add(info);
+		// JLabel label7 = new JLabel("Armure : ");
 
+		// panelgauche.add(label7);
 
-
-	
-	/*	public void paintComponent(Graphics g)
-	 *	{
-	**		try {
-		*		Image img = ImageIO.read(new File("fondscroll.png"));
-	*			g.drawImage(img, 0, 0, (ImageObserver) this);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-	*/
+		/*
+		 * public void paintComponent(Graphics g) {* try { Image img =
+		 * ImageIO.read(new File("fondscroll.png")); g.drawImage(img, 0, 0,
+		 * (ImageObserver) this); } catch (IOException e) {
+		 * 
+		 * e.printStackTrace(); }
+		 */
 	}
-	
-	
-	
 
 	/**
 	 * Verifie si le mouvement est possible.
 	 */
-	public void demandeMouvement()
-	{
+	public void demandeMouvement() {
 	}
 
 	/**
 	 * actualise l'image a l'ecran.
 	 */
-	public void actualiserImage()
-	{
+	public void actualiserImage() {
 	}
 
 	/**
 	 * Verifie si l'attaque est possible.
 	 */
-	public boolean demandeAttaque(Case pos)
-	{
+	public boolean demandeAttaque(Case pos) {
 		// if (pos.caseEnFace==null) || (pos.caseEnFace==decors)
 		return false;
 	}
@@ -237,8 +435,7 @@ public class IHMJoueur implements Runnable
 	 * 
 	 * @return renvoi la valeur des degats faits
 	 */
-	public int afficheDegats()
-	{
+	public int afficheDegats() {
 		return 0;
 	}
 
@@ -248,41 +445,34 @@ public class IHMJoueur implements Runnable
 	 * @param prend
 	 *            en entrée un personnage
 	 */
-	public void choixDeClasse(Personnage p1)
-	{
+	public void choixDeClasse(Personnage p1) {
 	}
 
 	/**
 	 * Affiche la classe séléctionné
 	 */
-	public void afficherClasse()
-	{
+	public void afficherClasse() {
 	}
 
 	/**
 	 * Demande la selection d'un objet
 	 */
-	public void selectionnerUnObjet()
-	{
+	public void selectionnerUnObjet() {
 	}
 
 	/**
 	 * Selectionenr une réponse parmis N choix
 	 */
-	public void selection()
-	{
+	public void selection() {
 	}
 
 	/**
 	 * Permet d'afficher l'enigme a l'ecran
 	 */
-	public void afficherEnigme(Porte p)
-	{
-		if (p.presenceEnigme() == true)
-		{
+	public void afficherEnigme(Porte p) {
+		if (p.presenceEnigme() == true) {
 
-			switch (p.numeroporte)
-			{
+			switch (p.numeroporte) {
 			case 0:
 				break;
 			case 1:
@@ -297,8 +487,7 @@ public class IHMJoueur implements Runnable
 
 			}
 
-		} else
-		{
+		} else {
 
 		}
 	}
@@ -311,13 +500,10 @@ public class IHMJoueur implements Runnable
 
 	// Je me demande si il faut vraiment faire cette méthode, vu que besoinCle
 	// est deja un booléen. -TB
-	public boolean demandeClefsPorte(Porte p)
-	{
-		if (p.besoinCle == true)
-		{
+	public boolean demandeClefsPorte(Porte p) {
+		if (p.besoinCle == true) {
 			return true;
-		} else
-		{
+		} else {
 			return false;
 		}
 	}
@@ -329,16 +515,12 @@ public class IHMJoueur implements Runnable
 	 */
 
 	// Idem pour ici -TB
-	public boolean demandeClefsCoffre(Coffre c)
-	{
-		if (c.besoinCle == true)
-		{
+	public boolean demandeClefsCoffre(Coffre c) {
+		if (c.besoinCle == true) {
 			return true;
-		} else
-		{
+		} else {
 			return false;
 		}
 
 	}
 }
-
