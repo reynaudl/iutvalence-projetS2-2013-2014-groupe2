@@ -25,4 +25,9 @@ public class Case
 		return new Case(this.x + mouvement.getDeltaX(), this.y
 				+ mouvement.getDeltaY(), this.indexTexture);
 	}
+	
+	public Texture obtenirIndexTexture()
+	{
+	    return this.indexTexture;
+	}
 }

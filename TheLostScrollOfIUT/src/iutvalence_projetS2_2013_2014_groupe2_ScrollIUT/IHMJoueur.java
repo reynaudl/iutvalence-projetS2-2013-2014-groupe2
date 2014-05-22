@@ -37,6 +37,7 @@ import javax.swing.WindowConstants;
  */
 public class IHMJoueur implements Runnable
 {
+    public Partie partieDeJeux;
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
 	public JPanel panel2 = new JPanel();
@@ -86,7 +87,7 @@ public class IHMJoueur implements Runnable
 		top.setPreferredSize(new Dimension(800, 75));
 
 		fenetre.setTitle("The Secret Scroll of IUT");
-		fenetre.setSize(960, 960);
+		fenetre.setSize(967, 980);
 
 		// La taille de la fenêtre n'est plus modifiable
 		fenetre.setResizable(false);
@@ -170,7 +171,7 @@ public class IHMJoueur implements Runnable
 
 		// chasseur.add(descriptChasseur);
 
-		panel2.add(bouton7);
+		//panel2.add(bouton7);
 		// panel2.add(Box.createHorizontalStrut(largeur));
 
 		// Menu de saisie de pseudo et de confirmation de classe Sorcier
@@ -261,21 +262,16 @@ public class IHMJoueur implements Runnable
 		separationbas.setLeftComponent(separation2bas);
 		separationbas.setRightComponent(separation4bas);
 
-		separation.setResizeWeight(0.95);
+		
 
 		// panelmap.setSize(new Dimension(400, 800));
 		// panelinfo.setSize(new Dimension(400, 800));
-		panelmap.setBackground(Color.GREEN);
+		panelmap.setBackground(Color.BLACK);
 		panelmap.setLayout(new GridLayout(30,0));
-		for (int i=0;i<30;i++)
-		    for (int j=0;j<30;j++)
-		    {
-		        if ((i==0 || i==29) || (j==0 || j ==29))
-		            panelmap.add(new JLabel(new ImageIcon("mur.png")));
-		        else
-		            panelmap.add(new JLabel(new ImageIcon("sol.png")));
-		    }
 		
+	
+		
+		separation.setResizeWeight(0.90);
         separation.setEnabled(false);
 		separation.setBorder(null);
 		separation.setDividerSize(0);
@@ -333,6 +329,7 @@ public class IHMJoueur implements Runnable
 
 				fenetre.setContentPane(panel3sorc);
 				fenetre.validate();
+				
 			}
 		}
 
@@ -372,8 +369,10 @@ public class IHMJoueur implements Runnable
 					Sorcier s1 = new Sorcier(pseudojoueur); // creer un sorcier
 															// avec cette valeur
 					info.setText(s1.nomPersonnage); // met dans info le nom du
-													// perso cr�e
-					int armure = s1.armure;
+					
+
+					partieDeJeux=new Partie(s1);// perso cr�e
+					
 					fenetre.setContentPane(separation);
 					fenetre.validate();
 				} else
@@ -383,7 +382,7 @@ public class IHMJoueur implements Runnable
 						pseudojoueur = pseudoGuer.getText();
 						Guerrier g1 = new Guerrier(pseudojoueur);
 						info.setText(g1.nomPersonnage);
-						int armure = g1.armure;
+						partieDeJeux=new Partie(g1);
 						fenetre.setContentPane(separation);
 						fenetre.validate();
 					} else
@@ -391,7 +390,7 @@ public class IHMJoueur implements Runnable
 						pseudojoueur = pseudoChass.getText();
 						Chasseur c1 = new Chasseur(pseudojoueur);
 						info.setText(c1.nomPersonnage);
-						int armure = c1.armure;
+						partieDeJeux=new Partie(c1);
 						fenetre.setContentPane(separation);
 						fenetre.validate();
 
@@ -407,11 +406,12 @@ public class IHMJoueur implements Runnable
 		bouton5.addActionListener(new PanelSorc());
 		bouton4.addActionListener(new PanelGuer());
 		bouton6.addActionListener(new PanelChass());
-		bouton7.addActionListener(new Retour());
+		//bouton7.addActionListener(new Retour());
 		pseudoSorc.addActionListener(new SavePseudo());
 		pseudoGuer.addActionListener(new SavePseudo());
 		pseudoChass.addActionListener(new SavePseudo());
-
+		
+		
 		panel3sorc.add(info); // affiche le nom du perso cr�e pour le pannel
 								// sorcier
 		panel4guer.add(info); // affiche le nom du perso cr�e pour le pannel
@@ -431,8 +431,23 @@ public class IHMJoueur implements Runnable
 		// panelgauche.add(label6);
 		panelgauche.add(label6);
 		panelgauche.add(info);
+		
+		
+
+        for (int i=0;i<29;i++)
+            for (int j=0;j<29;j++)
+            {
+                Case[][] plateauDeCase = Partie.obtenirPlateauCase();
+                panelmap.add(new JLabel(new ImageIcon(plateauDeCase [i][j].obtenirIndexTexture().obtenirIcone())));
+            }
+
 		// JLabel label7 = new JLabel("Armure : ");
 
+		
+		
+		
+	
+		
 		// panelgauche.add(label7);
 
 		/*
@@ -442,6 +457,8 @@ public class IHMJoueur implements Runnable
 		 * 
 		 * e.printStackTrace(); }
 		 */
+		
+		
 	}
 
 	/**

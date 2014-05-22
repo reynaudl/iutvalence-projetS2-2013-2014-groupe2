@@ -21,6 +21,7 @@ public class ScrollIUT
 		SwingUtilities.invokeLater(new IHMJoueur());
 		
 		
+		
 	}
 
 	/**
@@ -43,7 +44,7 @@ public class ScrollIUT
 	 * Selectionne la classe choisi par le joueur.
 	 * 
 	 * @param prend
-	 *            en entrée un personnage
+	 *            en entrï¿½e un personnage
 	 */
 	public void selectionClasse(Personnage p)
 	{
@@ -57,7 +58,7 @@ public class ScrollIUT
 	}
 
 	/**
-	 * Cette methode calcul aleatoirement l'armure de l'objet recuperé.
+	 * Cette methode calcul aleatoirement l'armure de l'objet recuperï¿½.
 	 * 
 	 * @param armure
 	 *            the armure

@@ -1,16 +1,16 @@
 package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
 /**
- * La classe Decor représentant les décors (portes et coffres) dans
+ * La classe Decor reprï¿½sentant les dï¿½cors (portes et coffres) dans
  * l'application.
  */
 public class Decors {
 	/**
-	 * Le nom du décors.
+	 * Le nom du dï¿½cors.
 	 */
 	private String nom;
 	/**
-	 * La position du décors sur la carte, définit par une Case.
+	 * La position du dï¿½cors sur la carte, dï¿½finit par une Case.
 	 */
 	private Case position;
 
@@ -23,11 +23,10 @@ public class Decors {
 
 	/**
 	 * 
-	 * @return Renvoie si une énigme est présente ou non sur le décor.
+	 * @return Renvoie si une ï¿½nigme est prï¿½sente ou non sur le dï¿½cor.
 	 */
 	public boolean presenceEnigme() {
-		return true;
-
+		return false;
 	}
 	
 	

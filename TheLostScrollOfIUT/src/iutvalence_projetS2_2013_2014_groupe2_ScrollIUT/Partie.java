@@ -8,12 +8,12 @@ public class Partie
 {
 
 	public Personnage personnage;
-	public  Case[][] plateauCase;
+	public Case[][] plateauCase;
 	public Decors decors;
 	
-	public Partie()
+	public Partie(Personnage personnage)
 	{
-		this.personnage = new Sorcier("Ademage");
+		this.personnage = personnage;
 		this.creationCarte();
 	}
 	/**
@@ -22,13 +22,19 @@ public class Partie
 	
 	public void creationCarte()
 	{
-		for (int i = 0;i<10;i++)
-			for (int j =0;j<10;j++)
-				if ((i==0 || i==9) ||(j==0 || j==9))
-					this.plateauCase[i][j]=new Case(i,j,Texture.MUR);
+		for (int i = 0;i<29;i++)
+			for (int j = 0; j<29;j++)
+				if ((i==0 || i==28) ||(j==0 || j==28))
+					plateauCase[i][j] = new Case(i,j,Texture.MUR);
 				else
-					this.plateauCase[i][j]=new Case(i,j,Texture.SOL);
+					plateauCase[i][j] = new Case(i,j,Texture.SOL);
 	}
+	
+	public Case[][] obtenirPlateauCase()
+	{
+	    return this.plateauCase;
+	}
+	
 	public void deplacementPersonnage()
 	{
 
