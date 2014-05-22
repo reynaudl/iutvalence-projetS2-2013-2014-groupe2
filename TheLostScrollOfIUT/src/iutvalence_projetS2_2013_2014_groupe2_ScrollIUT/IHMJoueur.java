@@ -86,7 +86,7 @@ public class IHMJoueur implements Runnable
 		top.setPreferredSize(new Dimension(800, 75));
 
 		fenetre.setTitle("The Secret Scroll of IUT");
-		fenetre.setSize(800, 800);
+		fenetre.setSize(960, 960);
 
 		// La taille de la fenêtre n'est plus modifiable
 		fenetre.setResizable(false);
@@ -265,15 +265,18 @@ public class IHMJoueur implements Runnable
 
 		// panelmap.setSize(new Dimension(400, 800));
 		// panelinfo.setSize(new Dimension(400, 800));
+		panelmap.setBackground(Color.GREEN);
+		panelmap.setLayout(new GridLayout(30,0));
+		for (int i=0;i<30;i++)
+		    for (int j=0;j<30;j++)
+		    {
+		        if ((i==0 || i==29) || (j==0 || j ==29))
+		            panelmap.add(new JLabel(new ImageIcon("mur.png")));
+		        else
+		            panelmap.add(new JLabel(new ImageIcon("sol.png")));
+		    }
 		
-		//panelmap.setLayout(new GridLayout(10,10));
-	
-		JLabel test1 = new JLabel(new ImageIcon("mur.png"));
-		
-		test1.setBorder(null);
-		test1.setBackground(Color.red);
-		panelmap.add(test1);	
-		separation.setEnabled(false);
+        separation.setEnabled(false);
 		separation.setBorder(null);
 		separation.setDividerSize(0);
 		separation.setTopComponent(panelmap);
