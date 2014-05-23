@@ -269,9 +269,9 @@ public class IHMJoueur implements Runnable
 		panelmap.setBackground(Color.BLACK);
 		panelmap.setLayout(new GridLayout(30,0));
 		
-	
+
 		
-		separation.setResizeWeight(0.90);
+		separation.setResizeWeight(0.95);
         separation.setEnabled(false);
 		separation.setBorder(null);
 		separation.setDividerSize(0);
@@ -433,12 +433,13 @@ public class IHMJoueur implements Runnable
 		panelgauche.add(info);
 		
 		
-
+		Case[][] plateauDeCase = Partie.obtenirPlateauCase();
+		Partie.creationCarte();
         for (int i=0;i<29;i++)
             for (int j=0;j<29;j++)
             {
-                Case[][] plateauDeCase = Partie.obtenirPlateauCase();
-                panelmap.add(new JLabel(new ImageIcon(plateauDeCase [i][j].obtenirIndexTexture().obtenirIcone())));
+           //System.out.println(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone());
+                panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone())));
             }
 
 		// JLabel label7 = new JLabel("Armure : ");
