@@ -76,7 +76,6 @@ public class IHMJoueur implements Runnable
 										// chasseur
 	// private JLabel label2 = new JLabel("Choisissez votre classe");
 
-	public JButton bouton7 = new JButton("Annuler");
 
 	public void run()
 	{
@@ -87,7 +86,7 @@ public class IHMJoueur implements Runnable
 		top.setPreferredSize(new Dimension(800, 75));
 
 		fenetre.setTitle("The Secret Scroll of IUT");
-		fenetre.setSize(967, 980);
+		fenetre.setSize(879, 900);
 
 		// La taille de la fenêtre n'est plus modifiable
 		fenetre.setResizable(false);
@@ -128,7 +127,7 @@ public class IHMJoueur implements Runnable
 
 		// Menu de selection de la classe
 
-		JLabel label2 = new JLabel("Choisissez votre classe");
+		JLabel label2 = new JLabel("Choisissez votre classe \n");
 		label.setPreferredSize(new Dimension(200, 200));
 
 		JTextArea descriptGuerrier = new JTextArea(
@@ -154,10 +153,11 @@ public class IHMJoueur implements Runnable
 		panel2.add(Box.createVerticalStrut(hauteur));
 
 		top.setBackground(Color.YELLOW);
+		
 		guerrier.setBackground(Color.RED);
 		sorcier.setBackground(new Color(102, 51, 153));
 		chasseur.setBackground(Color.GREEN);
-
+		
 		top.add(label2);
 		panel2.add(Box.createVerticalStrut(80));
 		guerrier.add(bouton4);
@@ -171,7 +171,7 @@ public class IHMJoueur implements Runnable
 
 		// chasseur.add(descriptChasseur);
 
-		//panel2.add(bouton7);
+
 		// panel2.add(Box.createHorizontalStrut(largeur));
 
 		// Menu de saisie de pseudo et de confirmation de classe Sorcier
@@ -262,16 +262,16 @@ public class IHMJoueur implements Runnable
 		separationbas.setLeftComponent(separation2bas);
 		separationbas.setRightComponent(separation4bas);
 
-		
+
 
 		// panelmap.setSize(new Dimension(400, 800));
 		// panelinfo.setSize(new Dimension(400, 800));
 		panelmap.setBackground(Color.BLACK);
-		panelmap.setLayout(new GridLayout(30,0));
-		
+		panelmap.setLayout(new GridLayout(29,0));
 
-		
-		separation.setResizeWeight(0.95);
+
+
+		separation.setResizeWeight(1.0);
         separation.setEnabled(false);
 		separation.setBorder(null);
 		separation.setDividerSize(0);
@@ -311,16 +311,6 @@ public class IHMJoueur implements Runnable
 			}
 		}
 
-		class Retour implements ActionListener
-		{
-
-			public void actionPerformed(ActionEvent e)
-			{
-				fenetre.setContentPane(panel);
-				fenetre.validate();
-			}
-		}
-
 		class PanelSorc implements ActionListener
 		{
 
@@ -329,7 +319,7 @@ public class IHMJoueur implements Runnable
 
 				fenetre.setContentPane(panel3sorc);
 				fenetre.validate();
-				
+
 			}
 		}
 
@@ -369,10 +359,10 @@ public class IHMJoueur implements Runnable
 					Sorcier s1 = new Sorcier(pseudojoueur); // creer un sorcier
 															// avec cette valeur
 					info.setText(s1.nomPersonnage); // met dans info le nom du
-					
+
 
 					partieDeJeux=new Partie(s1);// perso cr�e
-					
+
 					fenetre.setContentPane(separation);
 					fenetre.validate();
 				} else
@@ -406,12 +396,11 @@ public class IHMJoueur implements Runnable
 		bouton5.addActionListener(new PanelSorc());
 		bouton4.addActionListener(new PanelGuer());
 		bouton6.addActionListener(new PanelChass());
-		//bouton7.addActionListener(new Retour());
 		pseudoSorc.addActionListener(new SavePseudo());
 		pseudoGuer.addActionListener(new SavePseudo());
 		pseudoChass.addActionListener(new SavePseudo());
-		
-		
+
+
 		panel3sorc.add(info); // affiche le nom du perso cr�e pour le pannel
 								// sorcier
 		panel4guer.add(info); // affiche le nom du perso cr�e pour le pannel
@@ -431,8 +420,8 @@ public class IHMJoueur implements Runnable
 		// panelgauche.add(label6);
 		panelgauche.add(label6);
 		panelgauche.add(info);
-		
-		
+
+
 		Case[][] plateauDeCase = Partie.obtenirPlateauCase();
 		Partie.creationCarte();
         for (int i=0;i<29;i++)
@@ -444,11 +433,11 @@ public class IHMJoueur implements Runnable
 
 		// JLabel label7 = new JLabel("Armure : ");
 
-		
-		
-		
-	
-		
+
+
+
+
+
 		// panelgauche.add(label7);
 
 		/*
@@ -458,8 +447,8 @@ public class IHMJoueur implements Runnable
 		 * 
 		 * e.printStackTrace(); }
 		 */
-		
-		
+
+
 	}
 
 	/**
@@ -539,7 +528,6 @@ public class IHMJoueur implements Runnable
 			case 0:
 				break;
 			case 1:
-				// La question est bizarre ... c'est pas plutôt en binaire
 				System.out.println("Combien fait 1+1 en informatique ?");
 				break;
 			case 2:
@@ -562,8 +550,6 @@ public class IHMJoueur implements Runnable
 	 * @return true, if successful
 	 */
 
-	// Je me demande si il faut vraiment faire cette méthode, vu que besoinCle
-	// est deja un booléen. -TB
 	public boolean demandeClefsPorte(Porte p)
 	{
 		if (p.besoinCle == true)
@@ -581,7 +567,6 @@ public class IHMJoueur implements Runnable
 	 * @return true, if successful
 	 */
 
-	// Idem pour ici -TB
 	public boolean demandeClefsCoffre(Coffre c)
 	{
 		if (c.besoinCle == true)
