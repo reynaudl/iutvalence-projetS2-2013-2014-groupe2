@@ -37,7 +37,9 @@ import javax.swing.WindowConstants;
  */
 public class IHMJoueur implements Runnable
 {
-    public Partie partieDeJeux;
+	public Partie partieDeJeux;
+	public static Personnage personnageCourant=new Chasseur("caca");
+
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
 	public JPanel panel2 = new JPanel();
@@ -74,8 +76,8 @@ public class IHMJoueur implements Runnable
 										// guerrier
 	public JLabel info3 = new JLabel(); // sert a afficher le pseudo d'un
 										// chasseur
-	// private JLabel label2 = new JLabel("Choisissez votre classe");
 
+	// private JLabel label2 = new JLabel("Choisissez votre classe");
 
 	public void run()
 	{
@@ -348,20 +350,23 @@ public class IHMJoueur implements Runnable
 		class SavePseudo implements ActionListener
 		{
 
+			private Personnage personnage;
+			
 			public void actionPerformed(ActionEvent e)
 			{
 				Object source = e.getSource();
 				if (source == pseudoSorc)
-				{ // verifie que c'etais sur le bouton
+				{ // verifie que c'etait sur le bouton
 					// sorcier
 					pseudojoueur = pseudoSorc.getText(); // recupere la valeur
 															// du champ
-					Sorcier s1 = new Sorcier(pseudojoueur); // creer un sorcier
+					personnage = new Sorcier(pseudojoueur); // creer un sorcier
 															// avec cette valeur
-					info.setText(s1.nomPersonnage); // met dans info le nom du
+					info.setText(personnage.nomPersonnage); // met dans info le nom du
 
 
-					partieDeJeux=new Partie(s1);// perso cr�e
+					//personnage = perso;
+					//partieDeJeux=new Partie(perso);// perso cr�e
 
 					fenetre.setContentPane(separation);
 					fenetre.validate();
@@ -370,26 +375,32 @@ public class IHMJoueur implements Runnable
 					if (source == pseudoGuer)
 					{
 						pseudojoueur = pseudoGuer.getText();
-						Guerrier g1 = new Guerrier(pseudojoueur);
-						info.setText(g1.nomPersonnage);
-						partieDeJeux=new Partie(g1);
+						personnage = new Guerrier(pseudojoueur);
+						info.setText(personnage.nomPersonnage);
+						//personnage = perso;
+						//partieDeJeux=new Partie(perso);
 						fenetre.setContentPane(separation);
 						fenetre.validate();
 					} else
 					{
 						pseudojoueur = pseudoChass.getText();
-						Chasseur c1 = new Chasseur(pseudojoueur);
-						info.setText(c1.nomPersonnage);
-						partieDeJeux=new Partie(c1);
+						personnage = new Chasseur(pseudojoueur);
+						info.setText(personnage.nomPersonnage);
+						//personnage = perso;
+						//partieDeJeux=new Partie(perso);
 						fenetre.setContentPane(separation);
 						fenetre.validate();
 
 					}
 				}
-				// fenetre.setContentPane(panel3sorc);
-				// fenetre.validate();
+				
+				
 			}
+
+		
 		}
+		
+		
 
 		bouton1.addActionListener(new BoutonListener());
 		bouton3.addActionListener(new Quitter());
@@ -400,7 +411,7 @@ public class IHMJoueur implements Runnable
 		pseudoGuer.addActionListener(new SavePseudo());
 		pseudoChass.addActionListener(new SavePseudo());
 
-
+		
 		panel3sorc.add(info); // affiche le nom du perso cr�e pour le pannel
 								// sorcier
 		panel4guer.add(info); // affiche le nom du perso cr�e pour le pannel
@@ -415,40 +426,39 @@ public class IHMJoueur implements Runnable
 		panel2.add(chasseur, BorderLayout.EAST);
 
 		JLabel label6 = new JLabel("Pseudo : ");
-		// label6.setPreferredSize(new Dimension(200, 200));
-		// label6.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		// panelgauche.add(label6);
+
 		panelgauche.add(label6);
 		panelgauche.add(info);
 
-
+		
 		Case[][] plateauDeCase = Partie.obtenirPlateauCase();
 		Partie.creationCarte();
+		
         for (int i=0;i<29;i++)
             for (int j=0;j<29;j++)
             {
-           //System.out.println(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone());
-                panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone())));
+ 
+            	if (i==personnageCourant.obtenirPositionPersonnage().obtenirX() && j == personnageCourant.obtenirPositionPersonnage().obtenirY())
+                    panelmap.add(new JLabel(new ImageIcon(personnageCourant.obtenirPositionPersonnage().obtenirIndexTexture().obtenirIcone())));
+            	else 
+                    panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone())));
+                    
+
             }
 
 		// JLabel label7 = new JLabel("Armure : ");
+        System.out.println(personnageCourant.obtenirPositionPersonnage().obtenirIndexTexture());
+        
 
 
 
 
 
+	}
 
-		// panelgauche.add(label7);
-
-		/*
-		 * public void paintComponent(Graphics g) {* try { Image img =
-		 * ImageIO.read(new File("fondscroll.png")); g.drawImage(img, 0, 0,
-		 * (ImageObserver) this); } catch (IOException e) {
-		 * 
-		 * e.printStackTrace(); }
-		 */
-
-
+	public Personnage getPersonnage()
+	{
+		return personnageCourant;
 	}
 
 	/**
@@ -490,16 +500,17 @@ public class IHMJoueur implements Runnable
 	 * @param prend
 	 *            en entrée un personnage
 	 */
-	public void choixDeClasse(Personnage p1)
-	{
-	}
+	// public void choixDeClasse(Personnage p1)
+	// {
+	//
+	// }
 
 	/**
 	 * Affiche la classe séléctionné
 	 */
-	public void afficherClasse()
-	{
-	}
+	// public void afficherClasse()
+	// {
+	// }
 
 	/**
 	 * Demande la selection d'un objet
@@ -525,20 +536,21 @@ public class IHMJoueur implements Runnable
 
 			switch (p.numeroporte)
 			{
-			case 0:
-				break;
-			case 1:
-				System.out.println("Combien fait 1+1 en informatique ?");
-				break;
-			case 2:
-				System.out
-						.println("Quel langage avons nous appris en algorithmie ?");
-				break;
-			default:
+				case 0:
+					break;
+				case 1:
+					System.out.println("Combien fait 1+1 en informatique ?");
+					break;
+				case 2:
+					System.out
+							.println("Quel langage avons nous appris en algorithmie ?");
+					break;
+				default:
 
 			}
 
-		} else
+		}
+		else
 		{
 
 		}
@@ -555,7 +567,8 @@ public class IHMJoueur implements Runnable
 		if (p.besoinCle == true)
 		{
 			return true;
-		} else
+		}
+		else
 		{
 			return false;
 		}
@@ -572,7 +585,8 @@ public class IHMJoueur implements Runnable
 		if (c.besoinCle == true)
 		{
 			return true;
-		} else
+		}
+		else
 		{
 			return false;
 		}

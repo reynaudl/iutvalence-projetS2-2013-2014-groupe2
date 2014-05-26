@@ -30,4 +30,15 @@ public class Case
 	{
 	    return this.indexTexture;
 	}
+	
+	public int obtenirX()
+	{
+		return this.x;
+	}
+
+	public int obtenirY()
+	{
+		return this.y;
+	}
+	
 }
