@@ -9,8 +9,11 @@ import java.awt.Graphics;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.RenderingHints.Key;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -281,10 +284,12 @@ public class IHMJoueur implements Runnable
 		separation.setBottomComponent(separationbas);
 
 		fenetre.setVisible(true);
+		
 
 		class BoutonListener implements ActionListener
 		{
 
+			
 			public void actionPerformed(ActionEvent e)
 			{
 				fenetre.setContentPane(panel2);
@@ -398,7 +403,9 @@ public class IHMJoueur implements Runnable
 			}
 
 		
+			
 		}
+		
 		
 		
 
@@ -434,6 +441,87 @@ public class IHMJoueur implements Runnable
 		Case[][] plateauDeCase = Partie.obtenirPlateauCase();
 		Partie.creationCarte();
 		
+		/*
+		class TitreKeyListener implements KeyListener {
+		 
+			
+			
+		
+				 
+				 public void keyPressed(KeyEvent e) {
+					    if(e.getKeyCode() == KeyEvent.VK_F5)
+					        System.out.println("F5 pressed");
+					}
+
+		
+			
+				
+				
+				/*Object source = e.getSource();
+		    	if(source==Key.z){
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.HAUT);
+		    		  System.out.println(111);
+		    	}else if(source==Key.q){
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.GAUCHE);
+		    		
+		    	}else if(source==Key.d){
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.DROITE);
+		    		
+		    	}
+		    	else if(source==Key.s){ 
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.BAS);
+		    	}
+		    	else{}
+		    	
+
+		    }
+		    */
+		    /*public void keyPressed(KeyEvent e) {
+		    	switch(e.getKeyChar()){
+		    	case 'z':
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.HAUT);
+		    		  System.out.println(111);
+		    		break;
+		    	case 'q':
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.GAUCHE);
+		    		break;
+		    	case 'd':
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.DROITE);
+		    		break;
+		    	case 's':
+		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.BAS);
+		    		break;
+		    	}
+		        
+		    }*/
+	/*	 
+		    public void keyReleased(KeyEvent e) {
+		    	 if(e.getKeyCode() == KeyEvent.VK_F5)
+				        System.out.println("F6 pressed");
+		    }
+		 
+		    public void keyTyped(KeyEvent e) {
+		    	 if(e.getKeyCode() == KeyEvent.VK_F5)
+				        System.out.println("F7 pressed");
+		        // on ne fait rien
+		    }
+		    
+		}
+		*/
+		
+	/*
+		panelmap.addKeyListener(new TitreKeyListener());
+		pseudoSorc.addKeyListener(new TitreKeyListener());
+		panelinfo.addKeyListener(new TitreKeyListener());	
+		pseudoGuer.addKeyListener(new TitreKeyListener());
+		pseudoChass.addKeyListener(new TitreKeyListener());
+		fenetre.addKeyListener(new TitreKeyListener());
+		separation.addKeyListener(new TitreKeyListener());
+		panel3sorc.addKeyListener(new TitreKeyListener());
+		panel4guer.addKeyListener(new TitreKeyListener());
+		panel2.addKeyListener(new TitreKeyListener());
+		panel5chass.addKeyListener(new TitreKeyListener());
+		*/
         for (int i=0;i<29;i++)
             for (int j=0;j<29;j++)
             {
@@ -445,7 +533,12 @@ public class IHMJoueur implements Runnable
                     
 
             }
+  
 
+       
+         
+        
+		
 		// JLabel label7 = new JLabel("Armure : ");
         System.out.println(personnageCourant.obtenirPositionPersonnage().obtenirIndexTexture());
         
@@ -592,4 +685,5 @@ public class IHMJoueur implements Runnable
 		}
 
 	}
+
 }

@@ -1,5 +1,7 @@
 package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
+import java.awt.event.KeyEvent;
+
 /**
  * La Classe Personnage.
  */
@@ -117,6 +119,6 @@ public abstract class Personnage
 	{
 		return this.postionPersonnage;
 	}
-
+	
 	
 }
