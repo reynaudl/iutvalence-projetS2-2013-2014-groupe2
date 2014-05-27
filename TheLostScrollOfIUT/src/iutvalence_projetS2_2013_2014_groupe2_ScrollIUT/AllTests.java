@@ -7,6 +7,7 @@ public class AllTests {
 		TestSuite suite = new TestSuite();
 		//suite.addTest(CompteurTest.suite());
 		
+		
 		return suite;
 	}
 

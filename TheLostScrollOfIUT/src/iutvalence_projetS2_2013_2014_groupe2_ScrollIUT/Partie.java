@@ -8,31 +8,52 @@ public class Partie
 {
 
 	public Personnage personnage;
-	public Case[][] plateauCase;
+	public static Case[][] plateauCase = new Case[30][30];
 	public Decors decors;
 	
 	public Partie(Personnage personnage)
 	{
 		this.personnage = personnage;
-		this.creationCarte();
+		
 	}
 	/**
 	 * Gere le d�placement du personnage
 	 */
 	
-	public void creationCarte()
+	public static void creationCarte()
 	{
-		for (int i = 0;i<29;i++)
-			for (int j = 0; j<29;j++)
+		for (int i = 0;i<29;i++){
+			for (int j = 0; j<29;j++){
 				if ((i==0 || i==28) ||(j==0 || j==28))
 					plateauCase[i][j] = new Case(i,j,Texture.MUR);
 				else
 					plateauCase[i][j] = new Case(i,j,Texture.SOL);
+				
+	}
+		}
+		
 	}
 	
-	public Case[][] obtenirPlateauCase()
+/*	public void AfficherCarte(){
+		
+
+		for (int i = 0;i<29;i++){
+			System.out.print("\n");
+		
+			for (int j = 0; j<29;j++){
+				if(plateauCase[i][j].indexTexture.obtenirIcone()=="mur.png")
+					System.out.print("zob "); 
+					else
+						System.out.print("coucou "); 	
+					
+				}
+			}
+		}
+	*/
+	
+	public static Case[][] obtenirPlateauCase()
 	{
-	    return this.plateauCase;
+	    return plateauCase;
 	}
 	
 	public void deplacementPersonnage()

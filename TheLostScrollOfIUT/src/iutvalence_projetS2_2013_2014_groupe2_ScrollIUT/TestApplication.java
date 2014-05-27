@@ -41,7 +41,9 @@ public void verifieTextureBlocante(){
 
 
 	
-	/*public void methodeTest() throws ExeptionClass {
+	/*
+	 * exemple
+	 * public void methodeTest() throws ExeptionClass {
 	try {
 	ClassAT c1= new ClassAT();
 	ClassAT c2= new ClassAT();
