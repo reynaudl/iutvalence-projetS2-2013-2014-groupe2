@@ -6,7 +6,7 @@ public class Chasseur extends Personnage
 	{
 		super(nom);
 		this.multiplicateur = 1.75;
-		this.postionPersonnage = new Case(10,10,Texture.CHASSEUR);
+		this.postionPersonnage = new Case(10,10,Texture.CHASSEUR,null);
 		this.nomClasse = "chasseur";
 	}
 

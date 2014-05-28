@@ -4,34 +4,35 @@ import java.security.SecureRandom;
 
 
 /**
- * La classe Coffre, sous-classe de Decors qui étend la classe Decors et
- * matérialise les coffres.
+ * La classe Coffre, sous-classe de Decors qui ï¿½tend la classe Decors et
+ * matï¿½rialise les coffres.
  * 
  */
 
 public class Coffre extends Decors {
 	
 	/**
-	 * Donne l'état du coffre, s'il est fermée (False) s'il est ouvert(True).
+	 * Donne l'ï¿½tat du coffre, s'il est fermï¿½e (False) s'il est ouvert(True).
 	 */
 	private boolean etat;
-	public boolean besoinCle;
+	
+
 	
 	
 	
 	public Coffre(boolean besoinDeCle)
 	{
-		super("Coffre");
+		super("Coffre",besoinDeCle);
 		this.etat=false;
-		this.besoinCle=besoinDeCle;
+		
 	}
 
 	/**
 	 * 
-	 * @return Renvoie un item que reçoit le joueur.
+	 * @return Renvoie un item que reï¿½oit le joueur.
 	 */
 	
-	//base de donnée jdbc ? -TB
+	//base de donnï¿½e jdbc ? -TB
 	public Item obtenirItemDUnCoffre() {
 		
 	//if (le joueur clic sur le coffre) 
@@ -94,6 +95,12 @@ public class Coffre extends Decors {
 			this.etat=true;
 		}
 	}
+	
+	public boolean obtenirBesoinCle()
+	{
+		return this.besoinCle;
+	}
+
 	
 	/*
 	

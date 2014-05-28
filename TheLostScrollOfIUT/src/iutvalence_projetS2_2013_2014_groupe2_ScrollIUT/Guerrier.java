@@ -8,7 +8,7 @@ public class Guerrier extends Personnage
         super(nom);
         this.armure = 10;
         this.multiplicateur = 1.5;
-        this.postionPersonnage = new Case(10,10,Texture.GUERRIER);
+        this.postionPersonnage = new Case(10,10,Texture.GUERRIER,null);
         this.nomClasse = "guerrier";
 
     }

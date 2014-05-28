@@ -13,11 +13,17 @@ public class Decors {
 	 * La position du d�cors sur la carte, d�finit par une Case.
 	 */
 
+	protected boolean besoinCle;
+	
+	public boolean obtenirBesoinCle()
+	{
+		return this.besoinCle;
+	}
 
-	public Decors(String nom)
+	public Decors(String nom,boolean besoinCle)
 	{
 		this.nom = nom;
-
+		this.besoinCle = besoinCle;
 		
 	}
 

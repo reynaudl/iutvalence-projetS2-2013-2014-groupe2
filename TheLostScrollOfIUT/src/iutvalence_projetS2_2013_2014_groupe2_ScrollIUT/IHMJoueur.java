@@ -43,10 +43,10 @@ import javax.swing.WindowConstants;
 public class IHMJoueur implements Runnable, KeyListener {
 	public Partie partieDeJeux;
 	public static Personnage personnageCourant = new Chasseur("lolo");
-	public static Personnage monstre1 = new Creature("creat1",20,2,2,1.0,new Case(6,5,Texture.MONSTRE));
-	public static Personnage monstre2 = new Creature("creat2",20,2,2,1.0,new Case(12,25,Texture.MONSTRE));
-	public static Personnage monstre3 = new Creature("creat3",20,2,2,1.0,new Case(15,17,Texture.MONSTRE));
-	public static Personnage monstre4 = new Creature("creat4",20,2,2,1.0,new Case(15,10,Texture.MONSTRE));
+	public static Personnage monstre1 = new Creature("creat1",20,2,2,1.0,new Case(6,5,Texture.MONSTRE,null));
+	public static Personnage monstre2 = new Creature("creat2",20,2,2,1.0,new Case(12,25,Texture.MONSTRE,null));
+	public static Personnage monstre3 = new Creature("creat3",20,2,2,1.0,new Case(15,17,Texture.MONSTRE,null));
+	public static Personnage monstre4 = new Creature("creat4",20,2,2,1.0,new Case(15,10,Texture.MONSTRE,null));
 	
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
@@ -121,7 +121,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 			}
 			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.PORTE_FERMER || plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
 			{
-				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinClef() == true )
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
 				{
 					
 				}
@@ -686,6 +686,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 	/**
 	 * Permet d'afficher l'enigme a l'ecran
 	 */
+	/*
 	public void afficherEnigme(Porte p) {
 		if (p.presenceEnigme() == true) {
 
@@ -706,7 +707,8 @@ public class IHMJoueur implements Runnable, KeyListener {
 		} else {
 
 		}
-	}
+	}*/
+	
 
 	/**
 	 * Verifie si la porte necessite une clé pour etre ouverte

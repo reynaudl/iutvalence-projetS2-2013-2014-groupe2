@@ -1,17 +1,17 @@
 package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
 /**
- * La classe Porte, sous-classe de Decors qui étend la classe Decors et matérialise les portes.
+ * La classe Porte, sous-classe de Decors qui ï¿½tend la classe Decors et matï¿½rialise les portes.
  *
  */
 public class Porte extends Decors {
 	
 	/**
-	 * Donne l'état de la porte, si elle est fermée (False) ou ouverte(True).
+	 * Donne l'ï¿½tat de la porte, si elle est fermï¿½e (False) ou ouverte(True).
 	 */
 	private boolean etat;
 	private Couleur couleurPorte;
-	public boolean besoinCle;
+	
 
 	
 	public boolean estOuverte(){
@@ -21,11 +21,11 @@ public class Porte extends Decors {
 		
 	}
 	
-	public Porte(boolean besoinDeCle)
+	public Porte(boolean besoinCle)
 	{
-		super("Porte");
+		super("Porte",besoinCle);
 		this.etat=false;
-		this.besoinCle=besoinDeCle;
+		
 	}
 	
 	public Couleur obtenirCouleurPorte() 
@@ -49,13 +49,13 @@ public class Porte extends Decors {
 			if(p.besoinCle=true){
 				if (p.obtenirCouleurPorte()==c.obtenirCouleurClef()){
 					if(this.presenceEnigme()==true){
-					System.out.println("Vous devez répondre a l'enigme pour ouvrir cette porte");
+					System.out.println("Vous devez rï¿½pondre a l'enigme pour ouvrir cette porte");
 					}
 				else p.changerDEtat(); 
 				int nbcle =	c.obtenirCompteurDeClef();
 				nbcle--;
 				}
-				System.out.println("Vous ne disposez pas de la bonne clé pour ouvrir la porte");
+				System.out.println("Vous ne disposez pas de la bonne clï¿½ pour ouvrir la porte");
 			}
 							
 			
