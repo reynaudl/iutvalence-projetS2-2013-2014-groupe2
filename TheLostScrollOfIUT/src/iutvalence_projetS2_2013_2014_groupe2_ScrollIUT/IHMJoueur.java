@@ -151,6 +151,26 @@ public class IHMJoueur implements Runnable, KeyListener {
 				this.affichageMap();
 				panelmap.validate();
 			}
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.PORTE_FERMER || plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
+			{
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
+				{
+					
+				}
+				else
+				{
+					if (JOptionPane.showConfirmDialog(fenetre,
+							"Ouvrir ?", "Confirmation",
+							JOptionPane.OK_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					{
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.PORTE_OUVERTE);
+						panelmap.removeAll();
+						this.affichageMap();
+						panelmap.validate();
+					}
+				}
+			}
 		}
 		else if (lettre=='q')
 		{
@@ -163,6 +183,26 @@ public class IHMJoueur implements Runnable, KeyListener {
 				this.affichageMap();
 				panelmap.validate();
 			}
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirIndexTexture() == Texture.PORTE_FERMER || plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
+			{
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirBesoinCle() == true )
+				{
+					
+				}
+				else
+				{
+					if (JOptionPane.showConfirmDialog(fenetre,
+							"Ouvrir ?", "Confirmation",
+							JOptionPane.OK_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					{
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].setTexture(Texture.PORTE_OUVERTE);
+						panelmap.removeAll();
+						this.affichageMap();
+						panelmap.validate();
+					}
+				}
+			}
 		}
 		else if (lettre=='d')
 		{
@@ -174,6 +214,26 @@ public class IHMJoueur implements Runnable, KeyListener {
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
+			}
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirIndexTexture() == Texture.PORTE_FERMER || plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
+			{
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirBesoinCle() == true )
+				{
+					
+				}
+				else
+				{
+					if (JOptionPane.showConfirmDialog(fenetre,
+							"Ouvrir ?", "Confirmation",
+							JOptionPane.OK_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					{
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].setTexture(Texture.PORTE_OUVERTE);
+						panelmap.removeAll();
+						this.affichageMap();
+						panelmap.validate();
+					}
+				}
 			}
 		}
 		else
