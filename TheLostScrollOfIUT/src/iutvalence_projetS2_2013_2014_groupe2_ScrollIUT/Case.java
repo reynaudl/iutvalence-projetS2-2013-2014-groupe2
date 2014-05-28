@@ -41,6 +41,13 @@ public class Case
 		return this.y;
 	}
 	
+	public void setX(int a){
+		this.x=a;
+	}
+	public void setY(int b){
+		this.y=b;
+	}
+	
 
 	
 }

@@ -81,6 +81,11 @@ public class IHMJoueur implements Runnable
 										// chasseur
 
 	// private JLabel label2 = new JLabel("Choisissez votre classe");
+	JButton boutonHaut = new JButton();
+	JButton boutonBas = new JButton();
+	JButton boutonGauche = new JButton();
+	JButton boutonDroit = new JButton();
+	
 
 	public void run()
 	{
@@ -267,7 +272,11 @@ public class IHMJoueur implements Runnable
 		separationbas.setLeftComponent(separation2bas);
 		separationbas.setRightComponent(separation4bas);
 
-
+		panelgauche1.setLayout(new BoxLayout(panelgauche1, BoxLayout.Y_AXIS));
+		panelgauche1.add(boutonHaut);
+		panelgauche1.add(boutonBas);
+		panelgauche1.add(boutonGauche);
+		panelgauche1.add(boutonDroit);
 
 		// panelmap.setSize(new Dimension(400, 800));
 		// panelinfo.setSize(new Dimension(400, 800));
@@ -405,10 +414,46 @@ public class IHMJoueur implements Runnable
 		
 			
 		}
-		
-		
-		
+		class Deplace implements ActionListener
+		{
 
+			public void actionPerformed(ActionEvent e)
+			{
+				Object source = e.getSource();
+				if (source == boutonHaut)
+				{
+					personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
+					personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()+1);
+					
+			}else if (source == boutonBas)
+			{
+				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
+				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()-1);
+				
+		}
+			else if (source == boutonGauche)
+			{
+				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()-1);
+				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+				
+		}
+			else if (source == boutonDroit)
+				{
+					personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()+1);
+					personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+					
+			}
+			else{}
+		}
+		}
+		
+		
+		
+		boutonHaut.addActionListener(new Deplace());
+		boutonBas.addActionListener(new Deplace());
+		boutonDroit.addActionListener(new Deplace());
+		boutonHaut.addActionListener(new Deplace());
+		
 		bouton1.addActionListener(new BoutonListener());
 		bouton3.addActionListener(new Quitter());
 		bouton5.addActionListener(new PanelSorc());
