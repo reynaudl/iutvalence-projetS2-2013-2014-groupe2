@@ -8,7 +8,7 @@ public enum Texture {
 	SOL(false,"texture/sol.png"),
 	MUR(true,"texture/mur.png"),
 	COFFRE(true,"texture/coffre.png"),
-	PORTE(true,"texture/porte.png"),
+	PORTE_FERMER(true,"texture/porte fermer.png"),
 	PORTE_OUVERTE (false,"texture/porte_ouverte.png"),
 	DEBRIS(true,"texture/debris.png"),
 	FENETRE(true,"texture/fenetre.png"),
@@ -16,8 +16,8 @@ public enum Texture {
 	VIDE (true,"texture/vide.png"),
 	CHASSEUR(true,"texture/chasseur.png"),
 	GUERRIER(true,"texture/guerrier.png"),
-	SORCIER(true,"texture/mage.png");
-	
+	SORCIER(true,"texture/mage.png"),
+	TABLE(true,"texture/table.png");
 	
 
 	
