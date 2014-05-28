@@ -188,40 +188,7 @@ public class Partie
 	 * @param prend
 	 *            en entr�e un objet de type item
 	 */
-	public static void miseAJourDeLEquipement(Item item, Personnage p)
-	{
-
-		for (int i = 0; i < p.itemCourant.length; i++)
-			if (item.obtenirType() == p.itemCourant[i].obtenirType())
-			{
-				if ((item.obtenirArmure() > p.itemCourant[i].obtenirArmure())
-						|| (item.obtenirAttaque() > p.itemCourant[i]
-								.obtenirAttaque()))
-				{
-					p.itemCourant[i] = item;
-					System.out.println("bravo vous venez d'equiper "
-							+ p.itemCourant[i].obtenirNomItem());
-					for (int j = 0; j < p.itemCourant.length; j++)
-					{
-						System.out.println("objet :  "
-								+ p.itemCourant[j].obtenirNomItem());
-					}
-
-				} else
-				{
-					System.out
-							.println("L'objet "
-									+ item.obtenirNomItem()
-									+ " ne possedais pas des caracteristiques assez elev�");
-					for (int j = 0; j < p.itemCourant.length; j++)
-					{
-						System.out.println("objet :  "
-								+ p.itemCourant[j].obtenirNomItem());
-					}
-				}
-			}
-
-	}
+	
 
 	/**
 	 * Cette m�thode dirigie l'ouverture de coffres et de portes.

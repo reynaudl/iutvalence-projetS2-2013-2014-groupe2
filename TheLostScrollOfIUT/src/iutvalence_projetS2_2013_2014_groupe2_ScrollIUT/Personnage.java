@@ -48,8 +48,6 @@ public abstract class Personnage {
 
 		this.nomPersonnage = nom;
 		this.pointDeVie = PV;
-		this.attaque = ATTAQUE_DE_BASE;
-		this.armure = ARMURE_DE_BASE;
 		this.multiplicateur = MULTIPLICATEUR_DEGAT_DE_BASE;
 		this.esquive = ESQUIVE_DE_BASE;
 		this.nomClasse = NOM_CLASSE_DEFAUT;
@@ -57,6 +55,8 @@ public abstract class Personnage {
 		itemCourant[0] = new Item("Botte en laine", "Bottes", 1, 0);
 		itemCourant[1] = new Item("Armure en laine", "Armure", 1, 0);
 		itemCourant[2] = new Item("Arme de poing", "Arme", 0, 4);
+		this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirArmure()+this.itemCourant[0].obtenirArmure();
+		this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure();
 
 	}
 
@@ -88,6 +88,43 @@ public abstract class Personnage {
 	 */
 	public int obtenirAttaque() {
 		return this.attaque;
+	}
+	public  void miseAJourDeLEquipement(Item item)
+	{
+
+		for (int i = 0; i < this.itemCourant.length; i++)
+			if (item.obtenirType() == this.itemCourant[i].obtenirType())
+			{
+				if ((item.obtenirArmure() > this.itemCourant[i].obtenirArmure())
+						|| (item.obtenirAttaque() > this.itemCourant[i]
+								.obtenirAttaque()))
+				{
+					this.itemCourant[i] = item;
+					System.out.println("bravo vous venez d'equiper "
+							+ this.itemCourant[i].obtenirNomItem());
+					for (int j = 0; j < this.itemCourant.length; j++)
+					{
+						System.out.println("objet :  "
+								+ this.itemCourant[j].obtenirNomItem());
+					}
+					this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirArmure()+this.itemCourant[0].obtenirArmure();
+					this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure();
+
+				} else
+				{
+					System.out
+							.println("L'objet "
+									+ item.obtenirNomItem()
+									+ " ne possedais pas des caracteristiques assez elev�");
+					for (int j = 0; j < this.itemCourant.length; j++)
+					{
+						System.out.println("objet :  "
+								+ this.itemCourant[j].obtenirNomItem());
+					}
+				}
+			}
+		
+
 	}
 
 	/**
