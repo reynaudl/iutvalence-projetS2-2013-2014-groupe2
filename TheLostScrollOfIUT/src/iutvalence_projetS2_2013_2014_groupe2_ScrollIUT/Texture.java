@@ -17,7 +17,8 @@ public enum Texture {
 	CHASSEUR(true,"texture/chasseur.png"),
 	GUERRIER(true,"texture/guerrier.png"),
 	SORCIER(true,"texture/mage.png"),
-	TABLE(true,"texture/table.png");
+	TABLE(true,"texture/table.png"),
+	MONSTRE(true,"texture/monstre.png");
 	
 
 	

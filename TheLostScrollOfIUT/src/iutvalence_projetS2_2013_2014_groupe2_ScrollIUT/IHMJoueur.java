@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+import java.security.SecureRandom;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -42,7 +43,11 @@ import javax.swing.WindowConstants;
 public class IHMJoueur implements Runnable, KeyListener {
 	public Partie partieDeJeux;
 	public static Personnage personnageCourant = new Chasseur("lolo");
-
+	public static Personnage monstre1 = new Creature("creat1",20,2,2,1.0,new Case(6,5,Texture.MONSTRE));
+	public static Personnage monstre2 = new Creature("creat2",20,2,2,1.0,new Case(12,25,Texture.MONSTRE));
+	public static Personnage monstre3 = new Creature("creat3",20,2,2,1.0,new Case(15,17,Texture.MONSTRE));
+	public static Personnage monstre4 = new Creature("creat4",20,2,2,1.0,new Case(15,10,Texture.MONSTRE));
+	
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
 	public JPanel panel2 = new JPanel();
@@ -81,11 +86,9 @@ public class IHMJoueur implements Runnable, KeyListener {
 										// chasseur
 
 	// private JLabel label2 = new JLabel("Choisissez votre classe");
-	JButton boutonHaut = new JButton();
-	JButton boutonBas = new JButton();
-	JButton boutonGauche = new JButton();
-	JButton boutonDroit = new JButton();
+	
 	public Case[][] plateauDeCase;
+	public Personnage[] tabCreat = {monstre1,monstre2,monstre3,monstre4};
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -110,6 +113,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 			{
 				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()-1);
 				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+				deplacementRandom();
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
@@ -121,6 +125,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 			{
 				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()+1);
 				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+				deplacementRandom();
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
@@ -132,6 +137,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 			{
 				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
 				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()-1);
+				deplacementRandom();
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
@@ -143,6 +149,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 			{
 				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
 				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()+1);
+				deplacementRandom();
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
@@ -341,10 +348,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		separationbas.setRightComponent(separation4bas);
 
 		panelgauche1.setLayout(new BoxLayout(panelgauche1, BoxLayout.Y_AXIS));
-		panelgauche1.add(boutonHaut);
-		panelgauche1.add(boutonBas);
-		panelgauche1.add(boutonGauche);
-		panelgauche1.add(boutonDroit);
+
 
 		// panelmap.setSize(new Dimension(400, 800));
 		// panelinfo.setSize(new Dimension(400, 800));
@@ -510,12 +514,91 @@ public class IHMJoueur implements Runnable, KeyListener {
 					panelmap.add(new JLabel(new ImageIcon(personnageCourant
 							.obtenirPositionPersonnage().obtenirIndexTexture()
 							.obtenirIcone())));
+				else if(i == monstre1.obtenirPositionPersonnage()
+						.obtenirX()
+						&& j == monstre1.obtenirPositionPersonnage()
+								.obtenirY())
+					panelmap.add(new JLabel(new ImageIcon(monstre1
+							.obtenirPositionPersonnage().obtenirIndexTexture()
+							.obtenirIcone())));
+				else if(i == monstre2.obtenirPositionPersonnage()
+						.obtenirX()
+						&& j == monstre2.obtenirPositionPersonnage()
+								.obtenirY())
+					panelmap.add(new JLabel(new ImageIcon(monstre2
+							.obtenirPositionPersonnage().obtenirIndexTexture()
+							.obtenirIcone())));
+				else if(i == monstre3.obtenirPositionPersonnage()
+						.obtenirX()
+						&& j == monstre3.obtenirPositionPersonnage()
+								.obtenirY())
+					panelmap.add(new JLabel(new ImageIcon(monstre3
+							.obtenirPositionPersonnage().obtenirIndexTexture()
+							.obtenirIcone())));
+				else if(i == monstre4.obtenirPositionPersonnage()
+						.obtenirX()
+						&& j == monstre4.obtenirPositionPersonnage()
+								.obtenirY())
+					panelmap.add(new JLabel(new ImageIcon(monstre4
+							.obtenirPositionPersonnage().obtenirIndexTexture()
+							.obtenirIcone())));
 				else
 					panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j]
 							.obtenirIndexTexture().obtenirIcone())));
 			}
 	}
 
+	public void deplacementRandom()
+	{
+		for(int i=0;i<tabCreat.length;i++){
+			
+
+		SecureRandom rand = new SecureRandom();
+		int nombreAleatoire = rand.nextInt(5 - 1 + 1) + 1;
+		switch (nombreAleatoire){
+		case 1:
+			if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage().obtenirX()-1][tabCreat[i].obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture().caseBloquante() == false )
+			{
+				tabCreat[i].obtenirPositionPersonnage().setX(tabCreat[i].obtenirPositionPersonnage().obtenirX()-1);
+				tabCreat[i].obtenirPositionPersonnage().setY(tabCreat[i].obtenirPositionPersonnage().obtenirY());
+			
+			}
+				
+			
+			 break;
+		case 2:
+
+			if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage().obtenirX()+1][tabCreat[i].obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture().caseBloquante() == false )
+			{
+				tabCreat[i].obtenirPositionPersonnage().setX(tabCreat[i].obtenirPositionPersonnage().obtenirX()+1);
+				tabCreat[i].obtenirPositionPersonnage().setY(tabCreat[i].obtenirPositionPersonnage().obtenirY());
+			
+			}
+			
+			
+			 break;
+		case 3:
+			if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage().obtenirX()][tabCreat[i].obtenirPositionPersonnage().obtenirY()-1].obtenirIndexTexture().caseBloquante() == false )
+			{
+				tabCreat[i].obtenirPositionPersonnage().setX(tabCreat[i].obtenirPositionPersonnage().obtenirX());
+				tabCreat[i].obtenirPositionPersonnage().setY(tabCreat[i].obtenirPositionPersonnage().obtenirY()-1);
+				
+			}
+			
+			 break;
+		case 4:
+			if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage().obtenirX()][tabCreat[i].obtenirPositionPersonnage().obtenirY()+1].obtenirIndexTexture().caseBloquante() == false )
+			{
+				tabCreat[i].obtenirPositionPersonnage().setX(tabCreat[i].obtenirPositionPersonnage().obtenirX());
+				tabCreat[i].obtenirPositionPersonnage().setY(tabCreat[i].obtenirPositionPersonnage().obtenirY()+1);
+			
+			}
+			
+			 break;
+	
+		}
+		}
+	}
 	public Personnage getPersonnage() {
 		return personnageCourant;
 	}

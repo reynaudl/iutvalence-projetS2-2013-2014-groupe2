@@ -5,7 +5,7 @@ public class Creature extends Personnage
 {
 
     public Creature(String nom, int pointDeVie, int attaque, int armure,
-            double multiplicateur)
+            double multiplicateur, Case positionCreature)
     {
         super(nom);
         this.pointDeVie = pointDeVie;
@@ -14,6 +14,7 @@ public class Creature extends Personnage
         this.multiplicateur = multiplicateur;
         this.esquive = 0;
         this.nomClasse= "monstre";
+        this.postionPersonnage = positionCreature;
         
     }
 
