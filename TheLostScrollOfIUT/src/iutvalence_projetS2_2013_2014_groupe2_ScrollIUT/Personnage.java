@@ -53,10 +53,10 @@ public abstract class Personnage {
 		this.nomClasse = NOM_CLASSE_DEFAUT;
 		itemCourant = new Item[3];
 		itemCourant[0] = new Item("Botte en laine", "Bottes", 1, 0);
-		itemCourant[1] = new Item("Armure en laine", "Armure", 1, 0);
+		itemCourant[1] = new Item("Armure en laine", "Torse", 1, 0);
 		itemCourant[2] = new Item("Arme de poing", "Arme", 0, 4);
-		this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirArmure()+this.itemCourant[0].obtenirArmure();
-		this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure();
+		this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirAttaque();
+		this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure()+this.itemCourant[0].obtenirArmure();
 
 	}
 
@@ -80,6 +80,11 @@ public abstract class Personnage {
 		return this.nomClasse;
 	}
 
+	public void miseAJourInfo(Item[] nouvEquip){
+		
+		this.armure=nouvEquip[0].obtenirArmure()+ARMURE_DE_BASE+nouvEquip[1].obtenirArmure();
+		this.attaque=ATTAQUE_DE_BASE+nouvEquip[2].obtenirAttaque();
+	}
 	/**
 	 * Obtenir attaque permet d'avoir acc�s a la puissance d'attaque du
 	 * personnage
@@ -102,13 +107,15 @@ public abstract class Personnage {
 					this.itemCourant[i] = item;
 					System.out.println("bravo vous venez d'equiper "
 							+ this.itemCourant[i].obtenirNomItem());
+					
 					for (int j = 0; j < this.itemCourant.length; j++)
 					{
 						System.out.println("objet :  "
 								+ this.itemCourant[j].obtenirNomItem());
 					}
-					this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirArmure()+this.itemCourant[0].obtenirArmure();
-					this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure();
+					//this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirArmure()+this.itemCourant[0].obtenirArmure();
+					//this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure();
+					
 
 				} else
 				{

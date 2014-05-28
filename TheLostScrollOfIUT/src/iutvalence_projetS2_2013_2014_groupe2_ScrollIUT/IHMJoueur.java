@@ -135,8 +135,11 @@ public class IHMJoueur implements Runnable, KeyListener {
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.PORTE_OUVERTE);
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre());
 						panelmap.removeAll();
+						affichagePanneau();
 						this.affichageMap();
 						panelmap.validate();
+						//panelgauche.removeAll();
+						//panelgauche.validate();
 					}
 				}
 			}
@@ -168,6 +171,8 @@ public class IHMJoueur implements Runnable, KeyListener {
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.PORTE_OUVERTE);
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre());
 						panelmap.removeAll();
+						affichagePanneau();
+						//panelgauche.revalidate();
 						this.affichageMap();
 						panelmap.validate();
 					}
@@ -202,6 +207,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirItemDUnCoffre());
 						//plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre();
 						panelmap.removeAll();
+						affichagePanneau();
 						this.affichageMap();
 						panelmap.validate();
 					}
@@ -215,6 +221,8 @@ public class IHMJoueur implements Runnable, KeyListener {
 				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
 				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()+1);
 				deplacementRandom();
+				
+				
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
@@ -236,8 +244,10 @@ public class IHMJoueur implements Runnable, KeyListener {
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirItemDUnCoffre());
 						
 						panelmap.removeAll();
+						affichagePanneau();
 						this.affichageMap();
 						panelmap.validate();
+						
 					}
 				}
 			}
@@ -451,7 +461,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		separation.setDividerSize(0);
 		separation.setTopComponent(panelmap);
 		separation.setBottomComponent(separationbas);
-
+		affichagePanneau();
 		fenetre.setVisible(true);
 
 		class BoutonListener implements ActionListener {
@@ -576,35 +586,14 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel2.add(sorcier, BorderLayout.CENTER);
 		panel2.add(chasseur, BorderLayout.EAST);
 
-		JLabel label6 = new JLabel("Pseudo : ");
-		JLabel label7 =new JLabel("Armure : ");
-		JLabel label8 = new JLabel(Integer.toString(personnageCourant.armure));
-		JLabel label9 =new JLabel("Attaque : ");
-		JLabel label10 = new JLabel(Integer.toString(personnageCourant.attaque));
-		JLabel label11 =new JLabel("PDV : ");
-		JLabel label12 = new JLabel(Integer.toString(personnageCourant.pointDeVie));
-		JLabel label13 =new JLabel("Esquive: ");
-		JLabel label14 = new JLabel(Integer.toString(personnageCourant.esquive));
-		panelgauche.setLayout(new BoxLayout(panelgauche, BoxLayout.X_AXIS));
-		//panelgauche.add(Box.createVerticalStrut(hauteur));
-		panelgauche.add(label6);
-		panelgauche.add(info);
-		panelgauche.add(Box.createHorizontalStrut(hauteur));
-		panelgauche.add(label7);
-		panelgauche.add(label8);
-		panelgauche.add(Box.createHorizontalStrut(hauteur));
-		panelgauche.add(label9);
-		panelgauche.add(label10);
-		panelgauche.add(Box.createHorizontalStrut(hauteur));
-		panelgauche.add(label11);
-		panelgauche.add(label12);
+	
 
 		
 		plateauDeCase = Partie.obtenirPlateauCase();
 		Partie.creationCarte();
 
 		this.affichageMap();
-
+		
 		// JLabel label7 = new JLabel("Armure : ");
 		System.out.println(personnageCourant.obtenirPositionPersonnage()
 				.obtenirIndexTexture());
@@ -741,7 +730,32 @@ public class IHMJoueur implements Runnable, KeyListener {
 		return 0;
 	}
 	
-
+public void affichagePanneau(){
+	panelgauche.removeAll();
+	personnageCourant.miseAJourInfo(personnageCourant.itemCourant);
+	JLabel label6 = new JLabel("Pseudo : ");
+	JLabel label7 =new JLabel("Armure : ");
+	JLabel label8 = new JLabel(Integer.toString(personnageCourant.armure));
+	JLabel label9 =new JLabel("Attaque : ");
+	JLabel label10 = new JLabel(Integer.toString(personnageCourant.attaque));
+	JLabel label11 =new JLabel("PDV : ");
+	JLabel label12 = new JLabel(Integer.toString(personnageCourant.pointDeVie));
+	JLabel label13 =new JLabel("Esquive: ");
+	JLabel label14 = new JLabel(Integer.toString(personnageCourant.esquive));
+	panelgauche.setLayout(new BoxLayout(panelgauche, BoxLayout.X_AXIS));
+	panelgauche.add(label6);
+	panelgauche.add(info);
+	panelgauche.add(Box.createHorizontalStrut(40));
+	panelgauche.add(label7);
+	panelgauche.add(label8);
+	panelgauche.add(Box.createHorizontalStrut(40));
+	panelgauche.add(label9);
+	panelgauche.add(label10);
+	panelgauche.add(Box.createHorizontalStrut(40));
+	panelgauche.add(label11);
+	panelgauche.add(label12);
+	panelgauche.validate();
+}
 	/**
 	 * Affiche les classes disponibles
 	 * 
