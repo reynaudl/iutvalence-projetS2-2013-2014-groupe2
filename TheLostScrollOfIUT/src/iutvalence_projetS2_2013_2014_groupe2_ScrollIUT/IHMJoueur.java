@@ -39,10 +39,9 @@ import javax.swing.WindowConstants;
 /**
  * The Class IHMJoueur.
  */
-public class IHMJoueur implements Runnable, KeyListener
-{
+public class IHMJoueur implements Runnable, KeyListener {
 	public Partie partieDeJeux;
-	public static Personnage personnageCourant=new Chasseur("lolo");
+	public static Personnage personnageCourant = new Chasseur("lolo");
 
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
@@ -51,7 +50,7 @@ public class IHMJoueur implements Runnable, KeyListener
 	public JPanel panel4guer = new JPanel();
 	public JPanel panel5chass = new JPanel();
 
-	public JPanel panelmap = new JPanel();
+	public JPanelMap panelmap = new JPanelMap();
 	public JPanel panelinfo = new JPanel();
 
 	public JPanel guerrier = new JPanel();
@@ -86,82 +85,86 @@ public class IHMJoueur implements Runnable, KeyListener
 	JButton boutonBas = new JButton();
 	JButton boutonGauche = new JButton();
 	JButton boutonDroit = new JButton();
-	
+	public Case[][] plateauDeCase;
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) 
 	{
-		Case[][] plateauDeCase = Partie.obtenirPlateauCase();
-		Partie.creationCarte();
+	
 		char lettre=e.getKeyChar();
 		if (lettre=='z')
 		{
-			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
-			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()+1);
-			
-			for (int i=0;i<29;i++)
-		            for (int j=0;j<29;j++)
-		            {
-		 
-		            	if (i==personnageCourant.obtenirPositionPersonnage().obtenirX() && j == personnageCourant.obtenirPositionPersonnage().obtenirY())
-		                    panelmap.add(new JLabel(new ImageIcon(personnageCourant.obtenirPositionPersonnage().obtenirIndexTexture().obtenirIcone())));
-		            	else 
-		                    panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone())));
-		            }
+			if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture().caseBloquante() == false )
+			{
+				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()-1);
+				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+				panelmap.removeAll();
+				this.affichageMap();
+				panelmap.validate();
+			}
 		}
 		else if (lettre=='s')
 		{
-			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
-			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()-1);
-			Partie.creationCarte();
+			if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture().caseBloquante() == false )
+			{
+				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()+1);
+				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+				panelmap.removeAll();
+				this.affichageMap();
+				panelmap.validate();
+			}
 		}
 		else if (lettre=='q')
 		{
-			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()-1);
-			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
-			Partie.creationCarte();
+			if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirIndexTexture().caseBloquante() == false )
+			{
+				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
+				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()-1);
+				panelmap.removeAll();
+				this.affichageMap();
+				panelmap.validate();
+			}
 		}
 		else if (lettre=='d')
 		{
-			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()+1);
-			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
-			Partie.creationCarte();
+			if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirIndexTexture().caseBloquante() == false )
+			{
+				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
+				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()+1);
+				panelmap.removeAll();
+				this.affichageMap();
+				panelmap.validate();
+			}
 		}
 		else
 		{}
 	}
-	
-	
-	
-	
 
-	public void run()
-	{
+	public void run() {
 		int largeur = 700;
 		int hauteur = 40;
 		int hauteur2 = 150;
-		
 
 		top.setPreferredSize(new Dimension(800, 75));
 
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(879, 900);
-		
+
 		fenetre.setFocusable(true);
 		fenetre.requestFocus();
 		fenetre.addKeyListener(this);
-		
 
 		// La taille de la fenêtre n'est plus modifiable
 		fenetre.setResizable(false);
@@ -189,7 +192,7 @@ public class IHMJoueur implements Runnable, KeyListener
 				"images_classes/chasseur.jpg"));
 
 		// Menu de depart et ses éléments
-		
+
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(label);
 		panel.add(bouton1);
@@ -200,8 +203,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		panel.add(Box.createHorizontalStrut(largeur));
 		fenetre.setContentPane(panel);
 		panel.setBackground(Color.RED);
-		
-		
 
 		// Menu de selection de la classe
 
@@ -231,11 +232,11 @@ public class IHMJoueur implements Runnable, KeyListener
 		panel2.add(Box.createVerticalStrut(hauteur));
 
 		top.setBackground(Color.YELLOW);
-		
+
 		guerrier.setBackground(Color.RED);
 		sorcier.setBackground(new Color(102, 51, 153));
 		chasseur.setBackground(Color.GREEN);
-		
+
 		top.add(label2);
 		panel2.add(Box.createVerticalStrut(80));
 		guerrier.add(bouton4);
@@ -248,7 +249,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		chasseur.add(bouton6);
 
 		// chasseur.add(descriptChasseur);
-
 
 		// panel2.add(Box.createHorizontalStrut(largeur));
 
@@ -349,27 +349,20 @@ public class IHMJoueur implements Runnable, KeyListener
 		// panelmap.setSize(new Dimension(400, 800));
 		// panelinfo.setSize(new Dimension(400, 800));
 		panelmap.setBackground(Color.BLACK);
-		panelmap.setLayout(new GridLayout(29,0));
-
-		
-
+		panelmap.setLayout(new GridLayout(29, 0));
 
 		separation.setResizeWeight(1.0);
-        separation.setEnabled(false);
+		separation.setEnabled(false);
 		separation.setBorder(null);
 		separation.setDividerSize(0);
 		separation.setTopComponent(panelmap);
 		separation.setBottomComponent(separationbas);
-		
+
 		fenetre.setVisible(true);
-		
 
-		class BoutonListener implements ActionListener
-		{
+		class BoutonListener implements ActionListener {
 
-			
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e) {
 				fenetre.setContentPane(panel2);
 				fenetre.validate();
 
@@ -383,11 +376,9 @@ public class IHMJoueur implements Runnable, KeyListener
 			}
 		}
 
-		class Quitter implements ActionListener
-		{
+		class Quitter implements ActionListener {
 
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(fenetre,
 						"Fermer l'application ?", "Confirmation",
 						JOptionPane.OK_CANCEL_OPTION,
@@ -396,11 +387,9 @@ public class IHMJoueur implements Runnable, KeyListener
 			}
 		}
 
-		class PanelSorc implements ActionListener
-		{
+		class PanelSorc implements ActionListener {
 
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e) {
 
 				fenetre.setContentPane(panel3sorc);
 				fenetre.validate();
@@ -408,121 +397,69 @@ public class IHMJoueur implements Runnable, KeyListener
 			}
 		}
 
-		class PanelGuer implements ActionListener
-		{
+		class PanelGuer implements ActionListener {
 
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e) {
 
 				fenetre.setContentPane(panel4guer);
 				fenetre.validate();
 			}
 		}
 
-		class PanelChass implements ActionListener
-		{
+		class PanelChass implements ActionListener {
 
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e) {
 
 				fenetre.setContentPane(panel5chass);
 				fenetre.validate();
 			}
 		}
 
-		class SavePseudo implements ActionListener
-		{
+		class SavePseudo implements ActionListener {
 
 			private Personnage personnage;
-			
-			public void actionPerformed(ActionEvent e)
-			{
+
+			public void actionPerformed(ActionEvent e) {
 				Object source = e.getSource();
-				if (source == pseudoSorc)
-				{ // verifie que c'etait sur le bouton
-					// sorcier
+				if (source == pseudoSorc) { // verifie que c'etait sur le bouton
+											// sorcier
 					pseudojoueur = pseudoSorc.getText(); // recupere la valeur
 															// du champ
 					personnage = new Sorcier(pseudojoueur); // creer un sorcier
 															// avec cette valeur
-					info.setText(personnage.nomPersonnage); // met dans info le nom du
+					info.setText(personnage.nomPersonnage); // met dans info le
+															// nom du
 
-
-					//personnage = perso;
-					//partieDeJeux=new Partie(perso);// perso cr�e
+					// personnage = perso;
+					// partieDeJeux=new Partie(perso);// perso cr�e
 
 					fenetre.setContentPane(separation);
 					fenetre.validate();
-				} else
-				{
-					if (source == pseudoGuer)
-					{
+				} else {
+					if (source == pseudoGuer) {
 						pseudojoueur = pseudoGuer.getText();
 						personnage = new Guerrier(pseudojoueur);
 						info.setText(personnage.nomPersonnage);
-						//personnage = perso;
-						//partieDeJeux=new Partie(perso);
+						// personnage = perso;
+						// partieDeJeux=new Partie(perso);
 						fenetre.setContentPane(separation);
 						fenetre.validate();
-					} else
-					{
+					} else {
 						pseudojoueur = pseudoChass.getText();
 						personnage = new Chasseur(pseudojoueur);
 						info.setText(personnage.nomPersonnage);
-						//personnage = perso;
-						//partieDeJeux=new Partie(perso);
+						// personnage = perso;
+						// partieDeJeux=new Partie(perso);
 						fenetre.setContentPane(separation);
 						fenetre.validate();
 
 					}
 				}
-				
-				
+
 			}
 
-		
-			
 		}
-		class Deplace implements ActionListener
-		{
 
-			public void actionPerformed(ActionEvent e)
-			{
-				Object source = e.getSource();
-				if (source == boutonHaut)
-				{
-					personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
-					personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()+1);
-					
-			}else if (source == boutonBas)
-			{
-				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
-				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()-1);
-				
-		}
-			else if (source == boutonGauche)
-			{
-				personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()-1);
-				personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
-				
-		}
-			else if (source == boutonDroit)
-				{
-					personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()+1);
-					personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
-					
-			}
-			else{}
-		}
-		}
-		
-		
-		
-		boutonHaut.addActionListener(new Deplace());
-		boutonBas.addActionListener(new Deplace());
-		boutonDroit.addActionListener(new Deplace());
-		boutonHaut.addActionListener(new Deplace());
-		
 		bouton1.addActionListener(new BoutonListener());
 		bouton3.addActionListener(new Quitter());
 		bouton5.addActionListener(new PanelSorc());
@@ -532,7 +469,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		pseudoGuer.addActionListener(new SavePseudo());
 		pseudoChass.addActionListener(new SavePseudo());
 
-		
 		panel3sorc.add(info); // affiche le nom du perso cr�e pour le pannel
 								// sorcier
 		panel4guer.add(info); // affiche le nom du perso cr�e pour le pannel
@@ -551,142 +487,55 @@ public class IHMJoueur implements Runnable, KeyListener
 		panelgauche.add(label6);
 		panelgauche.add(info);
 
-		
-		Case[][] plateauDeCase = Partie.obtenirPlateauCase();
+		plateauDeCase = Partie.obtenirPlateauCase();
 		Partie.creationCarte();
-		
-		/*
-		class TitreKeyListener implements KeyListener {
-		 
-			
-			
-		
-				 
-				 public void keyPressed(KeyEvent e) {
-					    if(e.getKeyCode() == KeyEvent.VK_F5)
-					        System.out.println("F5 pressed");
-					}
 
-		
-			
-				
-				
-				/*Object source = e.getSource();
-		    	if(source==Key.z){
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.HAUT);
-		    		  System.out.println(111);
-		    	}else if(source==Key.q){
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.GAUCHE);
-		    		
-		    	}else if(source==Key.d){
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.DROITE);
-		    		
-		    	}
-		    	else if(source==Key.s){ 
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.BAS);
-		    	}
-		    	else{}
-		    	
+		this.affichageMap();
 
-		    }
-		    */
-		    /*public void keyPressed(KeyEvent e) {
-		    	switch(e.getKeyChar()){
-		    	case 'z':
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.HAUT);
-		    		  System.out.println(111);
-		    		break;
-		    	case 'q':
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.GAUCHE);
-		    		break;
-		    	case 'd':
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.DROITE);
-		    		break;
-		    	case 's':
-		    		personnageCourant.obtenirPositionPersonnage().translater(Mouvement.BAS);
-		    		break;
-		    	}
-		        
-		    }*/
-	/*	 
-		    public void keyReleased(KeyEvent e) {
-		    	 if(e.getKeyCode() == KeyEvent.VK_F5)
-				        System.out.println("F6 pressed");
-		    }
-		 
-		    public void keyTyped(KeyEvent e) {
-		    	 if(e.getKeyCode() == KeyEvent.VK_F5)
-				        System.out.println("F7 pressed");
-		        // on ne fait rien
-		    }
-		    
-		}
-		*/
-		
-	/*
-		panelmap.addKeyListener(new TitreKeyListener());
-		pseudoSorc.addKeyListener(new TitreKeyListener());
-		panelinfo.addKeyListener(new TitreKeyListener());	
-		pseudoGuer.addKeyListener(new TitreKeyListener());
-		pseudoChass.addKeyListener(new TitreKeyListener());
-		fenetre.addKeyListener(new TitreKeyListener());
-		separation.addKeyListener(new TitreKeyListener());
-		panel3sorc.addKeyListener(new TitreKeyListener());
-		panel4guer.addKeyListener(new TitreKeyListener());
-		panel2.addKeyListener(new TitreKeyListener());
-		panel5chass.addKeyListener(new TitreKeyListener());
-		*/
-        for (int i=0;i<29;i++)
-            for (int j=0;j<29;j++)
-            {
- 
-            	if (i==personnageCourant.obtenirPositionPersonnage().obtenirX() && j == personnageCourant.obtenirPositionPersonnage().obtenirY())
-                    panelmap.add(new JLabel(new ImageIcon(personnageCourant.obtenirPositionPersonnage().obtenirIndexTexture().obtenirIcone())));
-            	else 
-                    panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone())));
-                    
-
-            }
-  
-
-       
-         
-        
-		
 		// JLabel label7 = new JLabel("Armure : ");
-        System.out.println(personnageCourant.obtenirPositionPersonnage().obtenirIndexTexture());
-        
-
-
-
-
+		System.out.println(personnageCourant.obtenirPositionPersonnage()
+				.obtenirIndexTexture());
 
 	}
 
-	public Personnage getPersonnage()
-	{
+	public void affichageMap() {
+		for (int i = 0; i < 29; i++)
+			for (int j = 0; j < 29; j++) {
+
+				if (i == personnageCourant.obtenirPositionPersonnage()
+						.obtenirX()
+						&& j == personnageCourant.obtenirPositionPersonnage()
+								.obtenirY())
+
+					panelmap.add(new JLabel(new ImageIcon(personnageCourant
+							.obtenirPositionPersonnage().obtenirIndexTexture()
+							.obtenirIcone())));
+				else
+					panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j]
+							.obtenirIndexTexture().obtenirIcone())));
+			}
+	}
+
+	public Personnage getPersonnage() {
 		return personnageCourant;
 	}
 
 	/**
 	 * Verifie si le mouvement est possible.
 	 */
-	public void demandeMouvement()
-	{
+	public void demandeMouvement() {
 	}
 
 	/**
 	 * actualise l'image a l'ecran.
 	 */
-	public void actualiserImage()
-	{
+	public void actualiserImage() {
 	}
 
 	/**
 	 * Verifie si l'attaque est possible.
 	 */
-	public boolean demandeAttaque(Case pos)
-	{
+	public boolean demandeAttaque(Case pos) {
 		// if (pos.caseEnFace==null) || (pos.caseEnFace==decors)
 		return false;
 	}
@@ -696,8 +545,7 @@ public class IHMJoueur implements Runnable, KeyListener
 	 * 
 	 * @return renvoi la valeur des degats faits
 	 */
-	public int afficheDegats()
-	{
+	public int afficheDegats() {
 		return 0;
 	}
 
@@ -722,43 +570,36 @@ public class IHMJoueur implements Runnable, KeyListener
 	/**
 	 * Demande la selection d'un objet
 	 */
-	public void selectionnerUnObjet()
-	{
+	public void selectionnerUnObjet() {
 	}
 
 	/**
 	 * Selectionenr une réponse parmis N choix
 	 */
-	public void selection()
-	{
+	public void selection() {
 	}
 
 	/**
 	 * Permet d'afficher l'enigme a l'ecran
 	 */
-	public void afficherEnigme(Porte p)
-	{
-		if (p.presenceEnigme() == true)
-		{
+	public void afficherEnigme(Porte p) {
+		if (p.presenceEnigme() == true) {
 
-			switch (p.numeroporte)
-			{
-				case 0:
-					break;
-				case 1:
-					System.out.println("Combien fait 1+1 en informatique ?");
-					break;
-				case 2:
-					System.out
-							.println("Quel langage avons nous appris en algorithmie ?");
-					break;
-				default:
+			switch (p.numeroporte) {
+			case 0:
+				break;
+			case 1:
+				System.out.println("Combien fait 1+1 en informatique ?");
+				break;
+			case 2:
+				System.out
+						.println("Quel langage avons nous appris en algorithmie ?");
+				break;
+			default:
 
 			}
 
-		}
-		else
-		{
+		} else {
 
 		}
 	}
@@ -769,14 +610,10 @@ public class IHMJoueur implements Runnable, KeyListener
 	 * @return true, if successful
 	 */
 
-	public boolean demandeClefsPorte(Porte p)
-	{
-		if (p.besoinCle == true)
-		{
+	public boolean demandeClefsPorte(Porte p) {
+		if (p.besoinCle == true) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
@@ -787,19 +624,13 @@ public class IHMJoueur implements Runnable, KeyListener
 	 * @return true, if successful
 	 */
 
-	public boolean demandeClefsCoffre(Coffre c)
-	{
-		if (c.besoinCle == true)
-		{
+	public boolean demandeClefsCoffre(Coffre c) {
+		if (c.besoinCle == true) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 
 	}
-
-	
 
 }
