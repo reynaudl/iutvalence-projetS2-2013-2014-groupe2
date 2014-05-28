@@ -5,8 +5,7 @@ import java.awt.event.KeyEvent;
 /**
  * La Classe Personnage.
  */
-public abstract class Personnage
-{
+public abstract class Personnage {
 	/** Ensemble de constantes. */
 	private static final int ATTAQUE_DE_BASE = 1;
 
@@ -17,6 +16,10 @@ public abstract class Personnage
 	private static final int ESQUIVE_DE_BASE = 10;
 
 	private static final int PV = 50;
+
+	private static final String NOM_CLASSE_DEFAUT = "";
+
+	public String nomClasse;
 
 	/** le nom du personnage. */
 	public String nomPersonnage;
@@ -41,8 +44,7 @@ public abstract class Personnage
 
 	public Case postionPersonnage;
 
-	public Personnage(String nom)
-	{
+	public Personnage(String nom) {
 
 		this.nomPersonnage = nom;
 		this.pointDeVie = PV;
@@ -50,6 +52,7 @@ public abstract class Personnage
 		this.armure = ARMURE_DE_BASE;
 		this.multiplicateur = MULTIPLICATEUR_DEGAT_DE_BASE;
 		this.esquive = ESQUIVE_DE_BASE;
+		this.nomClasse = NOM_CLASSE_DEFAUT;
 		itemCourant = new Item[3];
 		itemCourant[0] = new Item("Botte en laine", "Bottes", 1, 0);
 		itemCourant[1] = new Item("Armure en laine", "Armure", 1, 0);
@@ -63,9 +66,18 @@ public abstract class Personnage
 	 * 
 	 * @return renvoie son nombre de point de vie
 	 */
-	public int obtenirPointDeVie()
-	{
+	public int obtenirPointDeVie() {
 		return this.pointDeVie;
+	}
+
+	/**
+	 * Obtenir point de vie permet d'avoir acc�s au nombre de point de vie du
+	 * personnage.
+	 * 
+	 * @return renvoie son nombre de point de vie
+	 */
+	public String obtenirNomClasse() {
+		return this.nomClasse;
 	}
 
 	/**
@@ -74,8 +86,7 @@ public abstract class Personnage
 	 * 
 	 * @return renvoie sa puissance d'attaque
 	 */
-	public int obtenirAttaque()
-	{
+	public int obtenirAttaque() {
 		return this.attaque;
 	}
 
@@ -85,8 +96,7 @@ public abstract class Personnage
 	 * 
 	 * @return renvoie l'armure du personnage
 	 */
-	public int obtenirArmure()
-	{
+	public int obtenirArmure() {
 		return this.armure;
 	}
 
@@ -95,30 +105,67 @@ public abstract class Personnage
 	 * 
 	 * @return renvoie le multiplicateur du personnage
 	 */
-	public double obtenirMultiplicateur()
-	{
+	public double obtenirMultiplicateur() {
 		return this.multiplicateur;
 	}
 
-	public int obtenirEsquive()
-	{
+	public int obtenirEsquive() {
 		return this.esquive;
 	}
 
-	public void attaqueSpecial()
-	{
+	public void attaqueSpecial() {
 
 	}
 
-	public void passif()
-	{
+	public void passif() {
 
 	}
 
-	public Case obtenirPositionPersonnage()
-	{
+	public Case obtenirPositionPersonnage() {
 		return this.postionPersonnage;
 	}
-	
-	
+
+	public int Attaquer(Personnage p, Personnage cible) {
+		if (p.nomClasse == "sorcier") {
+			if (((-3 < p.postionPersonnage.obtenirX()
+					- cible.postionPersonnage.obtenirX())
+					&& (p.postionPersonnage.obtenirX()
+							- cible.postionPersonnage.obtenirX() < 3) && (p.postionPersonnage
+					.obtenirY() == cible.postionPersonnage.obtenirY()))
+					|| ((-3 < p.postionPersonnage.obtenirY()
+							- cible.postionPersonnage.obtenirY())
+							&& (p.postionPersonnage.obtenirY()
+									- cible.postionPersonnage.obtenirY() < 3) && (p.postionPersonnage
+							.obtenirX() == cible.postionPersonnage.obtenirX())))
+				cible.pointDeVie = (int) p.obtenirMultiplicateur()*((p.obtenirAttaque()*10)/(cible.obtenirArmure()*2));
+		}
+		else if ((p.nomClasse == "guerrier")||(p.nomClasse == "monstre"))  {
+			if (((-2 < p.postionPersonnage.obtenirX()
+					- cible.postionPersonnage.obtenirX())
+					&& (p.postionPersonnage.obtenirX()
+							- cible.postionPersonnage.obtenirX() < 2) && (p.postionPersonnage
+					.obtenirY() == cible.postionPersonnage.obtenirY()))
+					|| ((-2 < p.postionPersonnage.obtenirY()
+							- cible.postionPersonnage.obtenirY())
+							&& (p.postionPersonnage.obtenirY()
+									- cible.postionPersonnage.obtenirY() < 2) && (p.postionPersonnage
+							.obtenirX() == cible.postionPersonnage.obtenirX())))
+				cible.pointDeVie = (int) p.obtenirMultiplicateur()*((p.obtenirAttaque()*10)/(cible.obtenirArmure()*2));
+		}
+		else if (p.nomClasse == "chasseur")  {
+			if (((-4 < p.postionPersonnage.obtenirX()
+					- cible.postionPersonnage.obtenirX())
+					&& (p.postionPersonnage.obtenirX()
+							- cible.postionPersonnage.obtenirX() < 4) && (p.postionPersonnage
+					.obtenirY() == cible.postionPersonnage.obtenirY()))
+					|| ((-4 < p.postionPersonnage.obtenirY()
+							- cible.postionPersonnage.obtenirY())
+							&& (p.postionPersonnage.obtenirY()
+									- cible.postionPersonnage.obtenirY() < 4) && (p.postionPersonnage
+							.obtenirX() == cible.postionPersonnage.obtenirX())))
+				cible.pointDeVie = (int) p.obtenirMultiplicateur()*((p.obtenirAttaque()*10)/(cible.obtenirArmure()*2));
+		}
+
+		return cible.pointDeVie;
+	}
 }

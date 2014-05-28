@@ -8,6 +8,7 @@ public class Sorcier extends Personnage
         super(nom);
         this.multiplicateur = 2;
         this.postionPersonnage = new Case(10,10,Texture.SORCIER);
+        this.nomClasse = "sorcier";
     }
 
     public void attaqueSpecial()

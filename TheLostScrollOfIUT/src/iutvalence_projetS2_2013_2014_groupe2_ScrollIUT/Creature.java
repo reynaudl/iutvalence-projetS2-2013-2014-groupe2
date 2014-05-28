@@ -1,3 +1,4 @@
+
 package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
 public class Creature extends Personnage
@@ -12,7 +13,9 @@ public class Creature extends Personnage
         this.armure = armure;
         this.multiplicateur = multiplicateur;
         this.esquive = 0;
+        this.nomClasse= "monstre";
         
     }
 
 }
+
