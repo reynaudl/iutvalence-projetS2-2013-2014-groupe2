@@ -7,23 +7,20 @@ public class Case
 	private int y;
 	
 	public Texture indexTexture;
-
-	public Case(int x, int y, Texture indexTexture)
+	private Decors d;
+	
+	public Case(int x, int y, Texture indexTexture, Decors d)
 	{
 		this.x = x;
 		this.y = y;
 		this.indexTexture = indexTexture;
+		this.d = d;
 	}
 
-	public boolean comparer(Case position)
-	{
-		return this.x == position.x && this.y == position.y;
-	}
 
-	public Case translater(Mouvement mouvement)
+	public Decors obtenirDecors()
 	{
-		return new Case(this.x + mouvement.getDeltaX(), this.y
-				+ mouvement.getDeltaY(), this.indexTexture);
+		return this.d;
 	}
 	
 	public Texture obtenirIndexTexture()
@@ -49,5 +46,9 @@ public class Case
 	}
 	
 
+	public void setTexture(Texture t)
+	{
+		this.indexTexture=t;
+	}
 	
 }

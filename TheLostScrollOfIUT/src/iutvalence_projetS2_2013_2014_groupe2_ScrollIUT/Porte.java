@@ -12,7 +12,7 @@ public class Porte extends Decors {
 	private boolean etat;
 	private Couleur couleurPorte;
 	public boolean besoinCle;
-	public int numeroporte;
+
 	
 	public boolean estOuverte(){
 		if (this.etat==true)
@@ -21,11 +21,11 @@ public class Porte extends Decors {
 		
 	}
 	
-	public Porte(Case pos,boolean besoinDeCle,int num){
-		super("Porte",pos);
+	public Porte(boolean besoinDeCle)
+	{
+		super("Porte");
 		this.etat=false;
 		this.besoinCle=besoinDeCle;
-		this.numeroporte=num;
 	}
 	
 	public Couleur obtenirCouleurPorte() 
@@ -33,11 +33,7 @@ public class Porte extends Decors {
 		return this.couleurPorte;
 	}
 	
-	
-	public int obtenirNumeroPorte() 
-	{
-		return this.numeroporte;
-	}
+
 	
 	public void changerDEtat(){
 		if(this.etat==true)

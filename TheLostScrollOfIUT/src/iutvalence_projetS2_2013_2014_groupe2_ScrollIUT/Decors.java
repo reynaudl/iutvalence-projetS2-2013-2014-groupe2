@@ -12,12 +12,12 @@ public class Decors {
 	/**
 	 * La position du d�cors sur la carte, d�finit par une Case.
 	 */
-	private Case position;
 
-	public Decors(String nom,Case pos)
+
+	public Decors(String nom)
 	{
 		this.nom = nom;
-		this.position=pos;
+
 		
 	}
 

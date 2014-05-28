@@ -19,9 +19,9 @@ public class Coffre extends Decors {
 	
 	
 	
-	public Coffre(Case pos,boolean besoinDeCle)
+	public Coffre(boolean besoinDeCle)
 	{
-		super("Coffre",pos);
+		super("Coffre");
 		this.etat=false;
 		this.besoinCle=besoinDeCle;
 	}
