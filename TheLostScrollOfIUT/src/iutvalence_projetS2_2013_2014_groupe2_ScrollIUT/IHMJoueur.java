@@ -32,16 +32,17 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class IHMJoueur.
  */
-public class IHMJoueur implements Runnable
+public class IHMJoueur implements Runnable, KeyListener
 {
 	public Partie partieDeJeux;
-	public static Personnage personnageCourant=new Chasseur("caca");
+	public static Personnage personnageCourant=new Chasseur("lolo");
 
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
@@ -86,17 +87,81 @@ public class IHMJoueur implements Runnable
 	JButton boutonGauche = new JButton();
 	JButton boutonDroit = new JButton();
 	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) 
+	{
+		Case[][] plateauDeCase = Partie.obtenirPlateauCase();
+		Partie.creationCarte();
+		char lettre=e.getKeyChar();
+		if (lettre=='z')
+		{
+			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
+			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()+1);
+			
+			for (int i=0;i<29;i++)
+		            for (int j=0;j<29;j++)
+		            {
+		 
+		            	if (i==personnageCourant.obtenirPositionPersonnage().obtenirX() && j == personnageCourant.obtenirPositionPersonnage().obtenirY())
+		                    panelmap.add(new JLabel(new ImageIcon(personnageCourant.obtenirPositionPersonnage().obtenirIndexTexture().obtenirIcone())));
+		            	else 
+		                    panelmap.add(new JLabel(new ImageIcon(plateauDeCase[i][j].obtenirIndexTexture().obtenirIcone())));
+		            }
+		}
+		else if (lettre=='s')
+		{
+			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX());
+			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY()-1);
+			Partie.creationCarte();
+		}
+		else if (lettre=='q')
+		{
+			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()-1);
+			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+			Partie.creationCarte();
+		}
+		else if (lettre=='d')
+		{
+			personnageCourant.obtenirPositionPersonnage().setX(personnageCourant.obtenirPositionPersonnage().obtenirX()+1);
+			personnageCourant.obtenirPositionPersonnage().setY(personnageCourant.obtenirPositionPersonnage().obtenirY());
+			Partie.creationCarte();
+		}
+		else
+		{}
+	}
+	
+	
+	
+	
 
 	public void run()
 	{
 		int largeur = 700;
 		int hauteur = 40;
 		int hauteur2 = 150;
+		
 
 		top.setPreferredSize(new Dimension(800, 75));
 
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(879, 900);
+		
+		fenetre.setFocusable(true);
+		fenetre.requestFocus();
+		fenetre.addKeyListener(this);
+		
 
 		// La taille de la fenêtre n'est plus modifiable
 		fenetre.setResizable(false);
@@ -124,6 +189,7 @@ public class IHMJoueur implements Runnable
 				"images_classes/chasseur.jpg"));
 
 		// Menu de depart et ses éléments
+		
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(label);
 		panel.add(bouton1);
@@ -134,6 +200,8 @@ public class IHMJoueur implements Runnable
 		panel.add(Box.createHorizontalStrut(largeur));
 		fenetre.setContentPane(panel);
 		panel.setBackground(Color.RED);
+		
+		
 
 		// Menu de selection de la classe
 
@@ -283,6 +351,7 @@ public class IHMJoueur implements Runnable
 		panelmap.setBackground(Color.BLACK);
 		panelmap.setLayout(new GridLayout(29,0));
 
+		
 
 
 		separation.setResizeWeight(1.0);
@@ -291,7 +360,7 @@ public class IHMJoueur implements Runnable
 		separation.setDividerSize(0);
 		separation.setTopComponent(panelmap);
 		separation.setBottomComponent(separationbas);
-
+		
 		fenetre.setVisible(true);
 		
 
@@ -730,5 +799,7 @@ public class IHMJoueur implements Runnable
 		}
 
 	}
+
+	
 
 }
