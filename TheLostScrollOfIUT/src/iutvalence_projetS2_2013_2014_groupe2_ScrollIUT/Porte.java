@@ -27,8 +27,8 @@ public class Porte extends Decors {
 	 *            défini si la porte a besoin d'une clé
 	 */
 
-	public Porte(boolean besoinCle) {
-		super("Porte", besoinCle);
+	public Porte(boolean besoinCle,boolean besoinEnigme) {
+		super("Porte", besoinCle,besoinEnigme);
 		this.etat = false;
 
 	}
@@ -58,7 +58,7 @@ public class Porte extends Decors {
 	 * Permet de diriger l'ouverture d'une porte
 	 */
 
-	public void Ouvertureporte(Clef c, Porte p) {
+/*	public void Ouvertureporte(Clef c, Porte p) {
 		if (p.estOuverte() == false) {
 			if (p.besoinCle = true) {
 				if (p.obtenirCouleurPorte() == c.obtenirCouleurClef()) {
@@ -73,7 +73,8 @@ public class Porte extends Decors {
 				System.out
 						.println("Vous ne disposez pas de la bonne clï¿½ pour ouvrir la porte");
 			}
+			
 		}
 	}
-
+*/
 }

@@ -127,9 +127,9 @@ public class IHMJoueur implements Runnable, KeyListener {
 			}
 			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
 			{
-				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().besoinDenigme == true )
 				{
-					
+					demandeEnigme();
 				}
 				else
 				{
@@ -180,16 +180,14 @@ public class IHMJoueur implements Runnable, KeyListener {
 			}
 			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
 			{
-				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().besoinDenigme == true )
 				{
-					
+				
+					demandeEnigme();
 				}
 				else
 				{
-					if (JOptionPane.showConfirmDialog(fenetre,
-							"Ouvrir ?", "Confirmation",
-							JOptionPane.OK_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					
 					{
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre(),objet);
@@ -205,7 +203,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 			{
 				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
 				{
-					
+				
 				}
 				else
 				{
@@ -235,9 +233,9 @@ public class IHMJoueur implements Runnable, KeyListener {
 			}
 			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirIndexTexture() == Texture.COFFRE)
 			{
-				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirBesoinCle() == true )
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().besoinDenigme == true )
 				{
-					
+					demandeEnigme();
 				}
 				else
 				{
@@ -291,9 +289,9 @@ public class IHMJoueur implements Runnable, KeyListener {
 			}
 			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirIndexTexture() == Texture.COFFRE)
 			{
-				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirBesoinCle() == true )
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().besoinDenigme == true )
 				{
-					
+					demandeEnigme();
 				}
 				else
 				{
@@ -786,6 +784,80 @@ public void affichagePanneau(){
 	panelgauche.validate();
 }
 
+	public void demandeEnigme(){
+		
+		SecureRandom rand = new SecureRandom();
+		int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
+		
+		switch(nombreAleatoire){
+		case 0:
+			String name = JOptionPane.showInputDialog(fenetre, "Qui est le plus mauvauis?");
+			System.out.println(name);
+			if(name.equals("ademage")){
+				System.out.println(name);
+				plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
+				panelmap.removeAll();
+				affichagePanneau();
+				this.affichageMap();
+				panelmap.validate();
+				System.out.println(name);
+			}else{
+				
+			}
+			break;
+		case 1:
+			String name2 = JOptionPane.showInputDialog(fenetre, "Combien font 1+1 ?");
+			System.out.println(name2);
+			if(name2.equals("2")){
+				System.out.println(name2);
+				plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
+				panelmap.removeAll();
+				affichagePanneau();
+				this.affichageMap();
+				panelmap.validate();
+				System.out.println(name2);
+			}else{
+				
+			}
+			break;
+		case 2:
+			String name3 = JOptionPane.showInputDialog(fenetre, "Quel est le meilleur professeur de java?");
+			System.out.println(name3);
+			if(name3.equals("jean")){
+				System.out.println(name3);
+				plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
+				panelmap.removeAll();
+				affichagePanneau();
+				this.affichageMap();
+				panelmap.validate();
+				System.out.println(name3);
+			}else{
+				
+			}
+		break;
+		case 3:
+			String name4 = JOptionPane.showInputDialog(fenetre, "Coucou tu veux voir ma... ?");
+			System.out.println(name4);
+			if(name4.equals("tete")){
+				System.out.println(name4);
+				plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
+				panelmap.removeAll();
+				affichagePanneau();
+				this.affichageMap();
+				panelmap.validate();
+				System.out.println(name4);
+			}else{
+				
+			}
+		break;
+		case 4:
+			break;
+		
+		
+
+	    
+	}
+	}
 	/**
 	 * Demande la selection d'un objet
 	 */

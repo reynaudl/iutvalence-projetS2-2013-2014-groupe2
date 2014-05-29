@@ -16,6 +16,7 @@ public class Decors {
 	 */
 
 	protected boolean besoinCle;
+	protected boolean besoinDenigme;
 
 	/**
 	 * Verifie si l'objet necessite une clé
@@ -24,6 +25,9 @@ public class Decors {
 	 */
 	public boolean obtenirBesoinCle() {
 		return this.besoinCle;
+	}
+	public boolean obtenirBesoinEnigme() {
+		return this.besoinDenigme;
 	}
 
 	/**
@@ -34,9 +38,10 @@ public class Decors {
 	 * @param besoinCle
 	 *            l'attribut correspondant a son besoin de clé
 	 */
-	public Decors(String nom, boolean besoinCle) {
+	public Decors(String nom, boolean besoinCle, boolean besoinEnigme) {
 		this.nom = nom;
 		this.besoinCle = besoinCle;
+		this.besoinDenigme=besoinEnigme;
 
 	}
 
@@ -99,8 +104,6 @@ public class Decors {
 	 * 
 	 * @return Renvoie si une ï¿½nigme est prï¿½sente ou non sur le dï¿½cor.
 	 */
-	public boolean presenceEnigme() {
-		return false;
-	}
+
 
 }

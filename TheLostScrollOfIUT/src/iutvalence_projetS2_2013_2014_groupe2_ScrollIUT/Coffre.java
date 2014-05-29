@@ -8,7 +8,10 @@ import java.security.SecureRandom;
  * 
  */
 
+
 public class Coffre extends Decors {
+	
+
 
 	/**
 	 * Donne l'�tat du coffre, s'il est ferm�e (False) s'il est
@@ -23,9 +26,10 @@ public class Coffre extends Decors {
 	 *        etre ouvert
 	 */
 
-	public Coffre(boolean besoinDeCle) {
-		super("Coffre", besoinDeCle);
+	public Coffre(boolean besoinDeCle,boolean enigme) {
+		super("Coffre", besoinDeCle,enigme);
 		this.etat = false;
+
 
 	}
 
@@ -50,4 +54,5 @@ public class Coffre extends Decors {
 		return this.besoinCle;
 	}
 
+	
 }
