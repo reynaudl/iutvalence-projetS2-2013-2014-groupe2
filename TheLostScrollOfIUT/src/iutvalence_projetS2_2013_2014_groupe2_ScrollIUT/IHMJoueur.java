@@ -41,27 +41,42 @@ import javax.swing.WindowConstants;
  * The Class IHMJoueur.
  */
 public class IHMJoueur implements Runnable, KeyListener {
-	public Partie partieDeJeux;
+	
+	/**************************************Declaration de la partie et des personnages présents*******************/
+	public Partie partieDeJeux= new Partie(personnageCourant);
 	public static Personnage personnageCourant = new Chasseur("lolo");
 	public static Personnage monstre1 = new Creature("creat1",20,2,2,1.0,new Case(6,5,Texture.MONSTRE,null));
 	public static Personnage monstre2 = new Creature("creat2",20,2,2,1.0,new Case(12,25,Texture.MONSTRE,null));
 	public static Personnage monstre3 = new Creature("creat3",20,2,2,1.0,new Case(15,17,Texture.MONSTRE,null));
 	public static Personnage monstre4 = new Creature("creat4",20,2,2,1.0,new Case(15,10,Texture.MONSTRE,null));
 	
+	
+	/**************************************Panel de 1er menu*******************/
 	public JFrame fenetre = new JFrame();
 	public JPanel panel = new JPanel();
+	
+	
+	/**************************************Panel de 2eme menu*******************/
 	public JPanel panel2 = new JPanel();
-	public JPanel panel3sorc = new JPanel();
-	public JPanel panel4guer = new JPanel();
-	public JPanel panel5chass = new JPanel();
-
-	public JPanelMap panelmap = new JPanelMap();
-	public JPanel panelinfo = new JPanel();
-
 	public JPanel guerrier = new JPanel();
 	public JPanel sorcier = new JPanel();
 	public JPanel chasseur = new JPanel();
 	public JPanel top = new JPanel();
+	
+	/**************************************Panel 3eme menu *************************/
+	public JPanel panel3sorc = new JPanel();
+	public JPanel panel4guer = new JPanel();
+	public JPanel panel5chass = new JPanel();
+	
+	public JTextField pseudoSorc = new JTextField(20);
+	public JTextField pseudoGuer = new JTextField(20);
+	public JTextField pseudoChass = new JTextField(20);
+	public String pseudojoueur;
+	
+	
+	/**************************************Panel final contenant carte et info joueur *************************/
+	public JPanelMap panelmap = new JPanelMap();
+	public JPanel panelinfo = new JPanel();
 
 	JSplitPane separation = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	JSplitPane separationbas = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -74,10 +89,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 	public JPanel panelgauche1 = new JPanel();
 	public JPanel paneldroit1 = new JPanel();
 
-	public JTextField pseudoSorc = new JTextField(20);
-	public JTextField pseudoGuer = new JTextField(20);
-	public JTextField pseudoChass = new JTextField(20);
-	public String pseudojoueur;
+	
 
 	public JLabel info = new JLabel(); // sert a afficher le pseudo d'un sorcier
 	public JLabel info2 = new JLabel(); // sert a afficher le pseudo d'un
@@ -288,7 +300,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
 		JButton bouton1 = new JButton("Jouer");
-		JButton bouton2 = new JButton("Charger");
+		//JButton bouton2 = new JButton("Charger");
 		JButton bouton3 = new JButton("Quitter");
 
 		JButton bouton4 = new JButton(new ImageIcon(
@@ -304,7 +316,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel.add(label);
 		panel.add(bouton1);
 		panel.add(Box.createVerticalStrut(hauteur));
-		panel.add(bouton2);
+		//panel.add(bouton2);
 		panel.add(Box.createVerticalStrut(hauteur));
 		panel.add(bouton3);
 		panel.add(Box.createHorizontalStrut(largeur));
@@ -464,97 +476,6 @@ public class IHMJoueur implements Runnable, KeyListener {
 		affichagePanneau();
 		fenetre.setVisible(true);
 
-		class BoutonListener implements ActionListener {
-
-			public void actionPerformed(ActionEvent e) {
-				fenetre.setContentPane(panel2);
-				fenetre.validate();
-			}
-		}
-
-		class Quitter implements ActionListener {
-
-			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(fenetre,
-						"Fermer l'application ?", "Confirmation",
-						JOptionPane.OK_CANCEL_OPTION,
-						JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
-					fenetre.dispose();
-			}
-		}
-
-		class PanelSorc implements ActionListener {
-
-			public void actionPerformed(ActionEvent e) {
-
-				fenetre.setContentPane(panel3sorc);
-				fenetre.validate();
-
-			}
-		}
-
-		class PanelGuer implements ActionListener {
-
-			public void actionPerformed(ActionEvent e) {
-
-				fenetre.setContentPane(panel4guer);
-				fenetre.validate();
-			}
-		}
-
-		class PanelChass implements ActionListener {
-
-			public void actionPerformed(ActionEvent e) {
-
-				fenetre.setContentPane(panel5chass);
-				fenetre.validate();
-			}
-		}
-
-		class SavePseudo implements ActionListener {
-
-			private Personnage personnage;
-
-			public void actionPerformed(ActionEvent e) {
-				Object source = e.getSource();
-				if (source == pseudoSorc) { // verifie que c'etait sur le bouton
-											// sorcier
-					pseudojoueur = pseudoSorc.getText(); // recupere la valeur
-															// du champ
-					personnage = new Sorcier(pseudojoueur); // creer un sorcier
-															// avec cette valeur
-					info.setText(personnage.nomPersonnage); // met dans info le
-															// nom du
-
-					// personnage = perso;
-					// partieDeJeux=new Partie(perso);// perso crï¿½e
-
-					fenetre.setContentPane(separation);
-					fenetre.validate();
-				} else {
-					if (source == pseudoGuer) {
-						pseudojoueur = pseudoGuer.getText();
-						personnage = new Guerrier(pseudojoueur);
-						info.setText(personnage.nomPersonnage);
-						// personnage = perso;
-						// partieDeJeux=new Partie(perso);
-						fenetre.setContentPane(separation);
-						fenetre.validate();
-					} else {
-						pseudojoueur = pseudoChass.getText();
-						personnage = new Chasseur(pseudojoueur);
-						info.setText(personnage.nomPersonnage);
-						// personnage = perso;
-						// partieDeJeux=new Partie(perso);
-						fenetre.setContentPane(separation);
-						fenetre.validate();
-
-					}
-				}
-
-			}
-
-		}
 
 		bouton1.addActionListener(new BoutonListener());
 		bouton3.addActionListener(new Quitter());
@@ -589,6 +510,110 @@ public class IHMJoueur implements Runnable, KeyListener {
 		// JLabel label7 = new JLabel("Armure : ");
 		System.out.println(personnageCourant.obtenirPositionPersonnage()
 				.obtenirIndexTexture());
+
+	}
+	class BoutonListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			fenetre.setContentPane(panel2);
+			fenetre.validate();
+		}
+	}
+
+	class Quitter implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			if (JOptionPane.showConfirmDialog(fenetre,
+					"Fermer l'application ?", "Confirmation",
+					JOptionPane.OK_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+				fenetre.dispose();
+		}
+	}
+
+	class PanelSorc implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			fenetre.setContentPane(panel3sorc);
+			fenetre.validate();
+
+		}
+	}
+
+	class PanelGuer implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			fenetre.setContentPane(panel4guer);
+			fenetre.validate();
+		}
+	}
+
+	class PanelChass implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			fenetre.setContentPane(panel5chass);
+			fenetre.validate();
+		}
+	}
+
+	class SavePseudo implements ActionListener {
+
+		
+
+		public void actionPerformed(ActionEvent e) {
+			Object source = e.getSource();
+			if (source == pseudoSorc) { // verifie que c'etait sur le bouton
+										// sorcier
+				pseudojoueur = pseudoSorc.getText(); // recupere la valeur
+														// du champ
+				personnageCourant = new Sorcier(pseudojoueur); // creer un sorcier
+				System.out.println(personnageCourant.nomPersonnage);
+														// avec cette valeur
+				info.setText(personnageCourant.nomPersonnage); // met dans info le
+														// nom du
+
+				// personnage = perso;
+				// partieDeJeux=new Partie(perso);// perso crï¿½e
+
+				fenetre.setContentPane(separation);
+				fenetre.validate();
+				panelmap.removeAll();
+				affichageMap();
+				affichagePanneau();
+				panelmap.validate();
+			} else {
+				if (source == pseudoGuer) {
+					pseudojoueur = pseudoGuer.getText();
+					personnageCourant = new Guerrier(pseudojoueur);
+					info.setText(personnageCourant.nomPersonnage);
+					// personnage = perso;
+					// partieDeJeux=new Partie(perso);
+					fenetre.setContentPane(separation);
+					fenetre.validate();
+					panelmap.removeAll();
+					affichageMap();
+					affichagePanneau();
+					panelmap.validate();
+				} else {
+					pseudojoueur = pseudoChass.getText();
+					personnageCourant = new Chasseur(pseudojoueur);
+					info.setText(personnageCourant.nomPersonnage);
+					// personnage = perso;
+					// partieDeJeux=new Partie(perso);
+					fenetre.setContentPane(separation);
+					fenetre.validate();
+					panelmap.removeAll();
+					affichageMap();
+					affichagePanneau();
+					panelmap.validate();
+
+				}
+			}
+
+		}
 
 	}
 
@@ -690,7 +715,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		}
 	}
 	public Personnage getPersonnage() {
-		return personnageCourant;
+		return partieDeJeux.personnage;
 	}
 
 	
@@ -710,8 +735,9 @@ public class IHMJoueur implements Runnable, KeyListener {
 	public int afficheDegats() {
 		return 0;
 	}
-	
+
 public void affichagePanneau(){
+		
 	panelgauche.removeAll();
 	personnageCourant.miseAJourInfo(personnageCourant.itemCourant);
 	JLabel label6 = new JLabel("Pseudo : ");
@@ -723,32 +749,21 @@ public void affichagePanneau(){
 	JLabel label12 = new JLabel(Integer.toString(personnageCourant.pointDeVie));
 	JLabel label13 =new JLabel("Esquive: ");
 	JLabel label14 = new JLabel(Integer.toString(personnageCourant.esquive));
+	JLabel label15=new JLabel(personnageCourant.nomPersonnage);
 	panelgauche.setLayout(new BoxLayout(panelgauche, BoxLayout.X_AXIS));
 	panelgauche.add(label6);
-	panelgauche.add(info);
-	panelgauche.add(Box.createHorizontalStrut(40));
+	panelgauche.add(label15);
+	panelgauche.add(Box.createHorizontalStrut(20));
 	panelgauche.add(label7);
 	panelgauche.add(label8);
-	panelgauche.add(Box.createHorizontalStrut(40));
+	panelgauche.add(Box.createHorizontalStrut(20));
 	panelgauche.add(label9);
 	panelgauche.add(label10);
-	panelgauche.add(Box.createHorizontalStrut(40));
+	panelgauche.add(Box.createHorizontalStrut(20));
 	panelgauche.add(label11);
 	panelgauche.add(label12);
 	panelgauche.validate();
 }
-	/**
-	 * Affiche les classes disponibles
-	 * 
-	 * @param prend
-	 *            en entrÃ©e un personnage
-	 */
-	// public void choixDeClasse(Personnage p1)
-	// {
-	//
-	// }
-
-
 
 	/**
 	 * Demande la selection d'un objet
