@@ -2,6 +2,8 @@ package iutvalence_projetS2_2013_2014_groupe2_ScrollIUT;
 
 import java.awt.event.KeyEvent;
 
+import javax.swing.JLabel;
+
 /**
  * La Classe Personnage.
  */
@@ -115,7 +117,7 @@ public abstract class Personnage {
 	 * @param un objet de type item
 	 */
 
-	public void miseAJourDeLEquipement(Item item) {
+	public void miseAJourDeLEquipement(Item item,JLabel lab) {
 
 		for (int i = 0; i < this.itemCourant.length; i++)
 			if (item.obtenirType() == this.itemCourant[i].obtenirType()) {
@@ -123,19 +125,15 @@ public abstract class Personnage {
 						|| (item.obtenirAttaque() > this.itemCourant[i]
 								.obtenirAttaque())) {
 					this.itemCourant[i] = item;
-					System.out.println("bravo vous venez d'equiper "
-							+ this.itemCourant[i].obtenirNomItem());
-
+					lab.setText("bravo vous venez d'equiper "+this.itemCourant[i].obtenirNomItem());
 					for (int j = 0; j < this.itemCourant.length; j++) {
 						System.out.println("objet :  "
 								+ this.itemCourant[j].obtenirNomItem());
 					}
 
 				} else {
-					System.out
-							.println("L'objet "
-									+ item.obtenirNomItem()
-									+ " ne possedais pas des caracteristiques assez elevï¿½");
+					lab.setText("Désolé,l'objet n'etais pas assez puissant");
+				
 					for (int j = 0; j < this.itemCourant.length; j++) {
 						System.out.println("objet :  "
 								+ this.itemCourant[j].obtenirNomItem());
@@ -144,6 +142,10 @@ public abstract class Personnage {
 			}
 
 	}
+
+
+
+
 
 	/**
 	 * Obtenir armure permet d'avoir accï¿½s a la caracteristique d'armure que

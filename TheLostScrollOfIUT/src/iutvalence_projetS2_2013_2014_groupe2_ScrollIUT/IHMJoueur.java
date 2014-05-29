@@ -94,7 +94,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 	public JPanel paneldroit1 = new JPanel();
 
 	public JLabel info = new JLabel(); // sert a afficher le pseudo d'un sorcier
-
+	public JLabel objet = new JLabel(); // sert a afficher les infos concernant l'obtention d'objet
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -136,7 +136,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 					if (JOptionPane.showConfirmDialog(fenetre,"Ouvrir ?", "Confirmation",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
-						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre());
+						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre(),objet);
 						panelmap.removeAll();
 						affichagePanneau();
 						this.affichageMap();
@@ -192,7 +192,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
-						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre());
+						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre(),objet);
 						panelmap.removeAll();
 						affichagePanneau();
 						//panelgauche.revalidate();
@@ -246,7 +246,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].setTexture(Texture.COFFRE_OUVERT);
-						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirItemDUnCoffre());
+						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirItemDUnCoffre(),objet);
 						//plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre();
 						panelmap.removeAll();
 						affichagePanneau();
@@ -303,7 +303,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].setTexture(Texture.COFFRE_OUVERT);
-						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirItemDUnCoffre());
+						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirItemDUnCoffre(),objet);
 						
 						panelmap.removeAll();
 						affichagePanneau();
@@ -453,7 +453,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		
 		panelinfo.setBackground(Color.GREEN);
 		panelgauche.setBackground(Color.PINK);
-		paneldroit.setBackground(Color.RED);
+		paneldroit.setBackground(Color.WHITE);
 		panelgauche1.setBackground(Color.PINK);
 		paneldroit1.setBackground(Color.RED);
 
@@ -471,6 +471,9 @@ public class IHMJoueur implements Runnable, KeyListener {
 		lab2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		paneldroit1.add(lab2);
 
+		/************************************** Remplissage panneau tout a droite*************************/
+		
+		paneldroit.add(objet);
 		/************************************** Reglage des Splitpanes*************************/
 		separation2bas.setResizeWeight(0.5);
 		separation2bas.setEnabled(false);
@@ -479,7 +482,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		separation2bas.setLeftComponent(panelgauche1);
 		separation2bas.setRightComponent(paneldroit1);
 
-		separation4bas.setResizeWeight(0.5);
+		separation4bas.setResizeWeight(0.3);
 		separation4bas.setEnabled(false);
 		separation4bas.setBorder(null);
 		separation4bas.setDividerSize(0);
