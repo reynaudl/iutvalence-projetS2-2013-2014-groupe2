@@ -44,6 +44,12 @@ public abstract class Personnage {
 
 	public Case postionPersonnage;
 
+	/**
+	 * Le constructeur du personnage 
+	 * 
+	 * @param String
+	 *            nom le nom du personnage
+	 */
 	public Personnage(String nom) {
 
 		this.nomPersonnage = nom;
@@ -55,8 +61,9 @@ public abstract class Personnage {
 		itemCourant[0] = new Item("Botte en laine", "Bottes", 1, 0);
 		itemCourant[1] = new Item("Armure en laine", "Torse", 1, 0);
 		itemCourant[2] = new Item("Arme de poing", "Arme", 0, 4);
-		this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirAttaque();
-		this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure()+this.itemCourant[0].obtenirArmure();
+		this.attaque = ATTAQUE_DE_BASE + this.itemCourant[2].obtenirAttaque();
+		this.armure = ARMURE_DE_BASE + itemCourant[1].obtenirArmure()
+				+ this.itemCourant[0].obtenirArmure();
 
 	}
 
@@ -79,12 +86,20 @@ public abstract class Personnage {
 	public String obtenirNomClasse() {
 		return this.nomClasse;
 	}
+	
+	/**
+	 * Prend un tableau d'item et met a jour les caracteristiques du perso en fonctions de ceux-ci
+	 * @param nouvEquip
+	 * 			Un tableau d'item
+	 */
 
-	public void miseAJourInfo(Item[] nouvEquip){
-		
-		this.armure=nouvEquip[0].obtenirArmure()+ARMURE_DE_BASE+nouvEquip[1].obtenirArmure();
-		this.attaque=ATTAQUE_DE_BASE+nouvEquip[2].obtenirAttaque();
+	public void miseAJourInfo(Item[] nouvEquip) {
+
+		this.armure = nouvEquip[0].obtenirArmure() + ARMURE_DE_BASE
+				+ nouvEquip[1].obtenirArmure();
+		this.attaque = ATTAQUE_DE_BASE + nouvEquip[2].obtenirAttaque();
 	}
+
 	/**
 	 * Obtenir attaque permet d'avoir accï¿½s a la puissance d'attaque du
 	 * personnage
@@ -94,43 +109,39 @@ public abstract class Personnage {
 	public int obtenirAttaque() {
 		return this.attaque;
 	}
-	public  void miseAJourDeLEquipement(Item item)
-	{
+	
+	/**
+	 * Equipe l'objet recuperé en entrée si celui-ci est meilleur que ceux deja equipé
+	 * @param un objet de type item
+	 */
+
+	public void miseAJourDeLEquipement(Item item) {
 
 		for (int i = 0; i < this.itemCourant.length; i++)
-			if (item.obtenirType() == this.itemCourant[i].obtenirType())
-			{
+			if (item.obtenirType() == this.itemCourant[i].obtenirType()) {
 				if ((item.obtenirArmure() > this.itemCourant[i].obtenirArmure())
 						|| (item.obtenirAttaque() > this.itemCourant[i]
-								.obtenirAttaque()))
-				{
+								.obtenirAttaque())) {
 					this.itemCourant[i] = item;
 					System.out.println("bravo vous venez d'equiper "
 							+ this.itemCourant[i].obtenirNomItem());
-					
-					for (int j = 0; j < this.itemCourant.length; j++)
-					{
+
+					for (int j = 0; j < this.itemCourant.length; j++) {
 						System.out.println("objet :  "
 								+ this.itemCourant[j].obtenirNomItem());
 					}
-					//this.attaque = ATTAQUE_DE_BASE+this.itemCourant[2].obtenirArmure()+this.itemCourant[0].obtenirArmure();
-					//this.armure = ARMURE_DE_BASE+itemCourant[1].obtenirArmure();
-					
 
-				} else
-				{
+				} else {
 					System.out
 							.println("L'objet "
 									+ item.obtenirNomItem()
 									+ " ne possedais pas des caracteristiques assez elevï¿½");
-					for (int j = 0; j < this.itemCourant.length; j++)
-					{
+					for (int j = 0; j < this.itemCourant.length; j++) {
 						System.out.println("objet :  "
 								+ this.itemCourant[j].obtenirNomItem());
 					}
 				}
 			}
-		
 
 	}
 
@@ -152,6 +163,11 @@ public abstract class Personnage {
 	public double obtenirMultiplicateur() {
 		return this.multiplicateur;
 	}
+	/**
+	 * Obtenir l'esquive permet le calcule des dÃ©gats du personnage
+	 * 
+	 * @return renvoie l'esquive du personnage
+	 */
 
 	public int obtenirEsquive() {
 		return this.esquive;
@@ -164,10 +180,26 @@ public abstract class Personnage {
 	public void passif() {
 
 	}
+	/**
+	 * Permet d'obtenir la position du personnage
+	 * 
+	 * @return renvoie la position du personnage
+	 */
 
 	public Case obtenirPositionPersonnage() {
 		return this.postionPersonnage;
 	}
+
+	/**
+	 * Tour d'attaque
+	 * 
+	 *  @param p
+	 *  	le personnage attaquant
+	 *  @param cible
+	 *  	le personnage ciblé 
+	 * @return renvoie les poins de vie de la cible
+	 */
+
 
 	public int Attaquer(Personnage p, Personnage cible) {
 		if (p.nomClasse == "sorcier") {

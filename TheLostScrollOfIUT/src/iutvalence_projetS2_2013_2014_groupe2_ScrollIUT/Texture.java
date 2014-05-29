@@ -25,16 +25,36 @@ public enum Texture {
 	private boolean estBloquante;
 	private String icone;
 	
+	/**
+	 * Constructeur de texture.
+	 * 
+	 * @param blok
+	 *            si la texture est bloquante ou non
+	 * @param image
+	 *            chemin vers la texture
+	 */
 	private Texture(boolean blok,String image)
 	{
 		this.estBloquante = blok;
 		this.icone = image;
 	}
 	
+	/**
+	 * Permet d'avoir acces a l'attribut bloquant de la case
+	 * 
+	 * @return  si la case est bloquante ou non
+	 */
+	
 	public boolean caseBloquante()
 	{
 		return this.estBloquante;
 	}
+	
+	/**
+	 * Permet d'avoir acces a l'icone  de la case
+	 * 
+	 * @return  l'icone correspondante a la case
+	 */
 	
 	public String obtenirIcone()
 	{

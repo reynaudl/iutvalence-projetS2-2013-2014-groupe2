@@ -16,8 +16,9 @@ public class Partie
 		this.personnage = personnage;
 		
 	}
+	
 	/**
-	 * Gere le dï¿½placement du personnage
+	 * Methode de création de la carte avec remplissage du plateauCase
 	 */
 	
 	public static void creationCarte()
@@ -128,34 +129,14 @@ public class Partie
 	}
 		
 		
-	
-	
-/*	public void AfficherCarte(){
-		
-
-		for (int i = 0;i<29;i++){
-			System.out.print("\n");
-		
-			for (int j = 0; j<29;j++){
-				if(plateauCase[i][j].indexTexture.obtenirIcone()=="mur.png")
-					System.out.print("zob "); 
-					else
-						System.out.print("coucou "); 	
-					
-				}
-			}
-		}
-	*/
-	
+	/**
+	 * Methode d'accès a la carte 
+	 */
 	public static Case[][] obtenirPlateauCase()
 	{
 	    return plateauCase;
 	}
 	
-	public void deplacementPersonnage()
-	{
-
-	}
 
 	/**
 	 * La methode attaque calcule les dï¿½gats infligï¿½s.
@@ -167,40 +148,7 @@ public class Partie
 		return 0;
 
 	}
-
-	/**
-	 * Cette methode permt de demarrer partie.
-	 */
-	public void demarrerPartie()
-	{
-
-		/*
-		 * public Partie() { this.mappingClavier = new MappingClavier(); Carte
-		 * generateur = new Carte(NB_LIGNES, NB_COLONNES); generateur.generer();
-		 */
-
-	}
-
-	/**
-	 * Cette mï¿½thode met a jour l'equipement en fonction de l'idem donnï¿½ en
-	 * entrï¿½e
-	 * 
-	 * @param prend
-	 *            en entrï¿½e un objet de type item
-	 */
 	
 
-	/**
-	 * Cette mï¿½thode dirigie l'ouverture de coffres et de portes.
-	 */
-	public void ouvertureCoffreOuPorte()
-	{
-
-	}
-	/*
-	 * public static void main(String[] args) { Sorcier p1 =new Sorcier("p1");
-	 * Item i1 = new Item("Brodequin de feu","Bottes",7,0); //
-	 * miseAJourDeLEquipement(i1,p1); }
-	 */
 
 }

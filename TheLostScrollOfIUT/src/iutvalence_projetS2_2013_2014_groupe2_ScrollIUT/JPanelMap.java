@@ -8,6 +8,14 @@ public class JPanelMap extends JPanel
 	
 	private JLabel[][] cells;
 	
+	/**
+	 * Methode pour deplacer le personnage et inverser les textures
+	 * 
+	 * @param depart
+	 *            la position de depart du personnage
+	 * @param arrivee
+	 *            la position d'arrivée du personnage
+	 */
 	public void bougerPerso(Case depart, Case arrivee)
 	{
 		Case dep = depart;

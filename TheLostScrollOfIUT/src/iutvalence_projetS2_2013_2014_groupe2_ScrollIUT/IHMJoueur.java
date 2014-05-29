@@ -469,14 +469,6 @@ public class IHMJoueur implements Runnable, KeyListener {
 			public void actionPerformed(ActionEvent e) {
 				fenetre.setContentPane(panel2);
 				fenetre.validate();
-
-				/*
-				 * panel.removeAll(); panel.repaint(); panel.add(bouton4);
-				 * panel.setBackground(Color.GREEN);
-				 * 
-				 * panel.validate();
-				 */
-
 			}
 		}
 
@@ -701,18 +693,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		return personnageCourant;
 	}
 
-	/**
-	 * Verifie si le mouvement est possible.
-	 */
-	public void demandeMouvement() {
-	}
-
-	/**
-	 * actualise l'image a l'ecran.
-	 */
-	public void actualiserImage() {
-	}
-
+	
 	/**
 	 * Verifie si l'attaque est possible.
 	 */
@@ -767,12 +748,7 @@ public void affichagePanneau(){
 	//
 	// }
 
-	/**
-	 * Affiche la classe séléctionné
-	 */
-	// public void afficherClasse()
-	// {
-	// }
+
 
 	/**
 	 * Demande la selection d'un objet
