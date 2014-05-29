@@ -42,7 +42,7 @@ import javax.swing.WindowConstants;
  */
 public class IHMJoueur implements Runnable, KeyListener {
 	
-	/**************************************Declaration de la partie et des personnages présents*******************/
+	/**************************************Declaration de la partie et des personnages prï¿½sents*******************/
 	
 	public Partie partieDeJeux= new Partie(personnageCourant);
 	public static Personnage personnageCourant = new Chasseur("lolo");
@@ -125,7 +125,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 				this.affichageMap();
 				panelmap.validate();
 			}
-			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.PORTE_FERMER || plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
 			{
 				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
 				{
@@ -133,13 +133,30 @@ public class IHMJoueur implements Runnable, KeyListener {
 				}
 				else
 				{
-					if (JOptionPane.showConfirmDialog(fenetre,
-							"Ouvrir ?", "Confirmation",
-							JOptionPane.OK_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					if (JOptionPane.showConfirmDialog(fenetre,"Ouvrir ?", "Confirmation",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					{
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre());
+						panelmap.removeAll();
+						affichagePanneau();
+						this.affichageMap();
+						panelmap.validate();
+						//panelgauche.removeAll();
+						//panelgauche.validate();
+					}
+				}
+			}
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.PORTE_FERMER)
+			{
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
+				{
+					
+				}
+				else
+				{
+					if (JOptionPane.showConfirmDialog(fenetre,"Ouvrir ?", "Confirmation",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
 						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.PORTE_OUVERTE);
-						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre());
 						panelmap.removeAll();
 						affichagePanneau();
 						this.affichageMap();
@@ -161,7 +178,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 				this.affichageMap();
 				panelmap.validate();
 			}
-			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.PORTE_FERMER || plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
 			{
 				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
 				{
@@ -174,13 +191,33 @@ public class IHMJoueur implements Runnable, KeyListener {
 							JOptionPane.OK_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
-						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.PORTE_OUVERTE);
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre());
 						panelmap.removeAll();
 						affichagePanneau();
 						//panelgauche.revalidate();
 						this.affichageMap();
 						panelmap.validate();
+					}
+				}
+			}
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.PORTE_FERMER)
+			{
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirBesoinCle() == true )
+				{
+					
+				}
+				else
+				{
+					if (JOptionPane.showConfirmDialog(fenetre,"Ouvrir ?", "Confirmation",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					{
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.PORTE_OUVERTE);
+						panelmap.removeAll();
+						affichagePanneau();
+						this.affichageMap();
+						panelmap.validate();
+						//panelgauche.removeAll();
+						//panelgauche.validate();
 					}
 				}
 			}
@@ -196,7 +233,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 				this.affichageMap();
 				panelmap.validate();
 			}
-			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirIndexTexture() == Texture.PORTE_FERMER || plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE)
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirIndexTexture() == Texture.COFFRE)
 			{
 				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirBesoinCle() == true )
 				{
@@ -204,18 +241,37 @@ public class IHMJoueur implements Runnable, KeyListener {
 				}
 				else
 				{
-					if (JOptionPane.showConfirmDialog(fenetre,
-							"Ouvrir ?", "Confirmation",
+					if (JOptionPane.showConfirmDialog(fenetre,"Ouvrir ?", "Confirmation",
 							JOptionPane.OK_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
-						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].setTexture(Texture.PORTE_OUVERTE);
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].setTexture(Texture.COFFRE_OUVERT);
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirItemDUnCoffre());
 						//plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre();
 						panelmap.removeAll();
 						affichagePanneau();
 						this.affichageMap();
 						panelmap.validate();
+					}
+				}
+			}
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirIndexTexture() == Texture.PORTE_FERMER)
+			{
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()-1].obtenirDecors().obtenirBesoinCle() == true )
+				{
+					
+				}
+				else
+				{
+					if (JOptionPane.showConfirmDialog(fenetre,"Ouvrir ?", "Confirmation",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					{
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.PORTE_OUVERTE);
+						panelmap.removeAll();
+						affichagePanneau();
+						this.affichageMap();
+						panelmap.validate();
+						//panelgauche.removeAll();
+						//panelgauche.validate();
 					}
 				}
 			}
@@ -233,7 +289,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 				this.affichageMap();
 				panelmap.validate();
 			}
-			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirIndexTexture() == Texture.PORTE_FERMER)
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirIndexTexture() == Texture.COFFRE)
 			{
 				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirBesoinCle() == true )
 				{
@@ -246,7 +302,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 							JOptionPane.OK_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
-						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].setTexture(Texture.PORTE_OUVERTE);
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].setTexture(Texture.COFFRE_OUVERT);
 						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirItemDUnCoffre());
 						
 						panelmap.removeAll();
@@ -257,9 +313,28 @@ public class IHMJoueur implements Runnable, KeyListener {
 					}
 				}
 			}
+			else if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirIndexTexture() == Texture.PORTE_FERMER)
+			{
+				if (plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].obtenirDecors().obtenirBesoinCle() == true )
+				{
+					
+				}
+				else
+				{
+					if (JOptionPane.showConfirmDialog(fenetre,"Ouvrir ?", "Confirmation",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+					{
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()][personnageCourant.obtenirPositionPersonnage().obtenirY()+1].setTexture(Texture.PORTE_OUVERTE);
+						panelmap.removeAll();
+						affichagePanneau();
+						this.affichageMap();
+						panelmap.validate();
+						//panelgauche.removeAll();
+						//panelgauche.validate();
+					}
+				}
+			}
 			
-			else if(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()-1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirIndexTexture() == Texture.COFFRE);
-		
+					
 		}
 		else
 		{}
@@ -281,7 +356,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		fenetre.setResizable(false);		// La taille de la fenÃªtre n'est plus modifiable
 		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Quand on clique sur la croix, l'appli est dÃ©truite
 
-		/************************************** Ajout et definitions des éléments au panel 1*************************/
+		/************************************** Ajout et definitions des ï¿½lï¿½ments au panel 1*************************/
 	
 		JLabel label = new JLabel("asdf");
 		label.setPreferredSize(new Dimension(200, 200));
@@ -301,7 +376,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		fenetre.setContentPane(panel);
 		panel.setBackground(Color.RED);
 		
-		/************************************** Ajout et definition des éléments au panel 2 select classe*************************/
+		/************************************** Ajout et definition des ï¿½lï¿½ments au panel 2 select classe*************************/
 		
 		
 		JButton bouton4 = new JButton(new ImageIcon("images_classes/guerrier.jpg"));
@@ -332,7 +407,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel2.add(sorcier, BorderLayout.CENTER);
 		panel2.add(chasseur, BorderLayout.EAST);
 
-		/************************************** Ajout et definitions des éléments du panel 3 Classe soricer*************************/
+		/************************************** Ajout et definitions des ï¿½lï¿½ments du panel 3 Classe soricer*************************/
 
 		
 		JLabel label3 = new JLabel("Vous avez choisi la classe Sorcier, rentrez votre pseudo");
@@ -347,7 +422,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel3sorc.add(Box.createVerticalStrut(80));
 		panel3sorc.add(pseudoSorc);
 
-		/************************************** Ajout et definitions des éléments du panel 4 Classe Guerrier*************************/
+		/************************************** Ajout et definitions des ï¿½lï¿½ments du panel 4 Classe Guerrier*************************/
 		
 		JLabel label4 = new JLabel("Vous avez choisi la classe Guerrier, rentrez votre pseudo");
 		label4.setPreferredSize(new Dimension(200, 200));
@@ -360,7 +435,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel4guer.add(Box.createVerticalStrut(80));
 		panel4guer.add(pseudoGuer);
 
-		/************************************** Ajout et definitions des éléments du panel 4 Classe Chasseur*************************/
+		/************************************** Ajout et definitions des ï¿½lï¿½ments du panel 4 Classe Chasseur*************************/
 		
 		JLabel label5 = new JLabel("Vous avez choisi la classe Chasseur, rentrez votre pseudo");
 		label5.setPreferredSize(new Dimension(200, 200));
@@ -374,7 +449,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel5chass.add(pseudoChass);
 
 		
-		/************************************** Ajout et definitions des éléments du dernier panel*************************/
+		/************************************** Ajout et definitions des ï¿½lï¿½ments du dernier panel*************************/
 		
 		panelinfo.setBackground(Color.GREEN);
 		panelgauche.setBackground(Color.PINK);

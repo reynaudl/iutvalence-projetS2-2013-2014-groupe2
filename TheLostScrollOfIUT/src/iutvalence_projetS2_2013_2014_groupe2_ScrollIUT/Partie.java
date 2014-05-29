@@ -18,13 +18,13 @@ public class Partie
 	}
 	
 	/**
-	 * Methode de création de la carte avec remplissage du plateauCase
+	 * Methode de crï¿½ation de la carte avec remplissage du plateauCase
 	 */
 	
 	public static void creationCarte()
 	{
-		plateauCase[0][0] = new Case(0,0,Texture.MUR,null);plateauCase[0][1] = new Case(0,1,Texture.MUR,null);plateauCase[0][2] = new Case(0,2,Texture.VIDE,null);plateauCase[0][3] = new Case(0,3,Texture.MUR,null);plateauCase[0][4] = new Case(0,4,Texture.MUR,null);plateauCase[0][5] = new Case(0,5,Texture.FENETRE,null);plateauCase[0][6] = new Case(0,6,Texture.MUR,null);plateauCase[0][7] = new Case(0,7,Texture.FENETRE,null);plateauCase[0][8] = new Case(0,8,Texture.MUR,null);
-		plateauCase[0][9] = new Case(0,9,Texture.FENETRE,null);plateauCase[0][10] = new Case(0,10,Texture.MUR,null);plateauCase[0][11] = new Case(0,11,Texture.VIDE,null);plateauCase[0][12] = new Case(0,12,Texture.MUR,null);plateauCase[0][13] = new Case(0,13,Texture.FENETRE,null);plateauCase[0][14] = new Case(0,14,Texture.MUR,null);plateauCase[0][15] = new Case(0,15,Texture.MUR,null);plateauCase[0][16] = new Case(0,16,Texture.VIDE,null);plateauCase[0][17] = new Case(0,17,Texture.MUR,null);
+		plateauCase[0][0] = new Case(0,0,Texture.MUR,null);plateauCase[0][1] = new Case(0,1,Texture.MUR,null);plateauCase[0][2] = new Case(0,2,Texture.FENETRE,null);plateauCase[0][3] = new Case(0,3,Texture.MUR,null);plateauCase[0][4] = new Case(0,4,Texture.MUR,null);plateauCase[0][5] = new Case(0,5,Texture.FENETRE,null);plateauCase[0][6] = new Case(0,6,Texture.MUR,null);plateauCase[0][7] = new Case(0,7,Texture.FENETRE,null);plateauCase[0][8] = new Case(0,8,Texture.MUR,null);
+		plateauCase[0][9] = new Case(0,9,Texture.FENETRE,null);plateauCase[0][10] = new Case(0,10,Texture.MUR,null);plateauCase[0][11] = new Case(0,11,Texture.FENETRE,null);plateauCase[0][12] = new Case(0,12,Texture.MUR,null);plateauCase[0][13] = new Case(0,13,Texture.FENETRE,null);plateauCase[0][14] = new Case(0,14,Texture.MUR,null);plateauCase[0][15] = new Case(0,15,Texture.MUR,null);plateauCase[0][16] = new Case(0,16,Texture.FENETRE,null);plateauCase[0][17] = new Case(0,17,Texture.MUR,null);
 		plateauCase[0][18] = new Case(0,18,Texture.FENETRE,null);plateauCase[0][19] = new Case(0,19,Texture.MUR,null);plateauCase[0][20] = new Case(0,20,Texture.FENETRE,null);plateauCase[0][21] = new Case(0,21,Texture.MUR,null);plateauCase[0][22] = new Case(0,22,Texture.MUR,null);plateauCase[0][23] = new Case(0,23,Texture.FENETRE,null);plateauCase[0][24] = new Case(0,24,Texture.MUR,null);plateauCase[0][25] = new Case(0,25,Texture.FENETRE,null);plateauCase[0][26] = new Case(0,26,Texture.MUR,null);
 		plateauCase[0][27] = new Case(0,27,Texture.FENETRE,null);plateauCase[0][28] = new Case(0,28,Texture.MUR,null);plateauCase[0][29] = new Case(0,29,Texture.MUR,null);plateauCase[1][0] = new Case(1,0,Texture.MUR,null);plateauCase[1][1] = new Case(1,1,Texture.COFFRE,new Coffre(false));plateauCase[1][2] = new Case(1,2,Texture.LANTERNE,null);plateauCase[1][3] = new Case(1,3,Texture.MUR,null);plateauCase[1][4] = new Case(1,4,Texture.TABLE,null);plateauCase[1][5] = new Case(1,5,Texture.COFFRE,new Coffre(false));
 		plateauCase[1][6] = new Case(1,6,Texture.MUR,null);plateauCase[1][7] = new Case(1,7,Texture.COFFRE,new Coffre(false));plateauCase[1][8] = new Case(1,8,Texture.SOL,null);plateauCase[1][9] = new Case(1,9,Texture.SOL,null);plateauCase[1][10] = new Case(1,10,Texture.SOL,null);plateauCase[1][11] = new Case(1,11,Texture.LANTERNE,null);plateauCase[1][12] = new Case(1,12,Texture.MUR,null);plateauCase[1][13] = new Case(1,13,Texture.SOL,null);plateauCase[1][14] = new Case(1,14,Texture.SOL,null);
@@ -130,7 +130,7 @@ public class Partie
 		
 		
 	/**
-	 * Methode d'accès a la carte 
+	 * Methode d'accï¿½s a la carte 
 	 */
 	public static Case[][] obtenirPlateauCase()
 	{
