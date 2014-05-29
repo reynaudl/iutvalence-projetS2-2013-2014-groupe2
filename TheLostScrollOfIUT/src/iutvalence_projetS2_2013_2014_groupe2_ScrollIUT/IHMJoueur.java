@@ -43,12 +43,16 @@ import javax.swing.WindowConstants;
 public class IHMJoueur implements Runnable, KeyListener {
 	
 	/**************************************Declaration de la partie et des personnages présents*******************/
+	
 	public Partie partieDeJeux= new Partie(personnageCourant);
 	public static Personnage personnageCourant = new Chasseur("lolo");
 	public static Personnage monstre1 = new Creature("creat1",20,2,2,1.0,new Case(6,5,Texture.MONSTRE,null));
 	public static Personnage monstre2 = new Creature("creat2",20,2,2,1.0,new Case(12,25,Texture.MONSTRE,null));
 	public static Personnage monstre3 = new Creature("creat3",20,2,2,1.0,new Case(15,17,Texture.MONSTRE,null));
 	public static Personnage monstre4 = new Creature("creat4",20,2,2,1.0,new Case(15,10,Texture.MONSTRE,null));
+	
+	public Case[][] plateauDeCase;
+	public Personnage[] tabCreat = {monstre1,monstre2,monstre3,monstre4};
 	
 	
 	/**************************************Panel de 1er menu*******************/
@@ -89,18 +93,8 @@ public class IHMJoueur implements Runnable, KeyListener {
 	public JPanel panelgauche1 = new JPanel();
 	public JPanel paneldroit1 = new JPanel();
 
-	
-
 	public JLabel info = new JLabel(); // sert a afficher le pseudo d'un sorcier
-	public JLabel info2 = new JLabel(); // sert a afficher le pseudo d'un
-										// guerrier
-	public JLabel info3 = new JLabel(); // sert a afficher le pseudo d'un
-										// chasseur
 
-	// private JLabel label2 = new JLabel("Choisissez votre classe");
-	
-	public Case[][] plateauDeCase;
-	public Personnage[] tabCreat = {monstre1,monstre2,monstre3,monstre4};
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -272,6 +266,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 	}
 
 	public void run() {
+		/************************************** Definition des caracteristiques de base de la fenetre*************************/
 		int largeur = 700;
 		int hauteur = 40;
 		int hauteur2 = 150;
@@ -280,38 +275,21 @@ public class IHMJoueur implements Runnable, KeyListener {
 
 		fenetre.setTitle("The Secret Scroll of IUT");
 		fenetre.setSize(879, 900);
-
 		fenetre.setFocusable(true);
 		fenetre.requestFocus();
 		fenetre.addKeyListener(this);
+		fenetre.setResizable(false);		// La taille de la fenÃªtre n'est plus modifiable
+		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Quand on clique sur la croix, l'appli est dÃ©truite
 
-		// La taille de la fenÃªtre n'est plus modifiable
-		fenetre.setResizable(false);
-
-		// Quand on clique sur la croix, l'appli est dÃ©truite
-		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
-		// Carte carteDuJeux = new Carte(10, 10);
-
+		/************************************** Ajout et definitions des éléments au panel 1*************************/
+	
 		JLabel label = new JLabel("asdf");
 		label.setPreferredSize(new Dimension(200, 200));
-
 		label.setText("The secret Scroll of IUT");
 		label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-
 		JButton bouton1 = new JButton("Jouer");
-		//JButton bouton2 = new JButton("Charger");
 		JButton bouton3 = new JButton("Quitter");
-
-		JButton bouton4 = new JButton(new ImageIcon(
-				"images_classes/guerrier.jpg"));
-		JButton bouton5 = new JButton(new ImageIcon(
-				"images_classes/sorcier.jpg"));
-		JButton bouton6 = new JButton(new ImageIcon(
-				"images_classes/chasseur.jpg"));
-
-		// Menu de depart et ses Ã©lÃ©ments
-
+		
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(label);
 		panel.add(bouton1);
@@ -322,27 +300,14 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel.add(Box.createHorizontalStrut(largeur));
 		fenetre.setContentPane(panel);
 		panel.setBackground(Color.RED);
-
-		// Menu de selection de la classe
-
+		
+		/************************************** Ajout et definition des éléments au panel 2 select classe*************************/
+		
+		
+		JButton bouton4 = new JButton(new ImageIcon("images_classes/guerrier.jpg"));
+		JButton bouton5 = new JButton(new ImageIcon("images_classes/sorcier.jpg"));
+		JButton bouton6 = new JButton(new ImageIcon("images_classes/chasseur.jpg"));
 		JLabel label2 = new JLabel("Choisissez votre classe \n");
-		label.setPreferredSize(new Dimension(200, 200));
-
-		JTextArea descriptGuerrier = new JTextArea(
-				"Le guerrier est un combattant qui n'a peur de rien, donc grÃ¢ce ï¿½  sa force surhumaine, c'est la seule personne qui puisse se regÃ¨nerer ");
-		JTextArea descriptGuerrier2 = new JTextArea(
-				"constament grÃ¢ce ï¿½  la vue du sang de l'ennemi...");
-
-		JTextArea descriptSorcier = new JTextArea(
-				"Le sorcier est un personnage dotÃ© de grand pouvoir maÃ®trisant les arcanes");
-
-		JTextArea descriptChasseur = new JTextArea(
-				"Le chasseur sachant chasser sans son chien");
-
-		descriptGuerrier.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		descriptGuerrier2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		descriptSorcier.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		descriptChasseur.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		label2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
 		panel2.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -351,7 +316,6 @@ public class IHMJoueur implements Runnable, KeyListener {
 		panel2.add(Box.createVerticalStrut(hauteur));
 
 		top.setBackground(Color.YELLOW);
-
 		guerrier.setBackground(Color.RED);
 		sorcier.setBackground(new Color(102, 51, 153));
 		chasseur.setBackground(Color.GREEN);
@@ -359,88 +323,84 @@ public class IHMJoueur implements Runnable, KeyListener {
 		top.add(label2);
 		panel2.add(Box.createVerticalStrut(80));
 		guerrier.add(bouton4);
-
-		// guerrier.add(descriptGuerrier);
-		// guerrier.add(descriptGuerrier2);
-
 		sorcier.add(bouton5);
-		// sorcier.add(descriptSorcier);
 		chasseur.add(bouton6);
+		
+		panel2.setLayout(new BorderLayout());
+		panel2.add(top, BorderLayout.NORTH);
+		panel2.add(guerrier, BorderLayout.WEST);
+		panel2.add(sorcier, BorderLayout.CENTER);
+		panel2.add(chasseur, BorderLayout.EAST);
 
-		// chasseur.add(descriptChasseur);
+		/************************************** Ajout et definitions des éléments du panel 3 Classe soricer*************************/
 
-		// panel2.add(Box.createHorizontalStrut(largeur));
-
-		// Menu de saisie de pseudo et de confirmation de classe Sorcier
-		panel3sorc.setLayout(new BoxLayout(panel3sorc, BoxLayout.Y_AXIS));
-		JLabel label3 = new JLabel(
-				"Vous avez choisi la classe Sorcier, rentrez votre pseudo");
+		
+		JLabel label3 = new JLabel("Vous avez choisi la classe Sorcier, rentrez votre pseudo");
 		label3.setPreferredSize(new Dimension(200, 200));
 		label3.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		
+		panel3sorc.setLayout(new BoxLayout(panel3sorc, BoxLayout.Y_AXIS));
 		panel3sorc.setBackground(Color.MAGENTA);
-		pseudoSorc.setMaximumSize(new Dimension(150, 30)); // dimensionne la
-															// fenetre de saisie
+		pseudoSorc.setMaximumSize(new Dimension(150, 30)); 		
 		panel3sorc.add(Box.createVerticalStrut(180));
 		panel3sorc.add(label3);
 		panel3sorc.add(Box.createVerticalStrut(80));
 		panel3sorc.add(pseudoSorc);
 
-		// Menu de saisie de pseudo et de confirmation de classe Guerrier
-		panel4guer.setLayout(new BoxLayout(panel4guer, BoxLayout.Y_AXIS));
-		JLabel label4 = new JLabel(
-				"Vous avez choisi la classe Guerrier, rentrez votre pseudo");
+		/************************************** Ajout et definitions des éléments du panel 4 Classe Guerrier*************************/
+		
+		JLabel label4 = new JLabel("Vous avez choisi la classe Guerrier, rentrez votre pseudo");
 		label4.setPreferredSize(new Dimension(200, 200));
 		label4.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		panel4guer.setLayout(new BoxLayout(panel4guer, BoxLayout.Y_AXIS));
 		panel4guer.setBackground(Color.RED);
-		pseudoGuer.setMaximumSize(new Dimension(150, 30)); // dimensionne la
-															// fenetre de saisie
+		pseudoGuer.setMaximumSize(new Dimension(150, 30)); 													
 		panel4guer.add(Box.createVerticalStrut(180));
 		panel4guer.add(label4);
 		panel4guer.add(Box.createVerticalStrut(80));
 		panel4guer.add(pseudoGuer);
 
-		// Menu de saisie de pseudo et de confirmation de classe Guerrier
-		panel5chass.setLayout(new BoxLayout(panel5chass, BoxLayout.Y_AXIS));
-		JLabel label5 = new JLabel(
-				"Vous avez choisi la classe Chasseur, rentrez votre pseudo");
+		/************************************** Ajout et definitions des éléments du panel 4 Classe Chasseur*************************/
+		
+		JLabel label5 = new JLabel("Vous avez choisi la classe Chasseur, rentrez votre pseudo");
 		label5.setPreferredSize(new Dimension(200, 200));
 		label5.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		panel5chass.setLayout(new BoxLayout(panel5chass, BoxLayout.Y_AXIS));
 		panel5chass.setBackground(Color.GREEN);
-		pseudoChass.setMaximumSize(new Dimension(150, 30)); // dimensionne la
-															// fenetre de saisie
+		pseudoChass.setMaximumSize(new Dimension(150, 30)); 													
 		panel5chass.add(Box.createVerticalStrut(180));
 		panel5chass.add(label5);
 		panel5chass.add(Box.createVerticalStrut(80));
 		panel5chass.add(pseudoChass);
 
-		// IHM avec map + info du joueur + clï¿½
-
-		// panelmap.setBackground(Color.BLACK);
+		
+		/************************************** Ajout et definitions des éléments du dernier panel*************************/
+		
 		panelinfo.setBackground(Color.GREEN);
 		panelgauche.setBackground(Color.PINK);
 		paneldroit.setBackground(Color.RED);
 		panelgauche1.setBackground(Color.PINK);
 		paneldroit1.setBackground(Color.RED);
 
-		// remplissage panneau tout a gauche
+		/************************************** Remplissage panneau gauche*************************/
 		panelgauche1.add(Box.createVerticalStrut(60));
 		panelgauche1.setLayout(new BoxLayout(panelgauche1, BoxLayout.Y_AXIS));
 		JLabel lab = new JLabel(new ImageIcon("cleor.png"));
 		lab.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		panelgauche1.add(lab);
 
-		// remplissage panneau de droite
+		/************************************** Remplissage panneau droite*************************/
 		paneldroit1.add(Box.createVerticalStrut(60));
 		paneldroit1.setLayout(new BoxLayout(paneldroit1, BoxLayout.Y_AXIS));
 		JLabel lab2 = new JLabel(new ImageIcon("clegrise.png"));
 		lab2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		paneldroit1.add(lab2);
 
+		/************************************** Reglage des Splitpanes*************************/
 		separation2bas.setResizeWeight(0.5);
 		separation2bas.setEnabled(false);
 		separation2bas.setBorder(null);
 		separation2bas.setDividerSize(0);
-
 		separation2bas.setLeftComponent(panelgauche1);
 		separation2bas.setRightComponent(paneldroit1);
 
@@ -448,7 +408,6 @@ public class IHMJoueur implements Runnable, KeyListener {
 		separation4bas.setEnabled(false);
 		separation4bas.setBorder(null);
 		separation4bas.setDividerSize(0);
-
 		separation4bas.setLeftComponent(panelgauche);
 		separation4bas.setRightComponent(paneldroit);
 
@@ -460,10 +419,6 @@ public class IHMJoueur implements Runnable, KeyListener {
 		separationbas.setRightComponent(separation4bas);
 
 		panelgauche1.setLayout(new BoxLayout(panelgauche1, BoxLayout.Y_AXIS));
-
-
-		// panelmap.setSize(new Dimension(400, 800));
-		// panelinfo.setSize(new Dimension(400, 800));
 		panelmap.setBackground(Color.BLACK);
 		panelmap.setLayout(new GridLayout(29, 0));
 
@@ -476,7 +431,7 @@ public class IHMJoueur implements Runnable, KeyListener {
 		affichagePanneau();
 		fenetre.setVisible(true);
 
-
+		/************************************** Listener des boutons*************************/
 		bouton1.addActionListener(new BoutonListener());
 		bouton3.addActionListener(new Quitter());
 		bouton5.addActionListener(new PanelSorc());
@@ -486,32 +441,18 @@ public class IHMJoueur implements Runnable, KeyListener {
 		pseudoGuer.addActionListener(new SavePseudo());
 		pseudoChass.addActionListener(new SavePseudo());
 
-		panel3sorc.add(info); // affiche le nom du perso crï¿½e pour le pannel
-								// sorcier
-		panel4guer.add(info); // affiche le nom du perso crï¿½e pour le pannel
-								// guerrier
-		panel5chass.add(info); // affiche le nom du perso crï¿½e pour le pannel
-								// chasseur
 
-		panel2.setLayout(new BorderLayout());
-		panel2.add(top, BorderLayout.NORTH);
-		panel2.add(guerrier, BorderLayout.WEST);
-		panel2.add(sorcier, BorderLayout.CENTER);
-		panel2.add(chasseur, BorderLayout.EAST);
-
+		/************************************** Creation et affichage carte *************************/
 	
-
-		
 		plateauDeCase = Partie.obtenirPlateauCase();
 		Partie.creationCarte();
 
 		this.affichageMap();
-		
-		// JLabel label7 = new JLabel("Armure : ");
-		System.out.println(personnageCourant.obtenirPositionPersonnage()
-				.obtenirIndexTexture());
 
 	}
+	
+	/************************************** ActionListener *************************/
+	
 	class BoutonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -560,8 +501,6 @@ public class IHMJoueur implements Runnable, KeyListener {
 	}
 
 	class SavePseudo implements ActionListener {
-
-		
 
 		public void actionPerformed(ActionEvent e) {
 			Object source = e.getSource();
@@ -617,6 +556,10 @@ public class IHMJoueur implements Runnable, KeyListener {
 
 	}
 
+	
+	
+	/************************************** Methode *************************/
+	
 	public void affichageMap() {
 		for (int i = 0; i < 29; i++)
 			for (int j = 0; j < 29; j++) {
