@@ -14,54 +14,34 @@ public TestApplication(String name){
 
 
 
-public void verifieEtatPorte(){
-	//Porte p1= new Porte(1,4,PORTE,true, true, 1);
-	//Porte p1= new Porte(1,4,PORTE,false, true, 1);
-
-	//assertEquals(p1.changerDEtat(true, true));
-	//assertEquals(p2.changerDEtat(false, true));
-}
+public void verifieEtatCoffre(){
+	Coffre c1= new Coffre(true, false);
+	Coffre c2= new Coffre(false, false);
 	
 
-
-
-public void verifieTextureBlocante(){
-	//Texture t1= new Texture(true,"porte.png");
-	//Texture t2= new Texture(false,"sol.png");
-
 	
-	//assertEquals(t1.caseBloquante(true, true));
-	//assertEquals(t2.caseBloquante(false, false));
 
+	assertEquals(c1.obtenirBesoinCle(),(true));
+	assertEquals(c2.obtenirBesoinCle(),(false));
 
 
 }
-
-
+	
+public void verifieEnigme(){
+	
+	
+}
 
 
 	
-	/*
-	 * exemple
-	 * public void methodeTest() throws ExeptionClass {
-	try {
-	ClassAT c1= new ClassAT();
-	ClassAT c2= new ClassAT();
-	ClassAT c3= new ClassAT();
-	assertEquals(c1.methodeCAT(), false);
-	assertEquals(c2.methodeCAT(), false);
-	assertEquals(c3.methodeCAT(), true);	
-	}
-	catch (ExeptionClass e){}
-	}*/
-	
+
 	
 	
 	public static TestSuite suite() {
 		  TestSuite suite= new TestSuite();
 		 
-		  suite.addTest(new TestApplication("verifieEtat"));
-		  suite.addTest(new TestApplication("verifieTextureBlocante"));
+		  suite.addTest(new TestApplication("verifieEtatCoffre"));
+		  
 
 		  return suite;
 		}

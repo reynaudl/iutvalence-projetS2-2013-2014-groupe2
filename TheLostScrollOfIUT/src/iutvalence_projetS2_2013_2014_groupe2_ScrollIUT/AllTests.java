@@ -5,14 +5,13 @@ import junit.framework.TestSuite;
 public class AllTests {
 	public static TestSuite suite() {
 		TestSuite suite = new TestSuite();
-		//suite.addTest(CompteurTest.suite());
-		
+		suite.addTest(TestApplication.suite());
 		
 		return suite;
 	}
 
-//	public static void main(String[] args) {
-//		junit.textui.TestRunner.run(suite());
-//	}
+	public static void main(String[] args) {
+		junit.textui.TestRunner.run(suite());
+	}
 
 }
