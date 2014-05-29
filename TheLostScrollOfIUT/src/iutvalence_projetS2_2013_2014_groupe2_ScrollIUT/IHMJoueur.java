@@ -148,7 +148,16 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirPositionPersonnage().obtenirY()]
 						.obtenirDecors().besoinDenigme == true)
 				{
-					demandeEnigme();
+					if(demandeEnigme()==true){
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre(), objet);
+						panelmap.removeAll();
+						affichagePanneau();
+						this.affichageMap();
+						panelmap.validate();
+						
+					}
+					
 				}
 				else
 				{
@@ -156,18 +165,8 @@ public class IHMJoueur implements Runnable, KeyListener
 							"Confirmation", JOptionPane.OK_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
-						plateauDeCase[personnageCourant
-								.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant
-								.obtenirPositionPersonnage().obtenirY()]
-								.setTexture(Texture.COFFRE_OUVERT);
-						personnageCourant
-								.miseAJourDeLEquipement(
-										plateauDeCase[personnageCourant
-												.obtenirPositionPersonnage()
-												.obtenirX() - 1][personnageCourant
-												.obtenirPositionPersonnage()
-												.obtenirY()].obtenirDecors()
-												.obtenirItemDUnCoffre(), objet);
+						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre(), objet);
 						panelmap.removeAll();
 						affichagePanneau();
 						this.affichageMap();
@@ -238,7 +237,26 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirDecors().besoinDenigme == true)
 				{
 
-					demandeEnigme();
+					if(demandeEnigme()==true){
+						plateauDeCase[personnageCourant
+										.obtenirPositionPersonnage().obtenirX() + 1][personnageCourant
+										.obtenirPositionPersonnage().obtenirY()]
+										.setTexture(Texture.COFFRE_OUVERT);
+								personnageCourant
+										.miseAJourDeLEquipement(
+												plateauDeCase[personnageCourant
+														.obtenirPositionPersonnage()
+														.obtenirX() + 1][personnageCourant
+														.obtenirPositionPersonnage()
+														.obtenirY()].obtenirDecors()
+														.obtenirItemDUnCoffre(), objet);
+								panelmap.removeAll();
+								affichagePanneau();
+								// panelgauche.revalidate();
+								this.affichageMap();
+								panelmap.validate();
+						
+					}
 				}
 				else
 				{
@@ -323,7 +341,27 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirPositionPersonnage().obtenirY() - 1]
 						.obtenirDecors().besoinDenigme == true)
 				{
-					demandeEnigme();
+					if(demandeEnigme()==true){
+						plateauDeCase[personnageCourant
+										.obtenirPositionPersonnage().obtenirX()][personnageCourant
+										.obtenirPositionPersonnage().obtenirY() - 1]
+										.setTexture(Texture.COFFRE_OUVERT);
+								personnageCourant
+										.miseAJourDeLEquipement(
+												plateauDeCase[personnageCourant
+														.obtenirPositionPersonnage()
+														.obtenirX()][personnageCourant
+														.obtenirPositionPersonnage()
+														.obtenirY() - 1]
+														.obtenirDecors()
+														.obtenirItemDUnCoffre(), objet);
+								// plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre();
+								panelmap.removeAll();
+								affichagePanneau();
+								this.affichageMap();
+								panelmap.validate();
+						
+					}
 				}
 				else
 				{
@@ -412,7 +450,27 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirPositionPersonnage().obtenirY() + 1]
 						.obtenirDecors().besoinDenigme == true)
 				{
-					demandeEnigme();
+					if(demandeEnigme()==true){
+						plateauDeCase[personnageCourant
+										.obtenirPositionPersonnage().obtenirX()][personnageCourant
+										.obtenirPositionPersonnage().obtenirY() + 1]
+										.setTexture(Texture.COFFRE_OUVERT);
+								personnageCourant
+										.miseAJourDeLEquipement(
+												plateauDeCase[personnageCourant
+														.obtenirPositionPersonnage()
+														.obtenirX()][personnageCourant
+														.obtenirPositionPersonnage()
+														.obtenirY() + 1]
+														.obtenirDecors()
+														.obtenirItemDUnCoffre(), objet);
+
+								panelmap.removeAll();
+								affichagePanneau();
+								this.affichageMap();
+								panelmap.validate();
+						
+					}
 				}
 				else
 				{
@@ -1129,7 +1187,7 @@ public class IHMJoueur implements Runnable, KeyListener
 		panelgauche.validate();
 	}
 
-	public void demandeEnigme()
+	public boolean demandeEnigme()
 	{
 
 		SecureRandom rand = new SecureRandom();
@@ -1143,65 +1201,34 @@ public class IHMJoueur implements Runnable, KeyListener
 				System.out.println(name);
 				if (name.equals("ademage"))
 				{
-					System.out.println(name);
-					plateauDeCase[personnageCourant.obtenirPositionPersonnage()
-							.obtenirX() + 1][personnageCourant
-							.obtenirPositionPersonnage().obtenirY()]
-							.setTexture(Texture.COFFRE_OUVERT);
-					panelmap.removeAll();
-					affichagePanneau();
-					this.affichageMap();
-					panelmap.validate();
-					System.out.println(name);
-				}
-				else
-				{
-
+					return true;
+					
 				}
 				break;
+				
 			case 1:
 				String name2 = JOptionPane.showInputDialog(fenetre,
 						"Combien font 1+1 ?");
 				System.out.println(name2);
 				if (name2.equals("2"))
 				{
-					System.out.println(name2);
-					plateauDeCase[personnageCourant.obtenirPositionPersonnage()
-							.obtenirX() + 1][personnageCourant
-							.obtenirPositionPersonnage().obtenirY()]
-							.setTexture(Texture.COFFRE_OUVERT);
-					panelmap.removeAll();
-					affichagePanneau();
-					this.affichageMap();
-					panelmap.validate();
-					System.out.println(name2);
+				return true;
 				}
 				else
 				{
+					return false;
 
 				}
-				break;
+				
 			case 2:
 				String name3 = JOptionPane.showInputDialog(fenetre,
 						"Quel est le meilleur professeur de java?");
 				System.out.println(name3);
 				if (name3.equals("jean"))
 				{
-					System.out.println(name3);
-					plateauDeCase[personnageCourant.obtenirPositionPersonnage()
-							.obtenirX() + 1][personnageCourant
-							.obtenirPositionPersonnage().obtenirY()]
-							.setTexture(Texture.COFFRE_OUVERT);
-					panelmap.removeAll();
-					affichagePanneau();
-					this.affichageMap();
-					panelmap.validate();
-					System.out.println(name3);
+				return true;
 				}
-				else
-				{
-
-				}
+				
 				break;
 			case 3:
 				String name4 = JOptionPane.showInputDialog(fenetre,
@@ -1209,26 +1236,15 @@ public class IHMJoueur implements Runnable, KeyListener
 				System.out.println(name4);
 				if (name4.equals("tete"))
 				{
-					System.out.println(name4);
-					plateauDeCase[personnageCourant.obtenirPositionPersonnage()
-							.obtenirX() + 1][personnageCourant
-							.obtenirPositionPersonnage().obtenirY()]
-							.setTexture(Texture.COFFRE_OUVERT);
-					panelmap.removeAll();
-					affichagePanneau();
-					this.affichageMap();
-					panelmap.validate();
-					System.out.println(name4);
-				}
-				else
-				{
-
+					return true;
 				}
 				break;
 			case 4:
-				break;
+				return false;
+				
 
 		}
+		return false;
 	}
 
 	/**
