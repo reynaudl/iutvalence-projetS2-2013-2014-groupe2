@@ -7,7 +7,8 @@ import javax.swing.JLabel;
 /**
  * La Classe Personnage.
  */
-public abstract class Personnage {
+public abstract class Personnage
+{
 	/** Ensemble de constantes. */
 	private static final int ATTAQUE_DE_BASE = 1;
 
@@ -47,12 +48,13 @@ public abstract class Personnage {
 	public Case postionPersonnage;
 
 	/**
-	 * Le constructeur du personnage 
+	 * Le constructeur du personnage
 	 * 
 	 * @param String
 	 *            nom le nom du personnage
 	 */
-	public Personnage(String nom) {
+	public Personnage(String nom)
+	{
 
 		this.nomPersonnage = nom;
 		this.pointDeVie = PV;
@@ -75,7 +77,8 @@ public abstract class Personnage {
 	 * 
 	 * @return renvoie son nombre de point de vie
 	 */
-	public int obtenirPointDeVie() {
+	public int obtenirPointDeVie()
+	{
 		return this.pointDeVie;
 	}
 
@@ -85,17 +88,21 @@ public abstract class Personnage {
 	 * 
 	 * @return renvoie son nombre de point de vie
 	 */
-	public String obtenirNomClasse() {
+	public String obtenirNomClasse()
+	{
 		return this.nomClasse;
 	}
-	
+
 	/**
-	 * Prend un tableau d'item et met a jour les caracteristiques du perso en fonctions de ceux-ci
+	 * Prend un tableau d'item et met a jour les caracteristiques du perso en
+	 * fonctions de ceux-ci
+	 * 
 	 * @param nouvEquip
-	 * 			Un tableau d'item
+	 *            Un tableau d'item
 	 */
 
-	public void miseAJourInfo(Item[] nouvEquip) {
+	public void miseAJourInfo(Item[] nouvEquip)
+	{
 
 		this.armure = nouvEquip[0].obtenirArmure() + ARMURE_DE_BASE
 				+ nouvEquip[1].obtenirArmure();
@@ -108,33 +115,45 @@ public abstract class Personnage {
 	 * 
 	 * @return renvoie sa puissance d'attaque
 	 */
-	public int obtenirAttaque() {
+	public int obtenirAttaque()
+	{
 		return this.attaque;
 	}
-	
+
 	/**
-	 * Equipe l'objet recuperé en entrée si celui-ci est meilleur que ceux deja equipé
-	 * @param un objet de type item
+	 * Equipe l'objet recuperï¿½ en entrï¿½e si celui-ci est meilleur que ceux deja
+	 * equipï¿½
+	 * 
+	 * @param un
+	 *            objet de type item
 	 */
 
-	public void miseAJourDeLEquipement(Item item,JLabel lab) {
+	public void miseAJourDeLEquipement(Item item, JLabel lab)
+	{
 
 		for (int i = 0; i < this.itemCourant.length; i++)
-			if (item.obtenirType() == this.itemCourant[i].obtenirType()) {
+			if (item.obtenirType() == this.itemCourant[i].obtenirType())
+			{
 				if ((item.obtenirArmure() > this.itemCourant[i].obtenirArmure())
 						|| (item.obtenirAttaque() > this.itemCourant[i]
-								.obtenirAttaque())) {
+								.obtenirAttaque()))
+				{
 					this.itemCourant[i] = item;
-					lab.setText("bravo vous venez d'equiper "+this.itemCourant[i].obtenirNomItem());
-					for (int j = 0; j < this.itemCourant.length; j++) {
+					lab.setText("bravo vous venez d'equiper "
+							+ this.itemCourant[i].obtenirNomItem());
+					for (int j = 0; j < this.itemCourant.length; j++)
+					{
 						System.out.println("objet :  "
 								+ this.itemCourant[j].obtenirNomItem());
 					}
 
-				} else {
-					lab.setText("Désolé,l'objet n'etais pas assez puissant");
-				
-					for (int j = 0; j < this.itemCourant.length; j++) {
+				}
+				else
+				{
+					lab.setText("Dï¿½solï¿½,l'objet n'etais pas assez puissant");
+
+					for (int j = 0; j < this.itemCourant.length; j++)
+					{
 						System.out.println("objet :  "
 								+ this.itemCourant[j].obtenirNomItem());
 					}
@@ -143,17 +162,14 @@ public abstract class Personnage {
 
 	}
 
-
-
-
-
 	/**
 	 * Obtenir armure permet d'avoir accï¿½s a la caracteristique d'armure que
 	 * possede le personnage
 	 * 
 	 * @return renvoie l'armure du personnage
 	 */
-	public int obtenirArmure() {
+	public int obtenirArmure()
+	{
 		return this.armure;
 	}
 
@@ -162,88 +178,174 @@ public abstract class Personnage {
 	 * 
 	 * @return renvoie le multiplicateur du personnage
 	 */
-	public double obtenirMultiplicateur() {
+	public double obtenirMultiplicateur()
+	{
 		return this.multiplicateur;
 	}
+
 	/**
 	 * Obtenir l'esquive permet le calcule des dÃ©gats du personnage
 	 * 
 	 * @return renvoie l'esquive du personnage
 	 */
 
-	public int obtenirEsquive() {
+	public int obtenirEsquive()
+	{
 		return this.esquive;
 	}
 
-	public void attaqueSpecial() {
+	public void attaqueSpecial()
+	{
 
 	}
 
-	public void passif() {
+	public void passif()
+	{
 
 	}
+
 	/**
 	 * Permet d'obtenir la position du personnage
 	 * 
 	 * @return renvoie la position du personnage
 	 */
 
-	public Case obtenirPositionPersonnage() {
+	public Case obtenirPositionPersonnage()
+	{
 		return this.postionPersonnage;
 	}
 
 	/**
 	 * Tour d'attaque
 	 * 
-	 *  @param p
-	 *  	le personnage attaquant
-	 *  @param cible
-	 *  	le personnage ciblé 
+	 * @param p
+	 *            le personnage attaquant
+	 * @param cible
+	 *            le personnage ciblï¿½
 	 * @return renvoie les poins de vie de la cible
 	 */
 
+	public void attaquer()
+	{
+		if (this.obtenirNomClasse() == "sorcier")
+		{
+			for (int i = 0; i < 4; i++)
+				if ((this.obtenirPositionPersonnage().obtenirX() + 1 == IHMJoueur.tabCreat[i]
+						.obtenirPositionPersonnage().obtenirX() && this
+						.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+						.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() + 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() - 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() - 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() + 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() + 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() - 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() - 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY()))
+					IHMJoueur.tabCreat[i].pointDeVie = (int) (IHMJoueur.tabCreat[i].pointDeVie - this.multiplicateur
+							* ((this.attaque * 10) / (IHMJoueur.tabCreat[i]
+									.obtenirArmure() * 2)));
+		}
+		if (this.obtenirNomClasse() == "chasseur")
+		{
+			for (int i = 0; i < 4; i++)
+				if ((this.obtenirPositionPersonnage().obtenirX() + 1 == IHMJoueur.tabCreat[i]
+						.obtenirPositionPersonnage().obtenirX() && this
+						.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+						.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() + 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() + 3 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() - 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() - 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() - 3 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() + 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() + 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() + 3 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() - 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() - 2 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() - 3 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY()))
+					IHMJoueur.tabCreat[i].pointDeVie = (int) (IHMJoueur.tabCreat[i].pointDeVie - this.multiplicateur
+							* ((this.attaque * 10) / (IHMJoueur.tabCreat[i]
+									.obtenirArmure() * 2)));
+		}
+		if (this.obtenirNomClasse() == "guerrier")
+		{
+			for (int i = 0; i < 4; i++)
+				if ((this.obtenirPositionPersonnage().obtenirX() + 1 == IHMJoueur.tabCreat[i]
+						.obtenirPositionPersonnage().obtenirX() && this
+						.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+						.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() - 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() + 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY())
+						|| (this.obtenirPositionPersonnage().obtenirX() == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirX() && this
+								.obtenirPositionPersonnage().obtenirY() - 1 == IHMJoueur.tabCreat[i]
+								.obtenirPositionPersonnage().obtenirY()))
 
-	public int Attaquer(Personnage p, Personnage cible) {
-		if (p.nomClasse == "sorcier") {
-			if (((-3 < p.postionPersonnage.obtenirX()
-					- cible.postionPersonnage.obtenirX())
-					&& (p.postionPersonnage.obtenirX()
-							- cible.postionPersonnage.obtenirX() < 3) && (p.postionPersonnage
-					.obtenirY() == cible.postionPersonnage.obtenirY()))
-					|| ((-3 < p.postionPersonnage.obtenirY()
-							- cible.postionPersonnage.obtenirY())
-							&& (p.postionPersonnage.obtenirY()
-									- cible.postionPersonnage.obtenirY() < 3) && (p.postionPersonnage
-							.obtenirX() == cible.postionPersonnage.obtenirX())))
-				cible.pointDeVie = (int) p.obtenirMultiplicateur()*((p.obtenirAttaque()*10)/(cible.obtenirArmure()*2));
-		}
-		else if ((p.nomClasse == "guerrier")||(p.nomClasse == "monstre"))  {
-			if (((-2 < p.postionPersonnage.obtenirX()
-					- cible.postionPersonnage.obtenirX())
-					&& (p.postionPersonnage.obtenirX()
-							- cible.postionPersonnage.obtenirX() < 2) && (p.postionPersonnage
-					.obtenirY() == cible.postionPersonnage.obtenirY()))
-					|| ((-2 < p.postionPersonnage.obtenirY()
-							- cible.postionPersonnage.obtenirY())
-							&& (p.postionPersonnage.obtenirY()
-									- cible.postionPersonnage.obtenirY() < 2) && (p.postionPersonnage
-							.obtenirX() == cible.postionPersonnage.obtenirX())))
-				cible.pointDeVie = (int) p.obtenirMultiplicateur()*((p.obtenirAttaque()*10)/(cible.obtenirArmure()*2));
-		}
-		else if (p.nomClasse == "chasseur")  {
-			if (((-4 < p.postionPersonnage.obtenirX()
-					- cible.postionPersonnage.obtenirX())
-					&& (p.postionPersonnage.obtenirX()
-							- cible.postionPersonnage.obtenirX() < 4) && (p.postionPersonnage
-					.obtenirY() == cible.postionPersonnage.obtenirY()))
-					|| ((-4 < p.postionPersonnage.obtenirY()
-							- cible.postionPersonnage.obtenirY())
-							&& (p.postionPersonnage.obtenirY()
-									- cible.postionPersonnage.obtenirY() < 4) && (p.postionPersonnage
-							.obtenirX() == cible.postionPersonnage.obtenirX())))
-				cible.pointDeVie = (int) p.obtenirMultiplicateur()*((p.obtenirAttaque()*10)/(cible.obtenirArmure()*2));
+					IHMJoueur.tabCreat[i].pointDeVie = (int) (IHMJoueur.tabCreat[i].pointDeVie - this.multiplicateur
+							* ((this.attaque * 10) / (IHMJoueur.tabCreat[i]
+									.obtenirArmure() * 2)));
 		}
 
-		return cible.pointDeVie;
 	}
+
 }
