@@ -257,6 +257,7 @@ public abstract class Personnage
 					IHMJoueur.tabCreat.get(i).pointDeVie = (int) (IHMJoueur.tabCreat.get(i).pointDeVie - this.multiplicateur
 							* ((this.attaque * 10) / (IHMJoueur.tabCreat.get(i)
 								.obtenirArmure() * 2)));
+					
 				}
 		}
 		if (this.obtenirNomClasse() == "chasseur")
@@ -347,6 +348,8 @@ public abstract class Personnage
 			
 
 	}
+	
+	
 
 	
 	public void attaqueMonstre()

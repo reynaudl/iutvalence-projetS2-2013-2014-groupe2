@@ -60,6 +60,8 @@ public class IHMJoueur implements Runnable, KeyListener
 
 	public Case[][] plateauDeCase;
 	public static List<Personnage> tabCreat = new ArrayList<Personnage>();
+	
+	public static int compteurDObjetDonneParMonstre;
 
 	/************************************** Panel de 1er menu *******************/
 	public JFrame fenetre = new JFrame();
@@ -768,6 +770,8 @@ public class IHMJoueur implements Runnable, KeyListener
 		pseudoChass.addActionListener(new SavePseudo());
 
 		/************************************** Creation et affichage carte, ajout de monstre et gestion du popup *************************/
+		compteurDObjetDonneParMonstre = 0;
+		
 		tabCreat.add(monstre1);
 		tabCreat.add(monstre2);
 		tabCreat.add(monstre3);
@@ -867,7 +871,7 @@ public class IHMJoueur implements Runnable, KeyListener
 
 				bienvenu.showMessageDialog(
 						fenetre,
-						"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
+						"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
 
 				panelmap.validate();
 			}
@@ -887,7 +891,7 @@ public class IHMJoueur implements Runnable, KeyListener
 					affichagePanneau();
 					bienvenu.showMessageDialog(
 							fenetre,
-							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
+							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
 
 					panelmap.validate();
 				}
@@ -906,7 +910,7 @@ public class IHMJoueur implements Runnable, KeyListener
 
 					bienvenu.showMessageDialog(
 							fenetre,
-							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
+							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
 
 					panelmap.validate();
 
@@ -1418,15 +1422,24 @@ public class IHMJoueur implements Runnable, KeyListener
 
 	public void checkPointDeVie()
 	{
-		for (int i = 0; i < tabCreat.size(); i++)
+		int compteur = 0;
+		for (int i = 0; i < IHMJoueur.tabCreat.size(); i++)
 			if (tabCreat.get(i).pointDeVie < 0)
 			{
-				personnageCourant.miseAJourDeLEquipement(tabCreat.get(i)
-						.obtenirItemDUnMonstre(), objet);
 				tabCreat.get(i).obtenirPositionPersonnage()
 						.setTexture(Texture.MORT);
+				compteur++;
+				if (compteur>compteurDObjetDonneParMonstre)
+				{
+					personnageCourant.miseAJourDeLEquipement(tabCreat.get(i)
+							.obtenirItemDUnMonstre(), objet);
+					compteurDObjetDonneParMonstre++;
+				}
 			}
+		
+		
 	}
+	
 
 	public void checkPointDeViePersonnage()
 	{
