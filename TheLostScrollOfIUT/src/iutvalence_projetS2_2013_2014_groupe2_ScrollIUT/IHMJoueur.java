@@ -871,7 +871,7 @@ public class IHMJoueur implements Runnable, KeyListener
 
 				bienvenu.showMessageDialog(
 						fenetre,
-						"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à été attaqué et une partie à été détruite. A l’heure actuelle \n d’innombrables créatures ont trouvées refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouvent à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacer : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
+						"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à été attaqué et une partie à été détruite. A l’heure actuelle \n d’innombrables créatures ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouvent à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacer : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
 
 				panelmap.validate();
 			}
@@ -891,7 +891,7 @@ public class IHMJoueur implements Runnable, KeyListener
 					affichagePanneau();
 					bienvenu.showMessageDialog(
 							fenetre,
-							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
+							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à été attaqué et une partie à été détruite. A l’heure actuelle \n d’innombrables créatures ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouvent à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacer : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
 
 					panelmap.validate();
 				}
@@ -910,7 +910,7 @@ public class IHMJoueur implements Runnable, KeyListener
 
 					bienvenu.showMessageDialog(
 							fenetre,
-							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
+							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à été attaqué et une partie à été détruite. A l’heure actuelle \n d’innombrables créatures ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouvent à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacer : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n Barre espace : attaque \n A vous de jouer ! ");
 
 					panelmap.validate();
 
