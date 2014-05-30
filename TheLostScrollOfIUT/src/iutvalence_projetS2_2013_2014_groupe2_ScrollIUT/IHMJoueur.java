@@ -818,7 +818,6 @@ public class IHMJoueur implements Runnable, KeyListener
 														// du champ
 				personnageCourant = new Sorcier(pseudojoueur); // creer un
 																// sorcier
-				System.out.println(personnageCourant.nomPersonnage);
 				// avec cette valeur
 				info.setText(personnageCourant.nomPersonnage); // met dans info
 																// le
@@ -1146,15 +1145,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		return false;
 	}
 
-	/**
-	 * Affiche les dégats infligés par le joueur.
-	 * 
-	 * @return renvoi la valeur des degats faits
-	 */
-	public int afficheDegats()
-	{
-		return 0;
-	}
 
 	public void affichagePanneau()
 	{
@@ -1198,7 +1188,6 @@ public class IHMJoueur implements Runnable, KeyListener
 			case 0:
 				String name = JOptionPane.showInputDialog(fenetre,
 						"Qui est le plus mauvauis?");
-				System.out.println(name);
 				if (name.equals("ademage"))
 				{
 					return true;
@@ -1209,7 +1198,6 @@ public class IHMJoueur implements Runnable, KeyListener
 			case 1:
 				String name2 = JOptionPane.showInputDialog(fenetre,
 						"Combien font 1+1 ?");
-				System.out.println(name2);
 				if (name2.equals("2"))
 				{
 				return true;
@@ -1223,7 +1211,6 @@ public class IHMJoueur implements Runnable, KeyListener
 			case 2:
 				String name3 = JOptionPane.showInputDialog(fenetre,
 						"Quel est le meilleur professeur de java?");
-				System.out.println(name3);
 				if (name3.equals("jean"))
 				{
 				return true;
@@ -1232,9 +1219,8 @@ public class IHMJoueur implements Runnable, KeyListener
 				break;
 			case 3:
 				String name4 = JOptionPane.showInputDialog(fenetre,
-						"Coucou tu veux voir ma... ?");
-				System.out.println(name4);
-				if (name4.equals("tete"))
+						"Je suis d'eau,je suis d'air,et je suis d'�lectricit�.Qui suis-je?");
+				if (name4.equals("courant"))
 				{
 					return true;
 				}
@@ -1247,37 +1233,7 @@ public class IHMJoueur implements Runnable, KeyListener
 		return false;
 	}
 
-	/**
-	 * Demande la selection d'un objet
-	 */
-	public void selectionnerUnObjet()
-	{
-	}
-
-	/**
-	 * Selectionenr une réponse parmis N choix
-	 */
-	public void selection()
-	{
-	}
-
-	/**
-	 * Permet d'afficher l'enigme a l'ecran
-	 */
-	/*
-	 * public void afficherEnigme(Porte p) { if (p.presenceEnigme() == true) {
-	 * 
-	 * switch (p.numeroporte) { case 0: break; case 1:
-	 * System.out.println("Combien fait 1+1 en informatique ?"); break; case 2:
-	 * System.out .println("Quel langage avons nous appris en algorithmie ?");
-	 * break; default:
-	 * 
-	 * }
-	 * 
-	 * } else {
-	 * 
-	 * } }
-	 */
+	
 
 	/**
 	 * Verifie si la porte necessite une clé pour etre ouverte

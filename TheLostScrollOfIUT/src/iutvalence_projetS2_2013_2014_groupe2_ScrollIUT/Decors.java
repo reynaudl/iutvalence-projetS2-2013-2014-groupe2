@@ -95,7 +95,6 @@ public class Decors {
 
 		}
 
-		System.out.println("Vous avez recu " + Item.obtenirNomItem());
 		return Item;
 
 	}

@@ -141,22 +141,11 @@ public abstract class Personnage
 					this.itemCourant[i] = item;
 					lab.setText("bravo vous venez d'equiper "
 							+ this.itemCourant[i].obtenirNomItem());
-					for (int j = 0; j < this.itemCourant.length; j++)
-					{
-						System.out.println("objet :  "
-								+ this.itemCourant[j].obtenirNomItem());
-					}
-
+				
 				}
 				else
 				{
 					lab.setText("D�sol�,l'objet n'etais pas assez puissant");
-
-					for (int j = 0; j < this.itemCourant.length; j++)
-					{
-						System.out.println("objet :  "
-								+ this.itemCourant[j].obtenirNomItem());
-					}
 				}
 			}
 
