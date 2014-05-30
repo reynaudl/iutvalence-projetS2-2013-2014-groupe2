@@ -85,6 +85,7 @@ public class IHMJoueur implements Runnable, KeyListener
 	/************************************** Panel final contenant carte et info joueur *************************/
 	public JPanelMap panelmap = new JPanelMap();
 	public JPanel panelinfo = new JPanel();
+	public JOptionPane bienvenu = new JOptionPane();
 
 	JSplitPane separation = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	JSplitPane separationbas = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -149,16 +150,27 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirPositionPersonnage().obtenirY()]
 						.obtenirDecors().besoinDenigme == true)
 				{
-					if(demandeEnigme()==true){
-						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
-						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre(), objet);
+					if (demandeEnigme() == true)
+					{
+						plateauDeCase[personnageCourant
+								.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant
+								.obtenirPositionPersonnage().obtenirY()]
+								.setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant
+								.miseAJourDeLEquipement(
+										plateauDeCase[personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirX() - 1][personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirY()].obtenirDecors()
+												.obtenirItemDUnCoffre(), objet);
 						panelmap.removeAll();
 						affichagePanneau();
 						this.affichageMap();
 						panelmap.validate();
-						
+
 					}
-					
+
 				}
 				else
 				{
@@ -166,8 +178,18 @@ public class IHMJoueur implements Runnable, KeyListener
 							"Confirmation", JOptionPane.OK_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
-						plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].setTexture(Texture.COFFRE_OUVERT);
-						personnageCourant.miseAJourDeLEquipement(plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre(), objet);
+						plateauDeCase[personnageCourant
+								.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant
+								.obtenirPositionPersonnage().obtenirY()]
+								.setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant
+								.miseAJourDeLEquipement(
+										plateauDeCase[personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirX() - 1][personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirY()].obtenirDecors()
+												.obtenirItemDUnCoffre(), objet);
 						panelmap.removeAll();
 						affichagePanneau();
 						this.affichageMap();
@@ -238,25 +260,26 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirDecors().besoinDenigme == true)
 				{
 
-					if(demandeEnigme()==true){
+					if (demandeEnigme() == true)
+					{
 						plateauDeCase[personnageCourant
-										.obtenirPositionPersonnage().obtenirX() + 1][personnageCourant
-										.obtenirPositionPersonnage().obtenirY()]
-										.setTexture(Texture.COFFRE_OUVERT);
-								personnageCourant
-										.miseAJourDeLEquipement(
-												plateauDeCase[personnageCourant
-														.obtenirPositionPersonnage()
-														.obtenirX() + 1][personnageCourant
-														.obtenirPositionPersonnage()
-														.obtenirY()].obtenirDecors()
-														.obtenirItemDUnCoffre(), objet);
-								panelmap.removeAll();
-								affichagePanneau();
-								// panelgauche.revalidate();
-								this.affichageMap();
-								panelmap.validate();
-						
+								.obtenirPositionPersonnage().obtenirX() + 1][personnageCourant
+								.obtenirPositionPersonnage().obtenirY()]
+								.setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant
+								.miseAJourDeLEquipement(
+										plateauDeCase[personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirX() + 1][personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirY()].obtenirDecors()
+												.obtenirItemDUnCoffre(), objet);
+						panelmap.removeAll();
+						affichagePanneau();
+						// panelgauche.revalidate();
+						this.affichageMap();
+						panelmap.validate();
+
 					}
 				}
 				else
@@ -342,26 +365,27 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirPositionPersonnage().obtenirY() - 1]
 						.obtenirDecors().besoinDenigme == true)
 				{
-					if(demandeEnigme()==true){
+					if (demandeEnigme() == true)
+					{
 						plateauDeCase[personnageCourant
-										.obtenirPositionPersonnage().obtenirX()][personnageCourant
-										.obtenirPositionPersonnage().obtenirY() - 1]
-										.setTexture(Texture.COFFRE_OUVERT);
-								personnageCourant
-										.miseAJourDeLEquipement(
-												plateauDeCase[personnageCourant
-														.obtenirPositionPersonnage()
-														.obtenirX()][personnageCourant
-														.obtenirPositionPersonnage()
-														.obtenirY() - 1]
-														.obtenirDecors()
-														.obtenirItemDUnCoffre(), objet);
-								// plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre();
-								panelmap.removeAll();
-								affichagePanneau();
-								this.affichageMap();
-								panelmap.validate();
-						
+								.obtenirPositionPersonnage().obtenirX()][personnageCourant
+								.obtenirPositionPersonnage().obtenirY() - 1]
+								.setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant
+								.miseAJourDeLEquipement(
+										plateauDeCase[personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirX()][personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirY() - 1]
+												.obtenirDecors()
+												.obtenirItemDUnCoffre(), objet);
+						// plateauDeCase[personnageCourant.obtenirPositionPersonnage().obtenirX()+1][personnageCourant.obtenirPositionPersonnage().obtenirY()].obtenirDecors().obtenirItemDUnCoffre();
+						panelmap.removeAll();
+						affichagePanneau();
+						this.affichageMap();
+						panelmap.validate();
+
 					}
 				}
 				else
@@ -451,26 +475,27 @@ public class IHMJoueur implements Runnable, KeyListener
 						.obtenirPositionPersonnage().obtenirY() + 1]
 						.obtenirDecors().besoinDenigme == true)
 				{
-					if(demandeEnigme()==true){
+					if (demandeEnigme() == true)
+					{
 						plateauDeCase[personnageCourant
-										.obtenirPositionPersonnage().obtenirX()][personnageCourant
-										.obtenirPositionPersonnage().obtenirY() + 1]
-										.setTexture(Texture.COFFRE_OUVERT);
-								personnageCourant
-										.miseAJourDeLEquipement(
-												plateauDeCase[personnageCourant
-														.obtenirPositionPersonnage()
-														.obtenirX()][personnageCourant
-														.obtenirPositionPersonnage()
-														.obtenirY() + 1]
-														.obtenirDecors()
-														.obtenirItemDUnCoffre(), objet);
+								.obtenirPositionPersonnage().obtenirX()][personnageCourant
+								.obtenirPositionPersonnage().obtenirY() + 1]
+								.setTexture(Texture.COFFRE_OUVERT);
+						personnageCourant
+								.miseAJourDeLEquipement(
+										plateauDeCase[personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirX()][personnageCourant
+												.obtenirPositionPersonnage()
+												.obtenirY() + 1]
+												.obtenirDecors()
+												.obtenirItemDUnCoffre(), objet);
 
-								panelmap.removeAll();
-								affichagePanneau();
-								this.affichageMap();
-								panelmap.validate();
-						
+						panelmap.removeAll();
+						affichagePanneau();
+						this.affichageMap();
+						panelmap.validate();
+
 					}
 				}
 				else
@@ -556,12 +581,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		int largeur = 700;
 		int hauteur = 40;
 		int hauteur2 = 150;
-		
-		tabCreat.add(monstre1);
-		tabCreat.add(monstre2);
-		tabCreat.add(monstre3);
-		tabCreat.add(monstre4);
-
 
 		top.setPreferredSize(new Dimension(800, 75));
 
@@ -728,7 +747,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		panelgauche1.setLayout(new BoxLayout(panelgauche1, BoxLayout.Y_AXIS));
 		panelmap.setBackground(Color.BLACK);
 		panelmap.setLayout(new GridLayout(29, 0));
-		
 
 		separation.setResizeWeight(1.0);
 		separation.setEnabled(false);
@@ -749,7 +767,11 @@ public class IHMJoueur implements Runnable, KeyListener
 		pseudoGuer.addActionListener(new SavePseudo());
 		pseudoChass.addActionListener(new SavePseudo());
 
-		/************************************** Creation et affichage carte *************************/
+		/************************************** Creation et affichage carte, ajout de monstre et gestion du popup *************************/
+		tabCreat.add(monstre1);
+		tabCreat.add(monstre2);
+		tabCreat.add(monstre3);
+		tabCreat.add(monstre4);
 
 		plateauDeCase = Partie.obtenirPlateauCase();
 		Partie.creationCarte();
@@ -842,10 +864,11 @@ public class IHMJoueur implements Runnable, KeyListener
 				panelmap.removeAll();
 				affichageMap();
 				affichagePanneau();
-				JOptionPane bienvenu = new JOptionPane();
-				bienvenu.showMessageDialog(fenetre, "Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
-				panelmap.add(new JOptionPane());
-				
+
+				bienvenu.showMessageDialog(
+						fenetre,
+						"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
+
 				panelmap.validate();
 			}
 			else
@@ -862,6 +885,10 @@ public class IHMJoueur implements Runnable, KeyListener
 					panelmap.removeAll();
 					affichageMap();
 					affichagePanneau();
+					bienvenu.showMessageDialog(
+							fenetre,
+							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
+
 					panelmap.validate();
 				}
 				else
@@ -876,6 +903,11 @@ public class IHMJoueur implements Runnable, KeyListener
 					panelmap.removeAll();
 					affichageMap();
 					affichagePanneau();
+
+					bienvenu.showMessageDialog(
+							fenetre,
+							"Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
+
 					panelmap.validate();
 
 				}
@@ -1038,7 +1070,6 @@ public class IHMJoueur implements Runnable, KeyListener
 
 						}
 
-						
 						break;
 
 				}
@@ -1047,7 +1078,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		}
 	}
 
-
 	public boolean detectionMonstre()
 	{
 
@@ -1055,147 +1085,216 @@ public class IHMJoueur implements Runnable, KeyListener
 		{
 			for (int i = 0; i < 4; i++)
 				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
-						.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
-						.obtenirPositionPersonnage().obtenirY() == tabCreat
-						.get(i).obtenirPositionPersonnage().obtenirY())
+						.get(i).obtenirPositionPersonnage().obtenirX()
+						&& personnageCourant.obtenirPositionPersonnage()
+								.obtenirY() == tabCreat.get(i)
+								.obtenirPositionPersonnage().obtenirY() && tabCreat
+						.get(i).obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() + 2 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() - 1 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() - 2 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY()))
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0))
 					return true;
 		}
 		if (personnageCourant.obtenirNomClasse() == "chasseur")
 		{
 			for (int i = 0; i < 4; i++)
 				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
-						.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
-						.obtenirPositionPersonnage().obtenirY() == tabCreat
-						.get(i).obtenirPositionPersonnage().obtenirY())
+						.get(i).obtenirPositionPersonnage().obtenirX()
+						&& personnageCourant.obtenirPositionPersonnage()
+								.obtenirY() == tabCreat.get(i)
+								.obtenirPositionPersonnage().obtenirY() && tabCreat
+						.get(i).obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() + 2 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() + 3 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() - 1 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() - 2 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() - 3 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 3 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() + 3 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 3 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY()))
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() - 3 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0))
 					return true;
 		}
 		if (personnageCourant.obtenirNomClasse() == "guerrier")
 		{
 			for (int i = 0; i < 4; i++)
 				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
-						.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
-						.obtenirPositionPersonnage().obtenirY() == tabCreat
-						.get(i).obtenirPositionPersonnage().obtenirY())
+						.get(i).obtenirPositionPersonnage().obtenirX()
+						&& personnageCourant.obtenirPositionPersonnage()
+								.obtenirY() == tabCreat.get(i)
+								.obtenirPositionPersonnage().obtenirY() && tabCreat
+						.get(i).obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() - 1 == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0)
 						|| (personnageCourant.obtenirPositionPersonnage()
 								.obtenirX() == tabCreat.get(i)
-								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
-								.get(i).obtenirPositionPersonnage().obtenirY()))
+								.obtenirPositionPersonnage().obtenirX()
+								&& personnageCourant
+										.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
+										.get(i).obtenirPositionPersonnage()
+										.obtenirY() && tabCreat.get(i)
+								.obtenirPointDeVie() > 0))
 
 					return true;
 		}
 		return false;
 
 	}
-	
+
 	public boolean detectionPersonnage()
 	{
-	
+
 		for (int i = 0; i < 4; i++)
 			if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
 					.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
-					.obtenirPositionPersonnage().obtenirY() == tabCreat
-					.get(i).obtenirPositionPersonnage().obtenirY())
+					.obtenirPositionPersonnage().obtenirY() == tabCreat.get(i)
+					.obtenirPositionPersonnage().obtenirY())
 					|| (personnageCourant.obtenirPositionPersonnage()
 							.obtenirX() - 1 == tabCreat.get(i)
 							.obtenirPositionPersonnage().obtenirX() && personnageCourant
@@ -1216,7 +1315,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		return false;
 	}
 
-
 	public Personnage getPersonnage()
 	{
 		return partieDeJeux.personnage;
@@ -1230,7 +1328,6 @@ public class IHMJoueur implements Runnable, KeyListener
 		// if (pos.caseEnFace==null) || (pos.caseEnFace==decors)
 		return false;
 	}
-
 
 	public void affichagePanneau()
 	{
@@ -1277,35 +1374,36 @@ public class IHMJoueur implements Runnable, KeyListener
 				if (name.equals("ademage"))
 				{
 					return true;
-					
+
 				}
 				break;
-				
+
 			case 1:
 				String name2 = JOptionPane.showInputDialog(fenetre,
 						"Combien font 1+1 ?");
 				if (name2.equals("2"))
 				{
-				return true;
+					return true;
 				}
 				else
 				{
 					return false;
 
 				}
-				
+
 			case 2:
 				String name3 = JOptionPane.showInputDialog(fenetre,
 						"Quel est le meilleur professeur de java?");
 				if (name3.equals("jean"))
 				{
-				return true;
+					return true;
 				}
-				
+
 				break;
 			case 3:
-				String name4 = JOptionPane.showInputDialog(fenetre,
-						"Je suis d'eau,je suis d'air,et je suis d'�lectricit�.Qui suis-je?");
+				String name4 = JOptionPane
+						.showInputDialog(fenetre,
+								"Je suis d'eau,je suis d'air,et je suis d'�lectricit�.Qui suis-je?");
 				if (name4.equals("courant"))
 				{
 					return true;
@@ -1313,23 +1411,23 @@ public class IHMJoueur implements Runnable, KeyListener
 				break;
 			case 4:
 				return false;
-				
 
 		}
 		return false;
 	}
-	
+
 	public void checkPointDeVie()
 	{
 		for (int i = 0; i < tabCreat.size(); i++)
 			if (tabCreat.get(i).pointDeVie < 0)
 			{
-				personnageCourant.miseAJourDeLEquipement(tabCreat.get(i).obtenirItemDUnMonstre(),objet);
+				personnageCourant.miseAJourDeLEquipement(tabCreat.get(i)
+						.obtenirItemDUnMonstre(), objet);
 				tabCreat.get(i).obtenirPositionPersonnage()
 						.setTexture(Texture.MORT);
 			}
 	}
-	
+
 	public void checkPointDeViePersonnage()
 	{
 		if (personnageCourant.pointDeVie <= 0)
@@ -1339,11 +1437,8 @@ public class IHMJoueur implements Runnable, KeyListener
 			{
 				fenetre.dispose();
 			}
-			
+
 	}
-
-
-	
 
 	/**
 	 * Verifie si la porte necessite une clé pour etre ouverte

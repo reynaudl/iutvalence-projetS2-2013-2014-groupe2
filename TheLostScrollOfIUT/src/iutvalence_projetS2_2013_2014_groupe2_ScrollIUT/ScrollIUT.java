@@ -19,13 +19,4 @@ public class ScrollIUT {
 
 	}
 
-	/**
-	 * Declenche l'attaque du personnage en jeu.
-	 */
-
-	public void declencheAttaque(Personnage p, Personnage cible) {
-		cible.pointDeVie = (int) (cible.obtenirPointDeVie() - (p
-				.obtenirAttaque() * p.obtenirMultiplicateur() - cible
-				.obtenirArmure()));
-	}
 }
