@@ -49,13 +49,13 @@ public class IHMJoueur implements Runnable, KeyListener
 
 	public Partie partieDeJeux = new Partie(personnageCourant);
 	public static Personnage personnageCourant = new Chasseur("lolo");
-	public static Personnage monstre1 = new Creature("creat1", 20, 2, 2, 1.0,
+	public static Personnage monstre1 = new Creature("creat1", 50, 2, 2, 1.0,
 			new Case(6, 5, Texture.MONSTRE, null));
-	public static Personnage monstre2 = new Creature("creat2", 20, 2, 2, 1.0,
+	public static Personnage monstre2 = new Creature("creat2", 50, 2, 2, 1.0,
 			new Case(12, 25, Texture.MONSTRE, null));
-	public static Personnage monstre3 = new Creature("creat3", 20, 2, 2, 1.0,
+	public static Personnage monstre3 = new Creature("creat3", 70, 2, 2, 1.0,
 			new Case(15, 17, Texture.MONSTRE, null));
-	public static Personnage monstre4 = new Creature("creat4", 20, 2, 2, 1.0,
+	public static Personnage monstre4 = new Creature("creat4", 50, 2, 2, 1.0,
 			new Case(15, 10, Texture.MONSTRE, null));
 
 	public Case[][] plateauDeCase;
@@ -1318,6 +1318,7 @@ public class IHMJoueur implements Runnable, KeyListener
 		for (int i = 0; i < tabCreat.size(); i++)
 			if (tabCreat.get(i).pointDeVie < 0)
 			{
+				personnageCourant.miseAJourDeLEquipement(tabCreat.get(i).obtenirItemDUnMonstre(),objet);
 				tabCreat.get(i).obtenirPositionPersonnage()
 						.setTexture(Texture.MORT);
 			}
