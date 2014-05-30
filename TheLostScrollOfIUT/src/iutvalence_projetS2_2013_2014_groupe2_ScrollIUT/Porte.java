@@ -29,6 +29,7 @@ public class Porte extends Decors {
 
 	public Porte(boolean besoinCle,boolean besoinEnigme) {
 		super("Porte", besoinCle,besoinEnigme);
+		
 		this.etat = false;
 
 	}
