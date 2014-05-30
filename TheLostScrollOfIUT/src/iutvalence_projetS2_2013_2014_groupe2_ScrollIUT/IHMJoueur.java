@@ -410,8 +410,8 @@ public class IHMJoueur implements Runnable, KeyListener
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
 					{
 						plateauDeCase[personnageCourant
-								.obtenirPositionPersonnage().obtenirX() - 1][personnageCourant
-								.obtenirPositionPersonnage().obtenirY()]
+								.obtenirPositionPersonnage().obtenirX()][personnageCourant
+								.obtenirPositionPersonnage().obtenirY() - 1]
 								.setTexture(Texture.PORTE_OUVERTE);
 						panelmap.removeAll();
 						affichagePanneau();
@@ -541,6 +541,7 @@ public class IHMJoueur implements Runnable, KeyListener
 				personnageCourant.attaquer(objet);
 				checkPointDeVie();
 				deplacementRandom();
+				checkPointDeViePersonnage();
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
@@ -727,6 +728,7 @@ public class IHMJoueur implements Runnable, KeyListener
 		panelgauche1.setLayout(new BoxLayout(panelgauche1, BoxLayout.Y_AXIS));
 		panelmap.setBackground(Color.BLACK);
 		panelmap.setLayout(new GridLayout(29, 0));
+		
 
 		separation.setResizeWeight(1.0);
 		separation.setEnabled(false);
@@ -840,6 +842,10 @@ public class IHMJoueur implements Runnable, KeyListener
 				panelmap.removeAll();
 				affichageMap();
 				affichagePanneau();
+				JOptionPane bienvenu = new JOptionPane();
+				bienvenu.showMessageDialog(fenetre, "Salutation Aventurier ! \n De grâce je requière votre aide, mon « institut universitaire technologique »  \n à était attaqué et une partie à était détruite. A l’heure actuelle \n d’innombrable créature ont trouvé refuge à l’intérieur. Je vous prierez de \n bien vouloir chasser ces monstres hors de ces lieux, les trésors qui se \n trouve à l’intérieur serons votre. \n \n \n Voici les commandes pour vous déplacez : \n « z » : déplacement vers le haut \n « s » : déplacement vers le bas \n « q » : déplacement vers la gauche \n « d » : déplacement vers la droite \n « d » : déplacement vers la droite \n A vous de jouer ! ");
+				panelmap.add(new JOptionPane());
+				
 				panelmap.validate();
 			}
 			else
