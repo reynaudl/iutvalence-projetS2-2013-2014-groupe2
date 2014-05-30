@@ -20,7 +20,8 @@ public enum Texture {
 	TABLE(true,"texture/table.png"),
 	MONSTRE(true,"texture/monstre.png"),
 	PILIER(true,"texture/pilier.png"),
-	COFFRE_OUVERT(true,"texture/coffre_ouvert.png");
+	COFFRE_OUVERT(true,"texture/coffre_ouvert.png"),
+	MORT(false,"texture/mort.png");
 	
 
 	

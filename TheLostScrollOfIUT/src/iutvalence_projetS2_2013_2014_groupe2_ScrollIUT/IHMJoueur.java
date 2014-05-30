@@ -19,6 +19,8 @@ import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -57,8 +59,7 @@ public class IHMJoueur implements Runnable, KeyListener
 			new Case(15, 10, Texture.MONSTRE, null));
 
 	public Case[][] plateauDeCase;
-	public static Personnage[] tabCreat =
-	{ monstre1, monstre2, monstre3, monstre4 };
+	public static List<Personnage> tabCreat = new ArrayList<Personnage>();
 
 	/************************************** Panel de 1er menu *******************/
 	public JFrame fenetre = new JFrame();
@@ -537,11 +538,13 @@ public class IHMJoueur implements Runnable, KeyListener
 		{
 			if (detectionMonstre())
 			{
-				personnageCourant.attaquer();
+				personnageCourant.attaquer(objet);
+				checkPointDeVie();
 				deplacementRandom();
 				panelmap.removeAll();
 				this.affichageMap();
 				panelmap.validate();
+
 			}
 		}
 	}
@@ -552,6 +555,12 @@ public class IHMJoueur implements Runnable, KeyListener
 		int largeur = 700;
 		int hauteur = 40;
 		int hauteur2 = 150;
+		
+		tabCreat.add(monstre1);
+		tabCreat.add(monstre2);
+		tabCreat.add(monstre3);
+		tabCreat.add(monstre4);
+
 
 		top.setPreferredSize(new Dimension(800, 75));
 
@@ -914,82 +923,124 @@ public class IHMJoueur implements Runnable, KeyListener
 
 	public void deplacementRandom()
 	{
-		for (int i = 0; i < tabCreat.length; i++)
+		for (int i = 0; i < tabCreat.size(); i++)
 		{
-
-			SecureRandom rand = new SecureRandom();
-			int nombreAleatoire = rand.nextInt(5 - 1 + 1) + 1;
-			switch (nombreAleatoire)
+			if (tabCreat.get(i).obtenirPositionPersonnage()
+					.obtenirIndexTexture() == Texture.MORT)
 			{
-				case 1:
-					if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage()
-							.obtenirX() - 1][tabCreat[i]
-							.obtenirPositionPersonnage().obtenirY()]
-							.obtenirIndexTexture().caseBloquante() == false)
-					{
-						tabCreat[i].obtenirPositionPersonnage().setX(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirX() - 1);
-						tabCreat[i].obtenirPositionPersonnage().setY(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirY());
 
-					}
+			}
+			else
+			{
+				SecureRandom rand = new SecureRandom();
+				int nombreAleatoire = rand.nextInt(5 - 1 + 1) + 1;
+				switch (nombreAleatoire)
+				{
+					case 1:
+						if (plateauDeCase[tabCreat.get(i)
+								.obtenirPositionPersonnage().obtenirX() - 1][tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY()]
+								.obtenirIndexTexture().caseBloquante() == false)
+						{
+							if (detectionPersonnage())
+								tabCreat.get(i).attaqueMonstre();
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setX(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirX() - 1);
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setY(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirY());
+							affichagePanneau();
+							checkPointDeViePersonnage();
 
-					break;
-				case 2:
+						}
 
-					if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage()
-							.obtenirX() + 1][tabCreat[i]
-							.obtenirPositionPersonnage().obtenirY()]
-							.obtenirIndexTexture().caseBloquante() == false)
-					{
-						tabCreat[i].obtenirPositionPersonnage().setX(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirX() + 1);
-						tabCreat[i].obtenirPositionPersonnage().setY(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirY());
+						break;
+					case 2:
 
-					}
+						if (plateauDeCase[tabCreat.get(i)
+								.obtenirPositionPersonnage().obtenirX() + 1][tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY()]
+								.obtenirIndexTexture().caseBloquante() == false)
+						{
+							if (detectionPersonnage())
+								tabCreat.get(i).attaqueMonstre();
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setX(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirX() + 1);
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setY(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirY());
+							affichagePanneau();
+							checkPointDeViePersonnage();
 
-					break;
-				case 3:
-					if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage()
-							.obtenirX()][tabCreat[i]
-							.obtenirPositionPersonnage().obtenirY() - 1]
-							.obtenirIndexTexture().caseBloquante() == false)
-					{
-						tabCreat[i].obtenirPositionPersonnage().setX(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirX());
-						tabCreat[i].obtenirPositionPersonnage().setY(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirY() - 1);
+						}
 
-					}
+						break;
+					case 3:
+						if (plateauDeCase[tabCreat.get(i)
+								.obtenirPositionPersonnage().obtenirX()][tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY() - 1]
+								.obtenirIndexTexture().caseBloquante() == false)
+						{
+							if (detectionPersonnage())
+								tabCreat.get(i).attaqueMonstre();
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setX(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirX());
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setY(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirY() - 1);
+							affichagePanneau();
+							checkPointDeViePersonnage();
 
-					break;
-				case 4:
-					if (plateauDeCase[tabCreat[i].obtenirPositionPersonnage()
-							.obtenirX()][tabCreat[i]
-							.obtenirPositionPersonnage().obtenirY() + 1]
-							.obtenirIndexTexture().caseBloquante() == false)
-					{
-						tabCreat[i].obtenirPositionPersonnage().setX(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirX());
-						tabCreat[i].obtenirPositionPersonnage().setY(
-								tabCreat[i].obtenirPositionPersonnage()
-										.obtenirY() + 1);
+						}
 
-					}
+						break;
+					case 4:
+						if (plateauDeCase[tabCreat.get(i)
+								.obtenirPositionPersonnage().obtenirX()][tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY() + 1]
+								.obtenirIndexTexture().caseBloquante() == false)
+						{
+							if (detectionPersonnage())
+								tabCreat.get(i).attaqueMonstre();
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setX(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirX());
+							tabCreat.get(i)
+									.obtenirPositionPersonnage()
+									.setY(tabCreat.get(i)
+											.obtenirPositionPersonnage()
+											.obtenirY() + 1);
+							affichagePanneau();
+							checkPointDeViePersonnage();
 
-					break;
+						}
+
+						
+						break;
+
+				}
 
 			}
 		}
 	}
+
 
 	public boolean detectionMonstre()
 	{
@@ -997,139 +1048,168 @@ public class IHMJoueur implements Runnable, KeyListener
 		if (personnageCourant.obtenirNomClasse() == "sorcier")
 		{
 			for (int i = 0; i < 4; i++)
-				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat[i]
-						.obtenirPositionPersonnage().obtenirX() && personnageCourant
-						.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-						.obtenirPositionPersonnage().obtenirY())
+				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
+						.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
+						.obtenirPositionPersonnage().obtenirY() == tabCreat
+						.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() + 2 == tabCreat[i]
+								.obtenirX() + 2 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() - 1 == tabCreat[i]
+								.obtenirX() - 1 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() - 2 == tabCreat[i]
+								.obtenirX() - 2 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY()))
+								.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY()))
 					return true;
 		}
 		if (personnageCourant.obtenirNomClasse() == "chasseur")
 		{
 			for (int i = 0; i < 4; i++)
-				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat[i]
-						.obtenirPositionPersonnage().obtenirX() && personnageCourant
-						.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-						.obtenirPositionPersonnage().obtenirY())
+				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
+						.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
+						.obtenirPositionPersonnage().obtenirY() == tabCreat
+						.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() + 2 == tabCreat[i]
+								.obtenirX() + 2 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() + 3 == tabCreat[i]
+								.obtenirX() + 3 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() - 1 == tabCreat[i]
+								.obtenirX() - 1 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() - 2 == tabCreat[i]
+								.obtenirX() - 2 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() - 3 == tabCreat[i]
+								.obtenirX() - 3 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() + 2 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 3 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() + 3 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() - 2 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 3 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY()))
+								.obtenirPositionPersonnage().obtenirY() - 3 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY()))
 					return true;
 		}
 		if (personnageCourant.obtenirNomClasse() == "guerrier")
 		{
 			for (int i = 0; i < 4; i++)
-				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat[i]
-						.obtenirPositionPersonnage().obtenirX() && personnageCourant
-						.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-						.obtenirPositionPersonnage().obtenirY())
+				if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
+						.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
+						.obtenirPositionPersonnage().obtenirY() == tabCreat
+						.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() - 1 == tabCreat[i]
+								.obtenirX() - 1 == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY())
+								.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY())
 						|| (personnageCourant.obtenirPositionPersonnage()
-								.obtenirX() == tabCreat[i]
+								.obtenirX() == tabCreat.get(i)
 								.obtenirPositionPersonnage().obtenirX() && personnageCourant
-								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat[i]
-								.obtenirPositionPersonnage().obtenirY()))
+								.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
+								.get(i).obtenirPositionPersonnage().obtenirY()))
 
 					return true;
 		}
 		return false;
 
 	}
+	
+	public boolean detectionPersonnage()
+	{
+	
+		for (int i = 0; i < 4; i++)
+			if ((personnageCourant.obtenirPositionPersonnage().obtenirX() + 1 == tabCreat
+					.get(i).obtenirPositionPersonnage().obtenirX() && personnageCourant
+					.obtenirPositionPersonnage().obtenirY() == tabCreat
+					.get(i).obtenirPositionPersonnage().obtenirY())
+					|| (personnageCourant.obtenirPositionPersonnage()
+							.obtenirX() - 1 == tabCreat.get(i)
+							.obtenirPositionPersonnage().obtenirX() && personnageCourant
+							.obtenirPositionPersonnage().obtenirY() == tabCreat
+							.get(i).obtenirPositionPersonnage().obtenirY())
+					|| (personnageCourant.obtenirPositionPersonnage()
+							.obtenirX() == tabCreat.get(i)
+							.obtenirPositionPersonnage().obtenirX() && personnageCourant
+							.obtenirPositionPersonnage().obtenirY() + 1 == tabCreat
+							.get(i).obtenirPositionPersonnage().obtenirY())
+					|| (personnageCourant.obtenirPositionPersonnage()
+							.obtenirX() == tabCreat.get(i)
+							.obtenirPositionPersonnage().obtenirX() && personnageCourant
+							.obtenirPositionPersonnage().obtenirY() - 1 == tabCreat
+							.get(i).obtenirPositionPersonnage().obtenirY()))
+
+				return true;
+		return false;
+	}
+
 
 	public Personnage getPersonnage()
 	{
@@ -1219,7 +1299,7 @@ public class IHMJoueur implements Runnable, KeyListener
 				break;
 			case 3:
 				String name4 = JOptionPane.showInputDialog(fenetre,
-						"Je suis d'eau,je suis d'air,et je suis d'électricité.Qui suis-je?");
+						"Je suis d'eau,je suis d'air,et je suis d'ï¿½lectricitï¿½.Qui suis-je?");
 				if (name4.equals("courant"))
 				{
 					return true;
@@ -1232,6 +1312,29 @@ public class IHMJoueur implements Runnable, KeyListener
 		}
 		return false;
 	}
+	
+	public void checkPointDeVie()
+	{
+		for (int i = 0; i < tabCreat.size(); i++)
+			if (tabCreat.get(i).pointDeVie < 0)
+			{
+				tabCreat.get(i).obtenirPositionPersonnage()
+						.setTexture(Texture.MORT);
+			}
+	}
+	
+	public void checkPointDeViePersonnage()
+	{
+		if (personnageCourant.pointDeVie <= 0)
+			if (JOptionPane.showConfirmDialog(fenetre, "Vous etes mort",
+					"MORT", JOptionPane.OK_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
+			{
+				fenetre.dispose();
+			}
+			
+	}
+
 
 	
 
