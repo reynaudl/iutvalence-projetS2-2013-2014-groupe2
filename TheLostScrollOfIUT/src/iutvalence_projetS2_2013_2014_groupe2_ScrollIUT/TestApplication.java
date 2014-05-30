@@ -66,7 +66,6 @@ public void verifieMajItem() {
 		  suite.addTest(new TestApplication("verifieEtatCoffre"));
 		  suite.addTest(new TestApplication("verifieItemObtenuDifferent"));
 		  suite.addTest(new TestApplication("verifieMajItem"));
-		  suite.addTest(new TestApplication("verifiePorteOuverte"));
 
 
 
